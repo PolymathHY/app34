@@ -6,7 +6,7 @@
 
 ## 2학년 — 생각 보물 사냥꾼
 책 속 보물(국어 개념)을 찾고 어항을 키워요.  
-👉 [앱 열기](https://script.google.com/macros/s/AKfycbxf2w7E4VKmxoMN_rCn34A58ljXoXSVc8P4IlFM7wND0vimd916bC9iOuDkFdqPn-Oe/exec)
+👉 [앱 열기](https://script.google.com/macros/s/AKfycbzSmns9xF4Z2i31gGLtjy9s2r1TLPcfn4mkXXhqgyB43_9_NgKuvpW8QXIYkeGc_KYC_A/exec)
 
 ---
 
