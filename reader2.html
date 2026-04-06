@@ -63,10 +63,11 @@
       background:rgba(255,255,255,.85); padding:2px 8px; border-radius:12px;
       border:2px solid #0f172a; color:#0f172a; white-space:nowrap;
       letter-spacing:-.5px; box-shadow:2px 2px 0px rgba(0,0,0,.2); z-index:30;
+      animation:counterFlip linear infinite; /* 물고기 반전에 맞춰 제목 역방향 보정 */
     }
     .counter-flip { animation:counterFlip linear infinite; }
     .pop-animation { animation:popIn .4s cubic-bezier(.175,.885,.32,1.275); }
-    .recording-active { animation:pulse-red 1.5s infinite; background-color:#ef4444!important; border-color:#b91c1c!important; color:white!important; }
+    .recording-active { background-color:#ef4444!important; border-color:#b91c1c!important; color:white!important; }
     body { user-select:none; -webkit-tap-highlight-color:transparent; overscroll-behavior:none; }
     .modal-overlay { background-color:rgba(15,23,42,.4); backdrop-filter:blur(2px); }
     /* ── 단계별 배경 ── */
@@ -1037,9 +1038,22 @@ function guidePrev() {
 function showSelectStep() { showView('view-select'); }
 
 function handleNav(target) {
-  if (!currentUser && target !== 'login') { showModal('잠깐!', '이름을 먼저 써주세요!', '📛'); showView('view-login'); return; }
-  if      (target === 'login')    showView('view-login');
-  else if (target === 'mission')  showView('view-select');
+  if (!currentUser && target !== 'login') {
+    showModal('잠깐!', '이름을 먼저 써주세요!', '📛');
+    showView('view-login'); return;
+  }
+  if (target === 'login') {
+    // 로그인된 상태면 책 입력으로, 아니면 로그인으로
+    if (currentUser) showView('view-book-input-section');
+    else             showView('view-login');
+  }
+  else if (target === 'mission') {
+    // 책 제목이 있으면 미션 선택, 없으면 책 입력부터
+    if (currentBook) showView('view-select');
+    else {
+      showModal('잠깐!', '먼저 책 제목을 입력해주세요! 📖', '📖', false, () => showView('view-book-input-section'));
+    }
+  }
   else if (target === 'home')     goHome();
   else if (target === 'calendar') showView('view-calendar');
 }
@@ -1828,7 +1842,7 @@ function toggleSentenceMic() {
     isSentenceMicOn = false;
     document.getElementById('sentence-mic-icon').innerText  = '🎤';
     document.getElementById('sentence-mic-label').innerText = '마이크 켜고 말하기';
-    document.getElementById('btn-sentence-mic').classList.replace('bg-red-400','bg-purple-400');
+    document.getElementById('btn-sentence-mic').classList.replace('bg-red-500','bg-purple-400');
     return;
   }
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1851,14 +1865,14 @@ function toggleSentenceMic() {
     isSentenceMicOn = false;
     document.getElementById('sentence-mic-icon').innerText  = '🎤';
     document.getElementById('sentence-mic-label').innerText = '다시 말하기';
-    document.getElementById('btn-sentence-mic').classList.replace('bg-red-400','bg-purple-400');
+    document.getElementById('btn-sentence-mic').classList.replace('bg-red-500','bg-purple-400');
   };
   sentenceRecognition.onerror = () => { isSentenceMicOn = false; };
   sentenceRecognition.start();
   isSentenceMicOn = true;
   document.getElementById('sentence-mic-icon').innerText  = '🔴';
   document.getElementById('sentence-mic-label').innerText = '듣고 있어요... (클릭해서 중지)';
-  document.getElementById('btn-sentence-mic').classList.replace('bg-purple-400','bg-red-400');
+  document.getElementById('btn-sentence-mic').classList.replace('bg-purple-400','bg-red-500');
 }
 </script>
 </body>
