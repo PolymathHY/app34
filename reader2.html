@@ -116,6 +116,33 @@
       padding-right: 44px !important;
       cursor: pointer;
     }
+    /* ── 폭죽 효과 ── */
+    @keyframes confettiFall {
+      0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+    @keyframes burstOut {
+      0%   { transform: translate(0,0) scale(0); opacity: 1; }
+      60%  { opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(1.2); opacity: 0; }
+    }
+    .confetti-piece {
+      position: fixed;
+      top: -20px;
+      width: 12px; height: 12px;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .burst-piece {
+      position: fixed;
+      border-radius: 50%;
+      animation: burstOut ease-out forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
     @media (max-height: 700px), (max-width: 600px) {
       .responsive-main   { flex-direction: column !important; overflow-y: auto !important; }
       .aquarium-wrap     { height: 44vw !important; width: 100% !important; }
@@ -357,9 +384,10 @@
             <button onclick="handleNav('calendar')" class="w-44 bg-sky-300 border-[3px] border-slate-900 px-4 py-2.5 rounded-xl text-xl font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center">다음으로 ➡️</button>
           </div>
         </div>
-        <div class="responsive-main flex-1 flex flex-row p-4 md:p-10 pt-2 md:pt-4 gap-4 md:gap-10 min-h-0 overflow-hidden z-10 items-center justify-center">
-          <div class="aquarium-wrap h-full flex flex-col justify-center items-center">
-            <div id="aquarium-bg" class="h-full aquarium-base aquarium-stage-1">
+        <div class="responsive-main flex-1 flex flex-row p-3 md:p-6 pt-2 gap-3 md:gap-6 min-h-0 overflow-hidden z-10 items-stretch justify-center">
+          <!-- 어항: 고정 비율 -->
+          <div class="aquarium-wrap flex-shrink-0 flex flex-col justify-center items-center" style="width:min(45%, 380px)">
+            <div id="aquarium-bg" class="w-full aquarium-base aquarium-stage-1" style="height:min(100%,380px)">
               <div class="aquarium-glass-effect"></div>
               <div class="water-surface"></div>
               <div id="fish-zone" class="absolute inset-0 z-20 overflow-hidden pointer-events-auto"></div>
@@ -369,41 +397,49 @@
                 <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
               </div>
             </div>
-            <div id="aquarium-stage-badge" class="mt-3 bg-white border-2 border-slate-900 rounded-full px-4 py-1 text-sm font-black text-slate-700 shadow-hard-sm"></div>
+            <div id="aquarium-stage-badge" class="mt-2 bg-white border-2 border-slate-900 rounded-full px-4 py-1 text-sm font-black text-slate-700 shadow-hard-sm"></div>
           </div>
-          <div class="info-card w-80 flex flex-col gap-4 md:gap-6 bg-white border-[4px] border-slate-900 rounded-[2.5rem] p-5 md:p-8 justify-between h-full shadow-sm">
-            <div class="flex flex-col items-center w-full gap-4">
-              <div class="bg-yellow-100 border-2 border-yellow-200 px-6 py-2 rounded-xl w-full text-center">
-                <span class="text-xl font-black text-slate-800">나의 생각 보물</span>
+
+          <!-- 정보 카드: 남은 공간 전부 사용 -->
+          <div class="info-card flex-1 min-w-0 flex flex-col gap-3 bg-white border-[4px] border-slate-900 rounded-[2rem] p-5 overflow-y-auto shadow-sm">
+
+            <!-- ① 생각 보물 (가장 중요 → 가장 크게) -->
+            <div class="w-full">
+              <div class="bg-yellow-100 border-2 border-yellow-300 px-4 py-1.5 rounded-xl w-full text-center mb-2">
+                <span class="text-lg font-black text-slate-700">💬 나의 생각 보물</span>
               </div>
-              <div class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-4 text-center font-bold text-xl text-slate-700 break-keep flex items-center justify-center min-h-[80px] leading-tight">
-                <span id="current-sentence-display">오늘 찾은 보물 문장이<br>여기에 표시됩니다.</span>
+              <div class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-4 text-center font-black text-2xl text-slate-800 break-keep leading-snug overflow-hidden">
+                <span id="current-sentence-display">오늘의 멋진 보물을 기록해봐요! ✨</span>
               </div>
-              <div class="w-full flex flex-col gap-2 mt-1">
-                <div class="flex items-center justify-between bg-yellow-50 border-2 border-yellow-200 rounded-xl px-4 py-2">
-                  <span class="text-sm font-bold text-slate-500">책 후기</span>
-                  <div id="aquarium-star-display" class="flex gap-0.5 text-2xl">
-                    <span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span>
-                  </div>
+            </div>
+
+            <!-- ② 누적 권수 (두 번째로 중요) -->
+            <div id="total-books-display" class="text-center bg-yellow-400 border-3 border-slate-900 rounded-2xl py-3 px-4">
+              <p class="text-5xl font-black text-slate-900" id="total-books-count">0</p>
+              <p class="text-base font-black text-slate-700">권 읽었어요! 📚</p>
+            </div>
+
+            <!-- ③ 다음 이정표 -->
+            <div id="next-milestone-display" class="text-center text-slate-600 text-base font-bold bg-slate-50 rounded-xl py-2 px-3 break-keep"></div>
+
+            <!-- ④ 책 후기 / 나의 노력 (작게) -->
+            <div class="flex gap-2">
+              <div class="flex-1 flex items-center justify-between bg-yellow-50 border-2 border-yellow-200 rounded-xl px-3 py-2">
+                <span class="text-sm font-bold text-slate-500">책 후기</span>
+                <div id="aquarium-star-display" class="flex gap-0.5 text-xl">
+                  <span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span>
                 </div>
-                <div class="flex items-center justify-between bg-pink-50 border-2 border-pink-200 rounded-xl px-4 py-2">
-                  <span class="text-sm font-bold text-slate-500">나의 노력</span>
-                  <div id="aquarium-heart-display" class="flex gap-0.5 text-2xl">
-                    <span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span>
-                  </div>
+              </div>
+              <div class="flex-1 flex items-center justify-between bg-pink-50 border-2 border-pink-200 rounded-xl px-3 py-2">
+                <span class="text-sm font-bold text-slate-500">노력</span>
+                <div id="aquarium-heart-display" class="flex gap-0.5 text-xl">
+                  <span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span>
                 </div>
               </div>
             </div>
-            <div class="flex-1 flex flex-col justify-end w-full gap-3">
-              <div id="total-books-display" class="text-center bg-yellow-50 border-2 border-yellow-200 rounded-2xl py-3 px-4">
-                <p class="text-3xl font-black text-yellow-600" id="total-books-count">0</p>
-                <p class="text-sm font-bold text-slate-500">권 읽었어요! 📚</p>
-              </div>
-              <div id="next-milestone-display" class="text-center text-slate-500 text-sm font-bold"></div>
-              <div id="mission-status" class="text-center font-bold text-slate-600 text-lg leading-snug">
-                현재 1개 성공!<br>목표 5개까지 화이팅!
-              </div>
-            </div>
+
+            <!-- ⑤ 미션 상태 (가장 작게) -->
+            <div id="mission-status" class="text-center font-bold text-slate-400 text-sm leading-snug mt-auto"></div>
           </div>
         </div>
       </section>
@@ -412,13 +448,16 @@
       <section id="view-mission" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-2 px-4 pb-2 bg-yellow-50 z-10 overflow-y-auto">
         <h2 id="mission-title-header" class="text-3xl font-black text-slate-900 mb-2 bg-yellow-400 px-8 py-2 border-[3px] border-slate-900 rounded-xl transform -rotate-1 flex-shrink-0">보물 찾기 미션</h2>
         <div class="pop-animation w-full max-w-4xl flex-1 bg-white border-[4px] border-slate-900 rounded-[2rem] px-8 py-4 relative flex flex-col gap-3 shadow-sm overflow-y-auto">
-          <div class="flex justify-end items-center flex-shrink-0">
-            <div class="flex gap-2">
-              <button id="btn-speak" onclick="speakMission()" class="bg-white border-2 border-slate-900 rounded-full w-16 h-16 flex items-center justify-center text-4xl active:scale-90 transition-all shadow-sm" title="미션 듣기">📢</button>
-              <button id="btn-stt" onclick="toggleSTT()" class="bg-white border-2 border-slate-900 rounded-full w-16 h-16 flex items-center justify-center text-4xl active:scale-90 hover:bg-slate-50 transition-colors shadow-sm" title="음성으로 말하기">🎤</button>
-            </div>
+          <!-- 소리듣기 + 미션 내용 -->
+          <div class="flex items-start gap-3 flex-shrink-0">
+            <button id="btn-speak" onclick="speakMission()" class="bg-white border-2 border-slate-900 rounded-full w-14 h-14 flex items-center justify-center text-3xl active:scale-90 transition-all shadow-sm flex-shrink-0" title="미션 듣기">📢</button>
+            <div id="mission-text-container" class="flex-1 flex flex-col items-start text-left"></div>
           </div>
-          <div id="mission-text-container" class="w-full flex flex-col items-center text-center"></div>
+          <!-- 마이크 버튼 (한 문장 화면과 동일 스타일) -->
+          <button id="btn-stt" onclick="toggleSTT()" class="w-full bg-blue-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 shadow-hard-sm flex-shrink-0">
+            <span id="stt-mic-icon">🎤</span>
+            <span id="stt-mic-label">마이크 켜고 말하기</span>
+          </button>
           <div id="stt-result-container" class="hidden w-full p-5 bg-blue-100 border-[3px] border-dashed border-blue-400 rounded-2xl shadow-inner flex-shrink-0">
             <div class="w-full text-center">
               <div class="flex items-center justify-center gap-2 mb-2">
@@ -428,8 +467,9 @@
               <p id="stt-result-text" class="text-slate-900 font-black text-3xl break-keep leading-snug px-3 min-h-[3rem]"></p>
             </div>
           </div>
-          <div class="w-full flex justify-center flex-shrink-0">
-            <button id="btn-next-mission" onclick="startMission()" class="w-full max-w-lg bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">🔄 다른 미션</button>
+          <div class="w-full flex gap-3 flex-shrink-0">
+            <button id="btn-retry-stt" onclick="retryStt()" class="hidden w-28 bg-white border-[3px] border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-700 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-1 flex-shrink-0">🔁 다시</button>
+            <button id="btn-next-mission" onclick="startMission()" class="flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">🔄 다른 미션</button>
           </div>
         </div>
       </section>
@@ -477,7 +517,7 @@
       </section>
 
       <!-- [화면 8-1] 한 문장 입력 -->
-      <section id="view-sentence" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-6 px-8 bg-purple-50 z-10 overflow-hidden">
+      <section id="view-sentence" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-6 px-8 bg-purple-50 z-10 overflow-y-auto">
         <div class="text-4xl mb-2">📝</div>
         <h2 id="question-display-title" class="text-2xl font-black text-slate-900 mb-4 text-center break-keep leading-tight px-4 py-1 border-b-4 border-purple-200">선택한 질문이 여기에 나옵니다</h2>
         <div class="w-full max-w-lg mb-4">
@@ -729,10 +769,14 @@ function saveBookStep() {
   if (!bookTitle) { showModal('잠깐!', '읽을 책 제목을 알려주세요!', '📖'); return; }
   currentBook = bookTitle;
   document.getElementById('guide-book-title').innerText = currentBook;
+
+  // ★ 즉시 가이드 화면으로 전환 (기다리지 않음)
+  showView('view-guide');
+
+  // 기록은 백그라운드에서 로드 (어항 화면 들어갈 때 이미 완료됨)
   loadHistory(historyArray => {
-    myFish = buildFishFromData(historyArray);
+    myFish     = buildFishFromData(historyArray);
     totalBooks = historyArray.length;
-    showView('view-guide');
   });
 }
 
@@ -865,13 +909,21 @@ function startMission() {
   if (recognition) recognition.abort();
   accumulatedTranscript = '';
   if (window.speechSynthesis) window.speechSynthesis.cancel();
+  const micIconEl  = document.getElementById('stt-mic-icon');
+  const micLabelEl = document.getElementById('stt-mic-label');
+  if (micIconEl)  micIconEl.innerText  = '🎤';
+  if (micLabelEl) micLabelEl.innerText = '마이크 켜고 말하기';
+  const sttBtn = document.getElementById('btn-stt');
+  if (sttBtn) { sttBtn.classList.remove('recording-active','bg-red-400'); sttBtn.classList.add('bg-blue-400'); }
   setSpeakBtnActive(false);
   const nextBtn = document.getElementById('btn-next-mission');
   if (nextBtn) {
     nextBtn.innerText = '🔄 다른 미션';
     nextBtn.onclick   = () => startMission();
-    nextBtn.className = 'w-full max-w-lg bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
+    nextBtn.className = 'flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
   }
+  const retryBtn = document.getElementById('btn-retry-stt');
+  if (retryBtn) retryBtn.classList.add('hidden');
   const sttContainer = document.getElementById('stt-result-container');
   sttContainer.classList.add('hidden');
   document.getElementById('stt-result-text').innerText = '🎤 마이크를 누르고 보물의 이름을 말해봐요!';
@@ -898,6 +950,49 @@ function speakMission() {
   utt.onend   = () => {                     setSpeakBtnActive(false); };
   utt.onerror = () => {                     setSpeakBtnActive(false); };
   window.speechSynthesis.speak(utt);
+}
+
+// ── 폭죽 효과 ──
+function launchConfetti() {
+  const colors = ['#FDE047','#F97316','#EF4444','#22C55E','#3B82F6','#A855F7','#EC4899','#14B8A6'];
+  const count  = 80;
+  const container = document.body;
+
+  // 비 처럼 떨어지는 조각들
+  for (let i = 0; i < count; i++) {
+    const el    = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.width  = (8 + Math.random() * 10) + 'px';
+    el.style.height = (8 + Math.random() * 10) + 'px';
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    el.style.animationDuration  = (1.5 + Math.random() * 2) + 's';
+    el.style.animationDelay     = (Math.random() * 0.8) + 's';
+    container.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+
+  // 중앙 폭발 버스트
+  const cx = window.innerWidth  / 2;
+  const cy = window.innerHeight / 2;
+  for (let i = 0; i < 30; i++) {
+    const el  = document.createElement('div');
+    el.className = 'burst-piece';
+    const angle = (i / 30) * Math.PI * 2;
+    const dist  = 80 + Math.random() * 120;
+    el.style.left   = cx + 'px';
+    el.style.top    = cy + 'px';
+    el.style.width  = (10 + Math.random() * 14) + 'px';
+    el.style.height = el.style.width;
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    el.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    el.style.animationDuration = (0.6 + Math.random() * 0.4) + 's';
+    el.style.animationDelay   = '0s';
+    container.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
 }
 
 function showMissionFeedback(missionData, count, total) {
@@ -927,6 +1022,7 @@ function completeMission() {
     document.getElementById('reward-progress-text').innerText = '축하합니다! 모든 미션을 성공했어요!';
     document.getElementById('reward-fish-name').innerText = `전설의 [${randomFishObj.name}] 친구 등장!`;
     showView('view-reward');
+    setTimeout(() => launchConfetti(), 100); // 화면 전환 후 폭죽
   }
 }
 
@@ -1148,13 +1244,49 @@ function initSTT() {
         const nextBtn = document.getElementById('btn-next-mission');
         if (nextBtn) {
           nextBtn.innerText = '🏃 다음 미션';
-          nextBtn.className = 'w-full max-w-lg bg-orange-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 pop-animation';
+          nextBtn.className = 'flex-1 bg-orange-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 pop-animation';
           nextBtn.onclick   = () => { if (!accumulatedTranscript.trim()) accumulatedTranscript = display; stopSTT(); completeMission(); };
+          // 다시 하기 버튼 표시
+          const retryBtn = document.getElementById('btn-retry-stt');
+          if (retryBtn) retryBtn.classList.remove('hidden');
         }
       }
     }
   };
   sttInitialized = true; return true;
+}
+
+// 다시 하기: STT 결과 초기화 후 다시 녹음
+function retryStt() {
+  // 누적 텍스트 초기화
+  accumulatedTranscript = '';
+
+  // STT 결과 창 초기화
+  const ctr = document.getElementById('stt-result-container');
+  const txt = document.getElementById('stt-result-text');
+  if (txt) txt.innerText = '🎤 마이크를 누르고 보물의 이름을 말해봐요!';
+  if (ctr) {
+    ctr.classList.remove('bg-green-100','border-green-400','animate-pulse');
+    ctr.classList.add('bg-blue-100','border-blue-400');
+  }
+
+  // 다시 하기 버튼 숨기고 다른 미션 버튼 복원
+  document.getElementById('btn-retry-stt').classList.add('hidden');
+  const micIcon  = document.getElementById('stt-mic-icon');
+  const micLabel = document.getElementById('stt-mic-label');
+  if (micIcon)  micIcon.innerText  = '🎤';
+  if (micLabel) micLabel.innerText = '마이크 켜고 말하기';
+  const nextBtn = document.getElementById('btn-next-mission');
+  if (nextBtn) {
+    nextBtn.innerText = '🔄 다른 미션';
+    nextBtn.className = 'flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
+    nextBtn.onclick = () => startMission();
+  }
+
+  // STT 재시작
+  if (recognition) recognition.abort();
+  isRecording = false;
+  setTimeout(() => toggleSTT(), 200);
 }
 
 function toggleSTT() {
@@ -1173,13 +1305,21 @@ function updateSTTUI() {
   const label  = document.getElementById('stt-status-label');
   const nxtBtn = document.getElementById('btn-next-mission');
   const ctr    = document.getElementById('stt-result-container');
+  const micIcon  = document.getElementById('stt-mic-icon');
+  const micLabel = document.getElementById('stt-mic-label');
   if (isRecording) {
-    btn.innerText = '🔴'; btn.classList.add('recording-active');
+    btn.classList.add('recording-active');
+    btn.classList.remove('bg-blue-400'); btn.classList.add('bg-red-400');
+    if (micIcon)  micIcon.innerText  = '🔴';
+    if (micLabel) micLabel.innerText = '듣고 있어요... (클릭해서 중지)';
     if (label) label.innerText = '내 목소리가 들려요! 🎤';
     ctr.classList.remove('hidden','bg-green-100','border-green-400');
     ctr.classList.add('bg-blue-100','border-blue-400','animate-pulse');
   } else {
-    btn.innerText = '🎤'; btn.classList.remove('recording-active');
+    btn.classList.remove('recording-active', 'bg-red-400'); btn.classList.add('bg-blue-400');
+    if (micIcon)  micIcon.innerText  = '🎤';
+    if (micLabel) micLabel.innerText = accumulatedTranscript.trim() ? '다시 말하기' : '마이크 켜고 말하기';
+    btn.innerText = ''; // btn에 직접 텍스트 없음 (span으로 처리)
     ctr.classList.remove('hidden','bg-blue-100','border-blue-400','animate-pulse');
     ctr.classList.add('bg-green-100','border-green-400');
     if (accumulatedTranscript.trim()) {
@@ -1193,7 +1333,7 @@ function updateSTTUI() {
       if (label) label.innerText = '말씀하신 내용이 표시돼요';
       if (nxtBtn) {
         nxtBtn.innerText  = '🔄 다른 미션';
-        nxtBtn.className  = 'w-full max-w-lg bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
+        nxtBtn.className  = 'flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
         nxtBtn.onclick    = () => startMission();
       }
     }
