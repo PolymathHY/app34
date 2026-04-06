@@ -244,12 +244,11 @@
     <div id="app-container" class="relative w-full h-full bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10">
 
       <!-- 전역 상단 뱃지: 이름 + 책제목 (로그인 후 표시) -->
-      <!-- 전역 뱃지: absolute로 각 화면 위에 오버레이 -->
-      <div id="global-user-bar" class="hidden absolute top-3 left-0 right-0 justify-center items-center gap-3 px-6 z-40 flex-wrap pointer-events-none">
-        <div class="bg-pink-300 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0 pointer-events-auto">
+      <div id="global-user-bar" class="hidden w-full justify-center items-center gap-3 px-6 py-2 flex-shrink-0 z-30 flex-wrap bg-yellow-100">
+        <div class="bg-pink-300 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
           <span id="global-user-name" class="text-xl font-black text-slate-900">탐험가</span>
         </div>
-        <div class="bg-blue-200 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0 pointer-events-auto">
+        <div class="bg-blue-200 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
           <span class="text-xl font-black text-slate-900">📖 </span><span id="global-book-name" class="text-xl font-black text-slate-900">나의 책</span>
         </div>
       </div>
