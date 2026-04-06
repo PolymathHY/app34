@@ -116,6 +116,19 @@
       padding-right: 44px !important;
       cursor: pointer;
     }
+    /* ── 새 물고기 입장 애니메이션 ── */
+    @keyframes fishEnter {
+      0%   { top: -15%; opacity: 0; transform: scaleX(1) scale(0.5); }
+      40%  { opacity: 1; transform: scaleX(1) scale(1.3); }
+      60%  { transform: scaleX(1) scale(0.9); }
+      100% { opacity: 1; transform: scaleX(1) scale(1); }
+    }
+    .fish-new-entry {
+      animation: fishEnter 1s cubic-bezier(.175,.885,.32,1.275) forwards,
+                 swim 12s 1s linear infinite,
+                 float 2s 1s ease-in-out infinite alternate !important;
+    }
+
     /* ── 폭죽 효과 ── */
     @keyframes confettiFall {
       0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
@@ -376,18 +389,29 @@
 
       <!-- [화면 6] 결과(어항) -->
       <section id="view-main" class="view-section hidden w-full h-full flex-col bg-yellow-50 overflow-hidden">
-        <div class="flex justify-between items-center px-4 md:px-10 pt-4 md:pt-10 pb-2 z-20">
-          <div class="bg-pink-300 border-[3px] border-slate-900 px-8 py-2.5 rounded-2xl shadow-hard-sm">
-            <span id="aquarium-title-display" class="font-black text-slate-900 text-lg md:text-2xl">나의 책</span>
+        <div class="flex justify-between items-center px-4 md:px-6 pt-3 md:pt-6 pb-2 z-20 gap-3">
+          <!-- 왼쪽: 책 제목 + 권수 + 이정표 -->
+          <div class="flex items-center gap-3 flex-1 min-w-0 flex-wrap">
+            <div class="bg-pink-300 border-[3px] border-slate-900 px-5 py-2 rounded-2xl shadow-hard-sm flex-shrink-0">
+              <span id="aquarium-title-display" class="font-black text-slate-900 text-base md:text-xl">나의 책</span>
+            </div>
+            <!-- 누적 권수 뱃지 -->
+            <div id="total-books-display" class="flex items-center gap-2 bg-yellow-400 border-[3px] border-slate-900 px-4 py-2 rounded-2xl shadow-hard-sm flex-shrink-0">
+              <span class="text-2xl font-black text-slate-900" id="total-books-count">0</span>
+              <span class="text-base font-black text-slate-800">권 📚</span>
+            </div>
+            <!-- 다음 이정표 -->
+            <div id="next-milestone-display" class="text-sm font-bold text-slate-600 bg-white border-2 border-slate-200 rounded-xl px-3 py-2 flex-shrink-0 hidden md:block"></div>
           </div>
-          <div class="flex gap-4">
-            <button onclick="handleNav('calendar')" class="w-44 bg-sky-300 border-[3px] border-slate-900 px-4 py-2.5 rounded-xl text-xl font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center">다음으로 ➡️</button>
+          <!-- 오른쪽: 다음으로 버튼 -->
+          <div class="flex-shrink-0">
+            <button onclick="handleNav('calendar')" class="bg-sky-300 border-[3px] border-slate-900 px-4 py-2 rounded-xl text-lg font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center whitespace-nowrap">다음으로 ➡️</button>
           </div>
         </div>
         <div class="responsive-main flex-1 flex flex-row p-3 md:p-6 pt-2 gap-3 md:gap-6 min-h-0 overflow-hidden z-10 items-stretch justify-center">
           <!-- 어항: 고정 비율 -->
-          <div class="aquarium-wrap flex-shrink-0 flex flex-col justify-center items-center" style="width:min(45%, 380px)">
-            <div id="aquarium-bg" class="w-full aquarium-base aquarium-stage-1" style="height:min(100%,380px)">
+          <div class="aquarium-wrap flex-shrink-0 flex flex-col justify-center items-center" style="width:min(38%, 320px)">
+            <div id="aquarium-bg" class="w-full aquarium-base aquarium-stage-1" style="height:min(100%,320px)">
               <div class="aquarium-glass-effect"></div>
               <div class="water-surface"></div>
               <div id="fish-zone" class="absolute inset-0 z-20 overflow-hidden pointer-events-auto"></div>
@@ -413,16 +437,7 @@
               </div>
             </div>
 
-            <!-- ② 누적 권수 (두 번째로 중요) -->
-            <div id="total-books-display" class="text-center bg-yellow-400 border-3 border-slate-900 rounded-2xl py-3 px-4">
-              <p class="text-5xl font-black text-slate-900" id="total-books-count">0</p>
-              <p class="text-base font-black text-slate-700">권 읽었어요! 📚</p>
-            </div>
-
-            <!-- ③ 다음 이정표 -->
-            <div id="next-milestone-display" class="text-center text-slate-600 text-base font-bold bg-slate-50 rounded-xl py-2 px-3 break-keep"></div>
-
-            <!-- ④ 책 후기 / 나의 노력 (작게) -->
+            <!-- ② 책 후기 / 나의 노력 -->
             <div class="flex gap-2">
               <div class="flex-1 flex items-center justify-between bg-yellow-50 border-2 border-yellow-200 rounded-xl px-3 py-2">
                 <span class="text-sm font-bold text-slate-500">책 후기</span>
@@ -454,7 +469,7 @@
             <div id="mission-text-container" class="flex-1 flex flex-col items-start text-left"></div>
           </div>
           <!-- 마이크 버튼 (한 문장 화면과 동일 스타일) -->
-          <button id="btn-stt" onclick="toggleSTT()" class="w-full bg-blue-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 shadow-hard-sm flex-shrink-0">
+          <button id="btn-stt" onclick="toggleSTT()" class="w-full bg-purple-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 shadow-hard-sm flex-shrink-0">
             <span id="stt-mic-icon">🎤</span>
             <span id="stt-mic-label">마이크 켜고 말하기</span>
           </button>
@@ -670,7 +685,27 @@ function showView(viewId) {
   if      (viewId === 'view-calendar') { renderCalendar(); setActiveTab('calendar'); }
   else if (viewId === 'view-main')     { goHome(); }
   else if (viewId === 'view-mission')  { setActiveTab('mission'); }
-  else if (['view-login','view-book-input-section','view-guide','view-select'].includes(viewId)) setActiveTab('login');
+  else if (['view-login','view-book-input-section','view-select'].includes(viewId)) setActiveTab('login');
+  else if (viewId === 'view-guide') {
+    setActiveTab('login');
+    // 슬라이드 초기화
+    guideCurrentStep = 1;
+    for (let i = 1; i <= 3; i++) {
+      const slide = document.getElementById('guide-slide-' + i);
+      const dot   = document.getElementById('guide-dot-' + i);
+      if (slide) {
+        slide.style.opacity   = i === 1 ? '1' : '0';
+        slide.style.transform = i === 1 ? 'translateX(0)' : 'translateX(100%)';
+      }
+      if (dot) dot.className = i === 1
+        ? 'w-4 h-4 rounded-full bg-slate-900 transition-all'
+        : 'w-4 h-4 rounded-full bg-slate-300 transition-all';
+    }
+    const stepLabel = document.getElementById('guide-step-label');
+    const nextBtn   = document.getElementById('guide-next-btn');
+    if (stepLabel) stepLabel.innerText = '1 / 3';
+    if (nextBtn)   nextBtn.innerText   = '다음으로 →';
+  }
   else if (['view-reward','view-sentence','view-book-rating','view-self-rating','view-question-select'].includes(viewId)) setActiveTab('home');
 }
 
@@ -914,7 +949,7 @@ function startMission() {
   if (micIconEl)  micIconEl.innerText  = '🎤';
   if (micLabelEl) micLabelEl.innerText = '마이크 켜고 말하기';
   const sttBtn = document.getElementById('btn-stt');
-  if (sttBtn) { sttBtn.classList.remove('recording-active','bg-red-400'); sttBtn.classList.add('bg-blue-400'); }
+  if (sttBtn) { sttBtn.classList.remove('recording-active','bg-red-400'); sttBtn.classList.add('bg-purple-400'); }
   setSpeakBtnActive(false);
   const nextBtn = document.getElementById('btn-next-mission');
   if (nextBtn) {
@@ -1054,13 +1089,17 @@ function finishRatingFlow() {
     questionTitle: selectedQuestionData ? selectedQuestionData.title : '',
     stars: bookRating, hearts: selfRating, fish: fishIcon
   };
-  saveRecordToSheets(data, () => {
-    loadHistory(historyArray => {
-      myFish = buildFishFromData(historyArray);
-      document.getElementById('custom-modal').classList.add('hidden');
-      goHome();
-    });
-  });
+
+  // ★ 새 물고기를 즉시 myFish에 추가 → 어항 바로 반영
+  myFish.push({ icon: fishIcon, book: currentBook });
+  totalBooks += 1;
+
+  // 어항 화면으로 이동 + 새 물고기 입장 애니메이션
+  document.getElementById('custom-modal').classList.add('hidden');
+  goHome(fishIcon); // ★ 새 물고기 아이콘 전달 → 입장 애니메이션 실행
+
+  // 백그라운드에서 Sheets에 저장 (실패해도 어항은 이미 업데이트됨)
+  saveRecordToSheets(data, null);
 }
 
 function renderQuestionSelect() {
@@ -1096,8 +1135,8 @@ function goToBookRating() {
   showView('view-book-rating');
 }
 
-function goHome() {
-  renderAquarium(); setActiveTab('home');
+function goHome(newFishIcon = null) {
+  renderAquarium(newFishIcon); setActiveTab('home');
   document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
   const mainView = document.getElementById('view-main');
   if (mainView) { mainView.classList.remove('hidden'); mainView.classList.add('flex'); }
@@ -1114,7 +1153,7 @@ function goHome() {
     : `대단해요! ${targetMissionCount}개의 보물을<br>모두 찾았습니다! 🏆`;
 }
 
-function renderAquarium() {
+function renderAquarium(newFishIcon = null) {
   const fishZone   = document.getElementById('fish-zone');
   const aquariumBg = document.getElementById('aquarium-bg');
   const stageBadge = document.getElementById('aquarium-stage-badge');
@@ -1126,7 +1165,13 @@ function renderAquarium() {
   if (stageBadge) stageBadge.innerText = stageInfo.label;
   if (floorDeco)  floorDeco.innerHTML  = stageInfo.floor;
   fishZone.innerHTML = '';
-  myFish.slice(-20).forEach(fishData => {
+
+  // 기존 물고기 렌더링 (새 물고기 제외)
+  const fishList = newFishIcon
+    ? myFish.filter(f => f.icon !== newFishIcon || f._shown).slice(-19)
+    : myFish.slice(-20);
+
+  fishList.forEach(fishData => {
     const fishEl = document.createElement('div');
     fishEl.classList.add('fish');
     const speed = 8 + Math.random() * 12;
@@ -1136,6 +1181,30 @@ function renderAquarium() {
     fishEl.innerHTML = `<div class="fish-title counter-flip" style="animation-duration:${speed}s">${fishData.book}</div><div class="fish-icon">${fishData.icon}</div>`;
     fishZone.appendChild(fishEl);
   });
+
+  // ★ 새 물고기 입장 애니메이션
+  if (newFishIcon) {
+    setTimeout(() => {
+      const fishEl = document.createElement('div');
+      fishEl.classList.add('fish', 'fish-new-entry');
+      const speed = 10 + Math.random() * 6;
+      const landX  = 20 + Math.random() * 60; // 착지 위치
+      fishEl.style.left = landX + '%';
+      fishEl.style.top  = (25 + Math.random() * 45) + '%';
+      fishEl.innerHTML  = `
+        <div class="fish-title counter-flip" style="animation-duration:${speed}s">${currentBook}</div>
+        <div class="fish-icon" style="font-size:3rem">${newFishIcon}</div>
+      `;
+      fishZone.appendChild(fishEl);
+
+      // 입장 완료 후 일반 swim으로 전환
+      setTimeout(() => {
+        fishEl.classList.remove('fish-new-entry');
+        fishEl.style.animationDuration = `${speed}s, 2s`;
+        fishEl.style.animationDelay    = '0s, 0s';
+      }, 1200);
+    }, 400);
+  }
 }
 
 function renderCalendar() {
@@ -1309,14 +1378,14 @@ function updateSTTUI() {
   const micLabel = document.getElementById('stt-mic-label');
   if (isRecording) {
     btn.classList.add('recording-active');
-    btn.classList.remove('bg-blue-400'); btn.classList.add('bg-red-400');
+    btn.classList.remove('bg-purple-400'); btn.classList.add('bg-red-400');
     if (micIcon)  micIcon.innerText  = '🔴';
     if (micLabel) micLabel.innerText = '듣고 있어요... (클릭해서 중지)';
     if (label) label.innerText = '내 목소리가 들려요! 🎤';
     ctr.classList.remove('hidden','bg-green-100','border-green-400');
     ctr.classList.add('bg-blue-100','border-blue-400','animate-pulse');
   } else {
-    btn.classList.remove('recording-active', 'bg-red-400'); btn.classList.add('bg-blue-400');
+    btn.classList.remove('recording-active', 'bg-red-400'); btn.classList.add('bg-purple-400');
     if (micIcon)  micIcon.innerText  = '🎤';
     if (micLabel) micLabel.innerText = accumulatedTranscript.trim() ? '다시 말하기' : '마이크 켜고 말하기';
     btn.innerText = ''; // btn에 직접 텍스트 없음 (span으로 처리)
