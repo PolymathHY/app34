@@ -271,50 +271,44 @@
         <div class="w-full max-w-3xl flex-1 min-h-0 relative overflow-hidden">
 
           <!-- 슬라이드 1: 소리 듣기 -->
-          <div id="guide-slide-1" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 transition-all duration-300">
-            <div class="inline-flex items-center justify-center w-14 h-14 bg-orange-500 rounded-2xl text-white text-3xl font-black flex-shrink-0">1</div>
+          <div id="guide-slide-1" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 transition-all duration-300">
+            <div class="inline-flex items-center justify-center w-14 h-14 bg-orange-500 rounded-2xl text-white text-3xl font-black">1</div>
             <h3 class="text-4xl font-black text-slate-900 text-center break-keep leading-tight">먼저 소리를 들어요!</h3>
-            <div class="w-full max-w-sm bg-white border-4 border-slate-200 rounded-3xl p-5 shadow-lg flex flex-col gap-3">
-              <div class="flex flex-col items-center gap-2 bg-orange-50 border-2 border-orange-200 rounded-2xl px-4 py-4 text-center">
-                <div class="w-12 h-12 bg-orange-400 border-2 border-slate-900 rounded-full flex items-center justify-center text-2xl">📢</div>
-                <span class="text-xl font-black text-slate-700">소리듣기 버튼을 눌러요</span>
-              </div>
-              <div class="flex flex-col items-center gap-2 bg-slate-50 border-2 border-slate-200 rounded-2xl px-4 py-4 text-center">
-                <span class="text-2xl">🔊</span>
-                <span class="text-lg font-bold text-slate-500">미션 내용이 소리로 들려요!</span>
-              </div>
+            <p class="text-2xl font-bold text-slate-600 text-center break-keep">
+              📢 <span class="text-orange-500 font-black">소리듣기</span> 버튼을 눌러<br>미션을 들어봐요.
+            </p>
+            <div class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-4 shadow-lg flex justify-center gap-3">
+              <div class="w-14 h-14 bg-orange-400 border-3 border-slate-900 rounded-full flex items-center justify-center text-3xl shadow-md">📢</div>
+              <div class="w-14 h-14 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center text-3xl">🎤</div>
             </div>
           </div>
 
           <!-- 슬라이드 2: 책에서 찾기 -->
-          <div id="guide-slide-2" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 transition-all duration-300 opacity-0 translate-x-full">
-            <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-500 rounded-2xl text-white text-3xl font-black flex-shrink-0">2</div>
+          <div id="guide-slide-2" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 transition-all duration-300 opacity-0 translate-x-full">
+            <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-500 rounded-2xl text-white text-3xl font-black">2</div>
             <h3 class="text-4xl font-black text-slate-900 text-center break-keep leading-tight">책에서 찾아봐요!</h3>
-            <div class="w-full max-w-sm bg-white border-4 border-slate-200 rounded-3xl p-5 shadow-lg flex flex-col gap-3">
-              <div class="flex flex-col items-center gap-2 bg-blue-50 border-2 border-blue-200 rounded-2xl px-4 py-4 text-center">
-                <span class="text-3xl">📖</span>
-                <span class="text-xl font-black text-slate-700">책을 펼쳐서 보물을 찾아요</span>
-              </div>
-              <div class="flex flex-col items-center gap-2 bg-yellow-50 border-2 border-yellow-200 rounded-2xl px-4 py-4 text-center">
-                <span class="text-2xl">👀</span>
-                <span class="text-lg font-bold text-slate-500">미션에 맞는 곳을 찾아봐요!</span>
+            <p class="text-2xl font-bold text-slate-600 text-center break-keep">
+              📖 책을 펼쳐서<br>미션에 맞는 보물을 찾아요.
+            </p>
+            <div class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-4 shadow-lg text-center">
+              <div class="text-6xl mb-2">📖</div>
+              <div class="bg-blue-50 border-2 border-blue-200 rounded-xl px-4 py-2">
+                <p class="text-base font-black text-slate-700">미션: 마침표(.) 찾기</p>
               </div>
             </div>
           </div>
 
           <!-- 슬라이드 3: 버튼 누르기 -->
-          <div id="guide-slide-3" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 transition-all duration-300 opacity-0 translate-x-full">
-            <div class="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-2xl text-white text-3xl font-black flex-shrink-0">3</div>
+          <div id="guide-slide-3" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 transition-all duration-300 opacity-0 translate-x-full">
+            <div class="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-2xl text-white text-3xl font-black">3</div>
             <h3 class="text-4xl font-black text-slate-900 text-center break-keep leading-tight">버튼을 눌러요!</h3>
-            <div class="w-full max-w-sm bg-white border-4 border-slate-200 rounded-3xl p-5 shadow-lg flex flex-col gap-3">
-              <div class="bg-orange-400 border-2 border-slate-900 rounded-2xl py-4 px-4 flex flex-col items-center gap-1 text-center">
-                <span class="text-2xl">🏃 다음 미션</span>
-                <p class="text-base font-black text-white">보물을 찾았을 때!</p>
-              </div>
-              <div class="bg-lime-400 border-2 border-slate-900 rounded-2xl py-4 px-4 flex flex-col items-center gap-1 text-center">
-                <span class="text-2xl">🔄 다른 미션</span>
-                <p class="text-base font-black text-slate-800">못 찾았을 때!</p>
-              </div>
+            <p class="text-2xl font-bold text-slate-600 text-center break-keep">
+              찾았으면 🟠 <span class="text-orange-500 font-black">다음 미션</span><br>
+              못 찾았으면 🟢 <span class="text-lime-600 font-black">다른 미션</span>
+            </p>
+            <div class="w-full max-w-xs flex flex-col gap-2">
+              <div class="bg-orange-400 border-[3px] border-slate-900 rounded-2xl py-3 text-center text-xl font-black text-white">🏃 다음 미션 — 찾았을 때</div>
+              <div class="bg-lime-400 border-[3px] border-slate-900 rounded-2xl py-3 text-center text-xl font-black text-slate-900">🔄 다른 미션 — 못 찾았을 때</div>
             </div>
           </div>
 
@@ -437,37 +431,37 @@
             <div id="aquarium-stage-badge" class="mt-2 bg-white border-2 border-slate-900 rounded-full px-4 py-1 text-sm font-black text-slate-700 shadow-hard-sm"></div>
           </div>
 
-          <!-- 정보 카드: 남은 공간 전부 사용 -->
-          <div class="info-card flex-1 min-w-0 flex flex-col gap-3 bg-white border-[4px] border-slate-900 rounded-[2rem] p-5 overflow-y-auto shadow-sm">
+          <!-- 정보 카드 -->
+          <div class="info-card flex-1 min-w-0 flex flex-col gap-2 bg-white border-[4px] border-slate-900 rounded-[2rem] p-4 shadow-sm justify-center">
 
-            <!-- ① 생각 보물 (가장 중요 → 가장 크게) -->
-            <div class="w-full">
-              <div class="bg-yellow-100 border-2 border-yellow-300 px-4 py-1.5 rounded-xl w-full text-center mb-2">
-                <span class="text-lg font-black text-slate-700">💬 나의 생각 보물</span>
-              </div>
-              <div class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-5 py-4 text-center font-black text-2xl text-slate-800 break-keep leading-snug overflow-hidden">
-                <span id="current-sentence-display">오늘의 멋진 보물을 기록해봐요! ✨</span>
-              </div>
+            <!-- 생각 보물 라벨 -->
+            <div class="bg-yellow-100 border-2 border-yellow-300 px-3 py-1 rounded-xl w-full text-center flex-shrink-0">
+              <span class="text-base font-black text-slate-700">💬 나의 생각 보물</span>
             </div>
 
-            <!-- ② 책 후기 / 나의 노력 -->
-            <div class="flex gap-2">
-              <div class="flex-1 flex items-center justify-between bg-yellow-50 border-2 border-yellow-200 rounded-xl px-3 py-2">
-                <span class="text-sm font-bold text-slate-500">책 후기</span>
-                <div id="aquarium-star-display" class="flex gap-0.5 text-xl">
+            <!-- 생각 보물 내용: 내용에 맞게 크기 조절 -->
+            <div class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl px-4 py-3 text-center font-black text-xl text-slate-800 break-keep leading-snug flex-shrink-0">
+              <span id="current-sentence-display">오늘의 멋진 보물을 기록해봐요! ✨</span>
+            </div>
+
+            <!-- 책 후기 / 노력 -->
+            <div class="flex gap-2 flex-shrink-0">
+              <div class="flex-1 flex items-center justify-between bg-yellow-50 border-2 border-yellow-200 rounded-xl px-2 py-1.5">
+                <span class="text-xs font-bold text-slate-500">후기</span>
+                <div id="aquarium-star-display" class="flex gap-0 text-lg">
                   <span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span>
                 </div>
               </div>
-              <div class="flex-1 flex items-center justify-between bg-pink-50 border-2 border-pink-200 rounded-xl px-3 py-2">
-                <span class="text-sm font-bold text-slate-500">노력</span>
-                <div id="aquarium-heart-display" class="flex gap-0.5 text-xl">
+              <div class="flex-1 flex items-center justify-between bg-pink-50 border-2 border-pink-200 rounded-xl px-2 py-1.5">
+                <span class="text-xs font-bold text-slate-500">노력</span>
+                <div id="aquarium-heart-display" class="flex gap-0 text-lg">
                   <span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span>
                 </div>
               </div>
             </div>
 
-            <!-- ⑤ 미션 상태 (가장 작게) -->
-            <div id="mission-status" class="text-center font-bold text-slate-400 text-sm leading-snug mt-auto"></div>
+            <!-- 미션 상태 -->
+            <div id="mission-status" class="text-center font-bold text-slate-400 text-xs leading-snug flex-shrink-0"></div>
           </div>
         </div>
       </section>
