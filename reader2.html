@@ -243,6 +243,16 @@
     <!-- 앱 컨테이너 -->
     <div id="app-container" class="relative w-full h-full bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10">
 
+      <!-- 전역 상단 뱃지: 이름 + 책제목 (로그인 후 표시) -->
+      <div id="global-user-bar" class="hidden justify-center items-center gap-3 px-6 pt-3 pb-1 flex-shrink-0 z-30 flex-wrap">
+        <div class="bg-pink-300 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
+          <span id="global-user-name" class="text-xl font-black text-slate-900">탐험가</span>
+        </div>
+        <div class="bg-blue-200 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
+          <span class="text-xl font-black text-slate-900">📖 </span><span id="global-book-name" class="text-xl font-black text-slate-900">나의 책</span>
+        </div>
+      </div>
+
       <!-- [화면 1] 로그인 -->
       <section id="view-login" class="view-section relative flex w-full h-full flex-col items-center justify-center p-8 bg-yellow-50">
         <div class="absolute top-6 left-6 bg-white border-4 border-slate-900 rounded-full px-8 py-3 z-20 transform -rotate-2">
@@ -292,9 +302,6 @@
 
         <!-- 진행 표시 -->
         <!-- 이름 + 책 제목 표시 -->
-        <div class="flex items-center gap-2 mb-2 flex-shrink-0 flex-wrap justify-center">
-          <div class="bg-pink-200 border-2 border-slate-900 rounded-full px-4 py-1 text-base font-black text-slate-800" id="guide-user-name">탐험가</div>
-          <div class="bg-blue-200 border-2 border-slate-900 rounded-full px-4 py-1 text-base font-black text-slate-800">📖 <span id="guide-book-name">나의 책</span></div>
         </div>
         <!-- 진행 표시 -->
         <div class="flex items-center gap-3 mb-2 flex-shrink-0">
@@ -351,29 +358,29 @@
           </div>
 
           <!-- 슬라이드 4: 보상 시스템 -->
-          <div id="guide-slide-4" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-2 p-3 transition-all duration-300 opacity-0 translate-x-full">
-            <div class="inline-flex items-center justify-center w-10 h-10 bg-purple-500 rounded-xl text-white text-xl font-black flex-shrink-0">🎁</div>
-            <h3 class="text-2xl font-black text-slate-900 text-center flex-shrink-0">보물을 모아요!</h3>
-            <div class="w-full max-w-sm bg-white border-4 border-slate-200 rounded-2xl p-3 shadow-lg flex flex-col gap-2 flex-shrink-0">
-              <div class="flex items-center gap-3 bg-blue-50 border-2 border-blue-200 rounded-xl px-3 py-2.5">
-                <span class="text-2xl flex-shrink-0">🐠</span>
+          <div id="guide-slide-4" class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
+            <div class="inline-flex items-center justify-center w-14 h-14 bg-purple-500 rounded-2xl text-white text-3xl font-black flex-shrink-0">🎁</div>
+            <h3 class="text-3xl font-black text-slate-900 text-center flex-shrink-0">보물을 모아요!</h3>
+            <div class="w-full max-w-sm bg-white border-4 border-slate-200 rounded-2xl p-4 shadow-lg flex flex-col gap-2.5 flex-shrink-0">
+              <div class="flex items-center gap-3 bg-blue-50 border-2 border-blue-200 rounded-xl px-4 py-3">
+                <span class="text-3xl flex-shrink-0">🐠</span>
                 <div>
-                  <p class="text-base font-black text-slate-700">미션 완료 → 물고기 획득!</p>
-                  <p class="text-xs font-bold text-slate-500">어항이 점점 풍성해져요</p>
+                  <p class="text-lg font-black text-slate-700">미션 완료 → 물고기 획득!</p>
+                  <p class="text-sm font-bold text-slate-500">어항이 점점 풍성해져요</p>
                 </div>
               </div>
-              <div class="flex items-center gap-3 bg-orange-50 border-2 border-orange-200 rounded-xl px-3 py-2.5">
-                <span class="text-2xl flex-shrink-0">🔥</span>
+              <div class="flex items-center gap-3 bg-orange-50 border-2 border-orange-200 rounded-xl px-4 py-3">
+                <span class="text-3xl flex-shrink-0">🔥</span>
                 <div>
-                  <p class="text-base font-black text-slate-700">매일 읽으면 연속 기록!</p>
-                  <p class="text-xs font-bold text-slate-500">3일·7일·10일 특별 보상 🏆</p>
+                  <p class="text-lg font-black text-slate-700">매일 읽으면 연속 기록!</p>
+                  <p class="text-sm font-bold text-slate-500">3일·7일·10일 특별 보상 🏆</p>
                 </div>
               </div>
-              <div class="flex items-center gap-3 bg-purple-50 border-2 border-purple-200 rounded-xl px-3 py-2.5">
-                <span class="text-2xl flex-shrink-0">🐟</span>
+              <div class="flex items-center gap-3 bg-purple-50 border-2 border-purple-200 rounded-xl px-4 py-3">
+                <span class="text-3xl flex-shrink-0">🐟</span>
                 <div>
-                  <p class="text-base font-black text-slate-700">책 읽을수록 어항이 성장!</p>
-                  <p class="text-xs font-bold text-slate-500">물통 → 어항 → 수족관 변신 🏆</p>
+                  <p class="text-lg font-black text-slate-700">책 읽을수록 어항이 성장!</p>
+                  <p class="text-sm font-bold text-slate-500">물통 → 어항 → 수족관 변신 🏆</p>
                 </div>
               </div>
             </div>
@@ -439,76 +446,83 @@
       <!-- [화면 6] 결과(어항) -->
       <section id="view-main" class="view-section hidden w-full h-full flex-col bg-yellow-50 overflow-hidden">
 
-        <!-- 헤더: 책 제목만 + 다음으로 버튼 -->
-        <div class="flex justify-between items-center px-4 pt-3 pb-2 z-20 gap-3">
-          <span id="aquarium-title-display" class="font-black text-slate-700 text-base truncate">나의 책</span>
-          <button onclick="handleNav('calendar')" class="bg-sky-300 border-[3px] border-slate-900 px-4 py-2 rounded-xl text-base font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center whitespace-nowrap flex-shrink-0">다음으로 ➡️</button>
+        <!-- 헤더: 다음으로 버튼만 -->
+        <div class="flex justify-end items-center px-4 pt-2 pb-1 z-20">
+          <button onclick="handleNav('calendar')" class="bg-sky-300 border-[3px] border-slate-900 px-5 py-2 rounded-2xl text-lg font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center">다음으로 ➡️</button>
         </div>
+        <!-- aquarium-title-display 유지 (JS에서 업데이트용) -->
+        <span id="aquarium-title-display" class="hidden"></span>
 
-        <!-- 본문: 어항(크게) + 정보카드(작게) -->
-        <div class="responsive-main flex-1 flex flex-row px-3 pb-3 gap-3 min-h-0 overflow-hidden z-10 items-stretch">
+        <!-- 본문: 어항 + 정보카드 -->
+        <div class="responsive-main flex-1 flex flex-row px-3 pb-2 gap-3 min-h-0 overflow-hidden z-10 items-stretch">
 
-          <!-- 어항: 더 크게 -->
+          <!-- 어항 영역 -->
           <div class="aquarium-wrap flex flex-col justify-center items-center" style="flex:3; min-width:0;">
-            <div id="aquarium-bg" class="w-full aquarium-base aquarium-stage-1" style="aspect-ratio:1/1; max-height:100%">
-              <div class="aquarium-glass-effect"></div>
-              <div class="water-surface"></div>
-              <div id="fish-zone" class="absolute inset-0 z-20 overflow-hidden pointer-events-auto"></div>
-              <div id="aquarium-floor-deco" class="aquarium-floor">
-                <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
-                <span class="text-5xl">🪸</span><span class="text-6xl">🐚</span>
-                <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
+            <!-- 어항 컨테이너: 단계 뱃지 오버레이 포함 -->
+            <div class="relative w-full" style="aspect-ratio:1/1; max-height:100%">
+              <div id="aquarium-bg" class="w-full h-full aquarium-base aquarium-stage-1">
+                <div class="aquarium-glass-effect"></div>
+                <div class="water-surface"></div>
+                <div id="fish-zone" class="absolute inset-0 z-20 overflow-hidden pointer-events-auto"></div>
+                <div id="aquarium-floor-deco" class="aquarium-floor">
+                  <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
+                  <span class="text-5xl">🪸</span><span class="text-6xl">🐚</span>
+                  <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
+                </div>
               </div>
-            </div>
-            <!-- 어항 아래: 단계 + 권수 + 연속 -->
-            <div class="flex items-center gap-2 mt-2 flex-wrap justify-center">
-              <div id="aquarium-stage-badge" class="bg-white border-2 border-slate-900 rounded-full px-3 py-1 text-xs font-black text-slate-700 shadow-hard-sm"></div>
-              <div id="total-books-display" class="flex items-center gap-1 bg-yellow-400 border-2 border-slate-900 px-3 py-1 rounded-full">
-                <span class="text-sm font-black text-slate-900" id="total-books-count">0</span>
-                <span class="text-xs font-black text-slate-800">권 📚</span>
-              </div>
-              <div id="streak-badge" class="hidden items-center gap-1 bg-orange-400 border-2 border-slate-900 px-2 py-1 rounded-full">
-                <span class="text-xs">🔥</span>
-                <span class="text-xs font-black text-white" id="streak-count">0일</span>
+              <!-- 어항 위에 오버레이: 단계 뱃지 -->
+              <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-30 flex-wrap px-2">
+                <div id="aquarium-stage-badge" class="bg-white/90 border-2 border-slate-900 rounded-full px-3 py-1 text-xs font-black text-slate-700 shadow-md backdrop-blur-sm"></div>
+                <div id="total-books-display" class="flex items-center gap-1 bg-yellow-400/90 border-2 border-slate-900 px-3 py-1 rounded-full shadow-md backdrop-blur-sm">
+                  <span class="text-sm font-black text-slate-900" id="total-books-count">0</span>
+                  <span class="text-xs font-black text-slate-800">권 📚</span>
+                </div>
+                <div id="streak-badge" class="hidden items-center gap-1 bg-orange-400/90 border-2 border-slate-900 px-2 py-1 rounded-full shadow-md backdrop-blur-sm">
+                  <span class="text-xs">🔥</span>
+                  <span class="text-xs font-black text-white" id="streak-count">0일</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- 정보 카드: 생각 보물 집중 -->
-          <div class="info-card flex flex-col gap-2 bg-white border-[4px] border-slate-900 rounded-[2rem] p-4 shadow-sm justify-center" style="flex:2; min-width:0;">
+          <!-- 정보 카드 -->
+          <div class="info-card flex flex-col gap-2 bg-white border-[4px] border-slate-900 rounded-[2rem] p-4 shadow-sm" style="flex:2; min-width:0;">
 
-            <!-- 칭호 + 이정표 -->
-            <div class="flex flex-col items-center gap-1 flex-shrink-0">
-              <div id="user-title-badge" class="hidden items-center bg-purple-100 border-2 border-purple-300 px-3 py-0.5 rounded-full">
-                <span id="user-title-text" class="text-xs font-black text-purple-700"></span>
-              </div>
-              <div id="next-milestone-display" class="text-center text-xs font-bold text-slate-400"></div>
+            <!-- 나의 생각 보물 (핵심 - 가장 크게) -->
+            <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-3 py-2 flex-shrink-0">
+              <p class="text-xs font-black text-yellow-600 text-center mb-1">💬 나의 생각 보물</p>
+              <span id="current-sentence-display" class="font-black text-xl text-slate-800 break-keep leading-snug block text-center">오늘의 멋진 보물을 기록해봐요! ✨</span>
             </div>
 
-            <!-- 나의 생각 보물 (핵심) -->
-            <div class="w-full bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-3 py-3 text-center flex-1 flex flex-col items-center justify-center">
-              <p class="text-xs font-black text-yellow-600 mb-1">💬 나의 생각 보물</p>
-              <span id="current-sentence-display" class="font-black text-lg text-slate-800 break-keep leading-snug">오늘의 멋진 보물을 기록해봐요! ✨</span>
-            </div>
-
-            <!-- 별/하트 -->
+            <!-- 별/하트 (크게) -->
             <div class="flex gap-2 flex-shrink-0">
-              <div class="flex-1 flex flex-col items-center bg-yellow-50 border-2 border-yellow-200 rounded-xl py-1.5">
-                <span class="text-xs font-bold text-slate-400">후기</span>
-                <div id="aquarium-star-display" class="flex text-base">
+              <div class="flex-1 flex flex-col items-center bg-yellow-50 border-2 border-yellow-200 rounded-xl py-2 gap-1">
+                <span class="text-xs font-bold text-slate-400">책 후기</span>
+                <div id="aquarium-star-display" class="flex text-2xl">
                   <span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span>
                 </div>
               </div>
-              <div class="flex-1 flex flex-col items-center bg-pink-50 border-2 border-pink-200 rounded-xl py-1.5">
-                <span class="text-xs font-bold text-slate-400">노력</span>
-                <div id="aquarium-heart-display" class="flex text-base">
+              <div class="flex-1 flex flex-col items-center bg-pink-50 border-2 border-pink-200 rounded-xl py-2 gap-1">
+                <span class="text-xs font-bold text-slate-400">나의 노력</span>
+                <div id="aquarium-heart-display" class="flex text-2xl">
                   <span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span>
                 </div>
               </div>
             </div>
 
-            <!-- 미션 상태 -->
+            <!-- 칭호 + 이정표 -->
+            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+              <div id="user-title-badge" class="hidden items-center bg-purple-100 border-2 border-purple-300 px-3 py-1 rounded-full">
+                <span id="user-title-text" class="text-sm font-black text-purple-700"></span>
+              </div>
+              <div id="next-milestone-display" class="text-center text-sm font-bold text-slate-400"></div>
+            </div>
+
+            <!-- 미션 상태 + 다음으로 버튼 -->
             <div id="mission-status" class="text-center font-bold text-slate-400 text-xs flex-shrink-0"></div>
+            <button onclick="handleNav('calendar')" class="w-full bg-sky-400 border-[3px] border-slate-900 py-3 rounded-2xl text-lg font-black text-slate-900 hover:bg-sky-500 transition-all active:scale-95 flex items-center justify-center flex-shrink-0">
+              기록 보러가기 ➡️
+            </button>
           </div>
         </div>
       </section>
@@ -903,6 +917,9 @@ function checkLogin() {
 }
 
 function login() {
+  // 로그인 시 전역 뱃지 숨기기 (책 제목 입력 후 표시됨)
+  const globalBar = document.getElementById('global-user-bar');
+  if (globalBar) { globalBar.classList.add('hidden'); globalBar.classList.remove('flex'); }
   // 아직 미션 안 로드됐으면 기본 미션 사용
   if (activeMissions.length === 0) activeMissions = missions;
   // ★ 백그라운드 프리패치: 이름 선택 직후 기록 미리 로드 시작
@@ -941,6 +958,13 @@ function saveBookStep() {
     if (guideUserEl) guideUserEl.innerText = currentUser + ' 탐험가!';
     const guideBookEl = document.getElementById('guide-book-name');
     if (guideBookEl) guideBookEl.innerText = currentBook;
+    // 전역 뱃지 업데이트 + 표시
+    const globalBar = document.getElementById('global-user-bar');
+    const globalName = document.getElementById('global-user-name');
+    const globalBook = document.getElementById('global-book-name');
+    if (globalName) globalName.innerText = currentUser + ' 탐험가!';
+    if (globalBook) globalBook.innerText = currentBook;
+    if (globalBar) { globalBar.classList.remove('hidden'); globalBar.classList.add('flex'); }
 
     // 바로 가이드로 이동
     showView('view-guide');
@@ -1451,7 +1475,13 @@ function goHome(newFishIcon = null) {
   document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
   const mainView = document.getElementById('view-main');
   if (mainView) { mainView.classList.remove('hidden'); mainView.classList.add('flex'); }
-  document.getElementById('aquarium-title-display').innerText = currentBook ? `나의 책: ${currentBook}` : '나의 어항';
+  const titleEl = document.getElementById('aquarium-title-display');
+  if (titleEl) titleEl.innerText = currentBook ? `나의 책: ${currentBook}` : '나의 어항';
+  // 전역 뱃지 업데이트
+  const gName = document.getElementById('global-user-name');
+  const gBook = document.getElementById('global-book-name');
+  if (gName) gName.innerText = currentUser + ' 탐험가!';
+  if (gBook) gBook.innerText = currentBook || '나의 책';
   // 칭호 뱃지 업데이트
   const milestone = MILESTONES.slice().reverse().find(m => totalBooks >= m.books);
   const titleBadge = document.getElementById('user-title-badge');
@@ -1777,7 +1807,7 @@ function toggleSentenceMic() {
   }
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   sentenceRecognition = new SR();
-  sentenceRecognition.lang = 'ko-KR'; sentenceRecognition.interimResults = true; sentenceRecognition.continuous = false;
+  sentenceRecognition.lang = 'ko-KR'; sentenceRecognition.interimResults = true; sentenceRecognition.continuous = true;
   sentenceRecognition.onresult = e => {
     let interim = '', final = '';
     for (let i = 0; i < e.results.length; i++) {
