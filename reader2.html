@@ -465,33 +465,44 @@
       </section>
 
       <!-- [화면 7] 미션 -->
-      <section id="view-mission" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-2 px-4 pb-2 bg-yellow-50 z-10 overflow-y-auto">
-        <h2 id="mission-title-header" class="text-3xl font-black text-slate-900 mb-2 bg-yellow-400 px-8 py-2 border-[3px] border-slate-900 rounded-xl transform -rotate-1 flex-shrink-0">보물 찾기 미션</h2>
-        <div class="pop-animation w-full max-w-4xl flex-1 bg-white border-[4px] border-slate-900 rounded-[2rem] px-8 py-4 relative flex flex-col gap-3 shadow-sm overflow-y-auto">
-          <!-- 소리듣기 + 미션 내용 -->
-          <div class="flex items-start gap-3 flex-shrink-0">
-            <button id="btn-speak" onclick="speakMission()" class="bg-white border-2 border-slate-900 rounded-full w-14 h-14 flex items-center justify-center text-3xl active:scale-90 transition-all shadow-sm flex-shrink-0" title="미션 듣기">📢</button>
-            <div id="mission-text-container" class="flex-1 flex flex-col items-start text-left"></div>
+      <section id="view-mission" class="view-section hidden w-full h-full flex flex-col items-center justify-between p-4 bg-yellow-50 z-10">
+
+        <!-- 상단: 미션 제목 + 내용 + 힌트 -->
+        <div class="w-full flex-1 flex flex-col items-center justify-center gap-4 min-h-0">
+          <!-- 미션 헤더 -->
+          <h2 id="mission-title-header" class="text-2xl font-black text-slate-900 bg-yellow-400 px-6 py-2 border-[3px] border-slate-900 rounded-xl transform -rotate-1 flex-shrink-0">보물 찾기 미션</h2>
+
+          <!-- 미션 카드 -->
+          <div class="w-full max-w-2xl bg-white border-[4px] border-slate-900 rounded-[2rem] p-6 flex flex-col gap-3 shadow-sm flex-1 justify-center">
+            <!-- 소리듣기 버튼 + 미션 제목 -->
+            <div class="flex items-center gap-3">
+              <button id="btn-speak" onclick="speakMission()" class="w-12 h-12 bg-white border-2 border-slate-900 rounded-full flex items-center justify-center text-2xl active:scale-90 transition-all shadow-sm flex-shrink-0">📢</button>
+              <h3 id="mission-title-text" class="text-3xl font-black text-slate-900 flex-1 leading-tight"></h3>
+            </div>
+            <!-- 힌트 -->
+            <div id="mission-hint-box" class="bg-yellow-50 border-2 border-dashed border-yellow-400 rounded-xl px-4 py-3 text-xl font-bold text-slate-700 text-center break-keep"></div>
+            <!-- STT 결과: 말했을 때만 표시 -->
+            <div id="stt-result-container" class="hidden bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-center">
+              <p id="stt-status-label" class="text-sm font-bold text-slate-400 mb-1">내 대답</p>
+              <p id="stt-result-text" class="text-slate-900 font-black text-2xl break-keep leading-snug"></p>
+            </div>
           </div>
-          <!-- 마이크 버튼 (한 문장 화면과 동일 스타일) -->
-          <button id="btn-stt" onclick="toggleSTT()" class="w-full bg-purple-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 shadow-hard-sm flex-shrink-0">
+        </div>
+
+        <!-- 하단: 버튼 영역 -->
+        <div class="w-full max-w-2xl flex flex-col gap-3 flex-shrink-0 pt-3">
+          <!-- 마이크 버튼 -->
+          <button id="btn-stt" onclick="toggleSTT()" class="w-full bg-purple-400 border-[3px] border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all flex items-center justify-center gap-3">
             <span id="stt-mic-icon">🎤</span>
             <span id="stt-mic-label">마이크 켜고 말하기</span>
           </button>
-          <div id="stt-result-container" class="hidden w-full p-5 bg-blue-100 border-[3px] border-dashed border-blue-400 rounded-2xl shadow-inner flex-shrink-0">
-            <div class="w-full text-center">
-              <div class="flex items-center justify-center gap-2 mb-2">
-                <span class="text-2xl">🗣️</span>
-                <span id="stt-status-label" class="text-lg font-black text-blue-600">내 목소리가 들려요!</span>
-              </div>
-              <p id="stt-result-text" class="text-slate-900 font-black text-3xl break-keep leading-snug px-3 min-h-[3rem]"></p>
-            </div>
-          </div>
-          <div class="w-full flex gap-3 flex-shrink-0">
-            <button id="btn-retry-stt" onclick="retryStt()" class="hidden flex-1 bg-white border-[3px] border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-700 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-1">🔁 다시</button>
-            <button id="btn-next-mission" onclick="startMission()" class="flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">🔄 다른 미션</button>
+          <!-- 다시/다른 미션 -->
+          <div class="flex gap-3">
+            <button id="btn-retry-stt" onclick="retryStt()" class="hidden flex-1 bg-white border-[3px] border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-700 active:scale-95 transition-all flex items-center justify-center gap-1">🔁 다시</button>
+            <button id="btn-next-mission" onclick="startMission()" class="flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all flex items-center justify-center gap-2">🔄 다른 미션</button>
           </div>
         </div>
+
       </section>
 
       <!-- [화면 7-1] 미션 완료 피드백 (배움 쏙쏙) -->
@@ -550,27 +561,39 @@
       </section>
 
       <!-- [화면 8-1] 한 문장 입력 -->
-      <section id="view-sentence" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-6 px-8 bg-purple-50 z-10 overflow-y-auto">
-        <div class="text-4xl mb-2">📝</div>
-        <h2 id="question-display-title" class="text-2xl font-black text-slate-900 mb-4 text-center break-keep leading-tight px-4 py-1 border-b-4 border-purple-200">선택한 질문이 여기에 나옵니다</h2>
-        <div class="w-full max-w-lg mb-4">
-          <p class="text-xs font-bold text-slate-500 mb-2 text-center">💡 이렇게 말해볼 수 있어요! (예시)</p>
-          <div id="sentence-examples-list" class="flex flex-col gap-1.5 mb-4"></div>
-          <div id="sentence-stt-container" class="w-full bg-white border-3 border-slate-200 rounded-2xl px-5 py-4 min-h-[70px] flex items-center justify-center text-slate-500 text-xl text-center mb-3 shadow-inner">
-            <span id="sentence-stt-text">🎤 아래 버튼을 눌러 말해봐요!</span>
+      <section id="view-sentence" class="view-section hidden w-full h-full flex flex-col items-center justify-between p-4 bg-purple-50 z-10">
+
+        <!-- 상단: 질문 + 예시 + 입력 -->
+        <div class="w-full flex-1 flex flex-col items-center justify-center gap-3 min-h-0 max-w-2xl mx-auto">
+
+          <!-- 질문 카드 -->
+          <div class="w-full bg-white border-[4px] border-slate-900 rounded-[2rem] p-6 flex flex-col gap-3 shadow-sm">
+            <!-- 질문 제목 -->
+            <h2 id="question-display-title" class="text-2xl font-black text-slate-900 text-center break-keep leading-tight">선택한 질문이 여기에 나옵니다</h2>
+            <!-- 예시 (1개만 보여주기) -->
+            <div id="sentence-examples-list" class="flex flex-col gap-1"></div>
+            <!-- 말한 내용 표시 (말했을 때만) -->
+            <div id="sentence-stt-container" class="hidden bg-purple-50 border-2 border-purple-200 rounded-xl px-4 py-3 text-center">
+              <p class="text-xs font-bold text-purple-400 mb-1">내 대답</p>
+              <span id="sentence-stt-text" class="text-slate-900 font-black text-xl break-keep"></span>
+            </div>
+            <!-- 직접 입력 -->
+            <textarea id="sentence-text-input" class="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-xl text-slate-800 font-bold resize-none focus:outline-none focus:border-purple-400 transition-colors" rows="2" placeholder="또는 여기에 직접 써봐요..."></textarea>
           </div>
-          <button id="btn-sentence-mic" onclick="toggleSentenceMic()" class="w-full bg-purple-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 shadow-hard-sm">
+
+        </div>
+
+        <!-- 하단: 버튼 (미션과 동일 구조, 보라→노랑으로 차별화) -->
+        <div class="w-full max-w-2xl flex flex-col gap-3 flex-shrink-0 pt-3">
+          <button id="btn-sentence-mic" onclick="toggleSentenceMic()" class="w-full bg-purple-400 border-[3px] border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all flex items-center justify-center gap-3">
             <span id="sentence-mic-icon">🎤</span>
             <span id="sentence-mic-label">마이크 켜고 말하기</span>
           </button>
+          <button onclick="goToBookRating()" class="w-full bg-yellow-400 border-[3px] border-slate-900 rounded-2xl py-4 text-2xl font-black text-slate-900 active:scale-95 transition-all flex items-center justify-center">
+            다음으로 넘어가기 ➡️
+          </button>
         </div>
-        <div class="w-full max-w-lg mb-4">
-          <p class="text-xs font-bold text-slate-500 mb-1 text-center">또는 직접 타이핑해도 돼요!</p>
-          <textarea id="sentence-text-input" class="w-full bg-white border-3 border-purple-300 rounded-2xl px-5 py-4 text-xl text-slate-800 font-bold resize-none focus:outline-none focus:border-purple-500 transition-colors shadow-sm" rows="2" placeholder="여기에 입력하세요..."></textarea>
-        </div>
-        <div class="w-full max-w-lg">
-          <button onclick="goToBookRating()" class="w-full bg-yellow-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1 flex items-center justify-center">다음으로 넘어가기 ➡️</button>
-        </div>
+
       </section>
 
       <!-- [화면 9] 기록(앨범) -->
@@ -976,16 +999,11 @@ function startMission() {
   currentMissionText = mission.text;
   currentGuideText   = mission.guide;
   document.getElementById('mission-title-header').innerText = `보물 찾기 미션 (${currentMissionCount + 1}/${targetMissionCount})`;
-  document.getElementById('mission-text-container').innerHTML = `
-    <div class="flex flex-col items-center justify-start w-full gap-3 py-1">
-      <div class="w-full">
-        <h3 class="text-4xl font-black text-slate-900 inline-block mb-4 border-b-4 border-yellow-300 px-2">${mission.text}</h3>
-        <div class="bg-yellow-50 border-2 border-dashed border-yellow-400 rounded-xl p-5 w-full text-slate-700 text-2xl text-center break-keep font-bold">
-          💡 힌트: ${mission.guide}
-        </div>
-      </div>
-    </div>
-  `;
+  // 미션 제목 + 힌트 직접 주입
+  const titleEl = document.getElementById('mission-title-text');
+  const hintEl  = document.getElementById('mission-hint-box');
+  if (titleEl) titleEl.innerText = mission.text;
+  if (hintEl)  hintEl.innerText  = '💡 힌트: ' + mission.guide;
   isRecording = false;
   if (recognition) recognition.abort();
   accumulatedTranscript = '';
@@ -1331,10 +1349,13 @@ function renderQuestionSelect() {
 function selectQuestion(idx) {
   selectedQuestionData = reflectionQuestions[idx];
   document.getElementById('question-display-title').innerHTML = `<span class="text-purple-600">[${selectedQuestionData.title}]</span><br>${selectedQuestionData.question}`;
-  document.getElementById('sentence-examples-list').innerHTML = selectedQuestionData.examples.map(ex =>
-    `<div class="bg-blue-50 border-2 border-blue-200 rounded-2xl px-5 py-3 text-lg text-slate-700 font-bold mb-1 shadow-sm break-keep">✨ ${ex}</div>`
-  ).join('');
-  document.getElementById('sentence-stt-text').innerText = '🎤 아래 마이크 버튼을 눌러 말해보세요!';
+  // 예시 1개만 표시
+  const ex = selectedQuestionData.examples[0] || '';
+  document.getElementById('sentence-examples-list').innerHTML =
+    `<div class="bg-purple-50 border-2 border-purple-200 rounded-xl px-4 py-2 text-lg text-slate-600 font-bold break-keep text-center">✨ 예) ${ex}</div>`;
+  // 말한 내용 숨기기
+  document.getElementById('sentence-stt-container').classList.add('hidden');
+  document.getElementById('sentence-stt-text').innerText = '';
   document.getElementById('sentence-text-input').value   = '';
   document.getElementById('sentence-mic-icon').innerText  = '🎤';
   document.getElementById('sentence-mic-label').innerText = '마이크 켜고 말하기';
@@ -1644,6 +1665,7 @@ function toggleSentenceMic() {
     const display = final || interim;
     if (display) {
       document.getElementById('sentence-stt-text').innerText = display;
+      document.getElementById('sentence-stt-container').classList.remove('hidden');
       if (final) document.getElementById('sentence-text-input').value = final;
     }
   };
