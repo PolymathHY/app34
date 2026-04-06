@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-    /* ── 루트 폰트 크기: 화면 너비에 따라 자동 확대 ──
-       768px  → 18px (1.125x)
-       1024px → 20px (1.25x)
-       1366px → 22px (1.375x)  */
     html { font-size: clamp(17px, 2.2vw, 22px); }
   </style>
   <title>생각 보물 사냥꾼</title>
@@ -73,14 +69,11 @@
     .recording-active { animation:pulse-red 1.5s infinite; background-color:#fee2e2!important; border-color:#ef4444!important; }
     body { user-select:none; -webkit-tap-highlight-color:transparent; overscroll-behavior:none; }
     .modal-overlay { background-color:rgba(15,23,42,.4); backdrop-filter:blur(2px); }
-
-    /* ── 어항 단계별 스타일 ── */
     .aquarium-stage-1 { background:linear-gradient(180deg,#F0F9FF 0%,#E0F2FE 80%,#D4C5A0 80%,#EDE0C4 100%); }
     .aquarium-stage-2 { background:linear-gradient(180deg,#E0F7FA 0%,#B2EBF2 82%,#C2B280 82%,#E6D5AC 100%); }
     .aquarium-stage-3 { background:linear-gradient(180deg,#B2EBF2 0%,#4DD0E1 80%,#8B7355 80%,#D4B896 100%); }
     .aquarium-stage-4 { background:linear-gradient(180deg,#80DEEA 0%,#0097A7 78%,#5D4037 78%,#A1887F 100%); }
     .aquarium-stage-5 { background:linear-gradient(180deg,#006064 0%,#00838F 40%,#004D40 75%,#1B5E20 75%,#2E7D32 100%); }
-
     .aquarium-base {
       box-shadow:inset 0 0 50px rgba(0,150,255,.1);
       border:4px solid #1e293b; border-radius:12px;
@@ -105,8 +98,6 @@
     .custom-scroll::-webkit-scrollbar { width:6px; }
     .custom-scroll::-webkit-scrollbar-track { background:#f1f1f1; border-radius:4px; }
     .custom-scroll::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:4px; }
-
-    /* ── 전체 행간/자간 ── */
     body, button, select, input, textarea {
       letter-spacing: 0.03em;
       line-height: 1.6;
@@ -116,10 +107,7 @@
       letter-spacing: -0.01em;
       line-height: 1.3;
     }
-
-    /* ── 2학년 반응형 핵심 ── */
     button, select { min-height: 56px; }
-
     #student-select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%230f172a' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -128,7 +116,6 @@
       padding-right: 44px !important;
       cursor: pointer;
     }
-
     @media (max-height: 700px), (max-width: 600px) {
       .responsive-main   { flex-direction: column !important; overflow-y: auto !important; }
       .aquarium-wrap     { height: 44vw !important; width: 100% !important; }
@@ -146,8 +133,8 @@
       <h3 id="modal-title" class="text-3xl font-bold text-slate-900 mb-2">알림</h3>
       <p id="modal-message" class="text-slate-600 mb-6 text-xl break-keep text-center"></p>
       <div id="modal-buttons" class="flex gap-3 justify-center">
-        <button id="modal-btn-confirm" class="bg-yellow-400 border-3 border-slate-900 rounded-xl px-8 py-3 text-xl text-slate-900 font-bold active:translate-y-0.5 transition-transform">확인</button>
-        <button id="modal-btn-cancel" class="hidden bg-slate-100 border-3 border-slate-900 rounded-xl px-6 py-2 text-slate-600 font-bold active:translate-y-0.5 transition-transform">취소</button>
+        <button id="modal-btn-confirm" class="bg-yellow-400 border-3 border-slate-900 rounded-xl px-8 py-3 text-xl text-slate-900 font-bold active:translate-y-0.5 transition-transform flex items-center justify-center">확인</button>
+        <button id="modal-btn-cancel" class="hidden bg-slate-100 border-3 border-slate-900 rounded-xl px-6 py-2 text-slate-600 font-bold active:translate-y-0.5 transition-transform flex items-center justify-center">취소</button>
       </div>
     </div>
   </div>
@@ -160,7 +147,7 @@
       <p class="text-slate-600 mb-6 text-lg break-keep text-center bg-blue-50 p-4 rounded-2xl border-2 border-blue-100 italic">
         친구들! 화면 윗부분에 <span class="text-blue-600 font-black">'허용'</span> 버튼이 보이면 꾹 눌러주세요. 💎
       </p>
-      <button onclick="requestInitialMicPermission()" class="w-full bg-yellow-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-bold text-slate-900 active:translate-y-1 transition-transform shadow-hard-sm">
+      <button onclick="requestInitialMicPermission()" class="w-full bg-yellow-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-bold text-slate-900 active:translate-y-1 transition-transform shadow-hard-sm flex items-center justify-center">
         네, 준비됐어요! 🚀
       </button>
     </div>
@@ -183,33 +170,27 @@
         <div class="absolute top-6 left-6 bg-white border-4 border-slate-900 rounded-full px-8 py-3 z-20 transform -rotate-2">
           <span class="text-2xl font-black text-slate-900">초등학교 2학년 국어</span>
         </div>
-        <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-4 tracking-tighter text-center leading-tight z-10" style="font-size:clamp(2.5rem,8vw,5rem)">
+        <h1 class="font-black text-slate-900 mb-4 tracking-tighter text-center leading-tight z-10" style="font-size:clamp(2.5rem,8vw,5rem)">
           생각 보물 <span class="text-yellow-500">사냥꾼</span>
         </h1>
         <p class="text-slate-500 text-2xl font-bold mb-6 z-10">책 속 보물을 찾아봐요 📚</p>
-
-        <!-- ★ 학생 드롭다운 (GAS 학생목록 시트 연동) -->
         <div class="w-full max-w-lg bg-white border-4 border-slate-900 rounded-3xl p-10 mb-4 relative z-10">
           <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-pink-300 px-6 py-1 border-2 border-slate-900 rounded-xl text-lg font-bold whitespace-nowrap">
             내 이름은?
           </div>
-          <!-- 로딩 중 표시 -->
           <div id="student-loading" class="w-full text-center text-slate-400 font-bold text-xl py-2">
             ⏳ 명단 불러오는 중...
           </div>
-          <!-- 드롭다운 (학생 목록 로드 후 표시) -->
           <select id="student-select"
             class="hidden w-full text-3xl font-bold outline-none border-4 border-yellow-300 focus:border-yellow-500 rounded-2xl transition-colors py-3 px-4 bg-yellow-50 cursor-pointer">
             <option value="">── 내 이름을 선택하세요 ──</option>
           </select>
-          <!-- 목록 로드 실패 시 직접 입력 fallback -->
           <input type="text" id="username-fallback"
             class="hidden w-full text-center text-2xl font-bold outline-none border-4 border-red-200 focus:border-yellow-400 rounded-2xl transition-colors py-3 px-4 placeholder-slate-300 bg-yellow-50"
             placeholder="이름 직접 입력" maxlength="10">
           <p id="student-error-msg" class="hidden text-center text-sm text-red-400 font-bold mt-2">명단을 불러오지 못했어요.<br>직접 입력해주세요.</p>
         </div>
-
-        <button onclick="checkLogin()" class="w-full max-w-lg bg-yellow-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-bold text-slate-900 active:scale-[0.98] transition-all hover:-translate-y-1 z-10" style="min-height:76px">
+        <button onclick="checkLogin()" class="w-full max-w-lg bg-yellow-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-bold text-slate-900 active:scale-[0.98] transition-all hover:-translate-y-1 z-10 flex items-center justify-center" style="min-height:76px">
           탐험 시작!
         </button>
       </section>
@@ -223,38 +204,111 @@
             class="w-full text-center text-4xl font-bold outline-none border-b-4 border-slate-200 focus:border-blue-500 transition-colors pb-2 placeholder-slate-300 bg-transparent"
             placeholder="제목 입력">
         </div>
-        <button onclick="saveBookStep()" class="w-full max-w-lg bg-blue-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-bold text-white active:scale-[0.98] transition-all hover:-translate-y-1">
+        <button onclick="saveBookStep()" class="w-full max-w-lg bg-blue-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-bold text-white active:scale-[0.98] transition-all hover:-translate-y-1 flex items-center justify-center">
           다음으로
         </button>
       </section>
 
-      <!-- [화면 3] 가이드 -->
-      <section id="view-guide" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-yellow-50 z-10">
-        <h2 class="text-2xl md:text-3xl font-black text-slate-900 mb-4 bg-white px-8 py-2 border-4 border-slate-900 rounded-2xl">이렇게 활동해요! 🧐</h2>
-        <div class="w-full max-w-2xl bg-white border-4 border-slate-900 rounded-[2rem] p-8 mb-4 flex flex-col gap-4 text-center">
-          <p class="text-2xl font-bold text-slate-700 break-keep leading-relaxed">
-            안녕, 탐험가 친구! 👋<br>지금부터 <span class="text-blue-500 font-black" id="guide-book-title"></span> 책 속으로 모험을 떠날 거야.
-          </p>
-          <div class="space-y-3 text-left bg-yellow-50 p-5 rounded-xl border-2 border-yellow-200 text-xl">
-            <div class="flex items-center gap-3"><span class="text-2xl">1️⃣</span><span class="font-bold text-slate-800">화면에 나오는 <span class="text-red-500">미션</span>을 잘 읽어요.</span></div>
-            <div class="flex items-center gap-3"><span class="text-2xl">2️⃣</span><span class="font-bold text-slate-800">책 속에서 정답을 찾아보세요! 👀</span></div>
-            <div class="flex items-center gap-3"><span class="text-2xl">3️⃣</span><span class="font-bold text-slate-800">찾았다면 <span class="text-orange-500">'찾았어요!'</span> 버튼을 꾹~</span></div>
-            <div class="flex items-center gap-3"><span class="text-2xl">4️⃣</span><span class="font-bold text-slate-800">못 찾았다면 <span class="text-lime-600">'다른 미션'</span> 버튼을 꾹~</span></div>
-          </div>
-          <p class="text-2xl font-bold text-slate-700">보물을 많이 찾아서<br>나만의 어항을 멋지게 꾸며봐요! 🐠</p>
+      <!-- [화면 3] 가이드 (슬라이드 튜토리얼) -->
+      <section id="view-guide" class="view-section hidden w-full h-full flex-col items-center justify-center p-6 bg-yellow-50 z-10">
+
+        <!-- 진행 표시 -->
+        <div class="flex items-center gap-3 mb-4 flex-shrink-0">
+          <div id="guide-dot-1" class="w-4 h-4 rounded-full bg-slate-900 transition-all"></div>
+          <div id="guide-dot-2" class="w-4 h-4 rounded-full bg-slate-300 transition-all"></div>
+          <div id="guide-dot-3" class="w-4 h-4 rounded-full bg-slate-300 transition-all"></div>
+          <span id="guide-step-label" class="text-slate-400 font-bold text-lg ml-2">1 / 3</span>
         </div>
-        <button onclick="showSelectStep()" class="w-full max-w-xs bg-orange-400 border-4 border-slate-900 rounded-2xl py-4 text-3xl font-bold text-white active:scale-[0.98] transition-all hover:-translate-y-1">
-          알겠어요!
+
+        <!-- 슬라이드 카드 -->
+        <div class="w-full max-w-3xl flex-1 min-h-0 relative overflow-hidden">
+
+          <!-- 슬라이드 1: 소리 듣기 -->
+          <div id="guide-slide-1" class="guide-slide absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-6 p-6 transition-all duration-300">
+            <!-- 텍스트 -->
+            <div class="flex-1 text-left">
+              <div class="inline-flex items-center justify-center w-14 h-14 bg-orange-500 rounded-2xl text-white text-3xl font-black mb-4">1</div>
+              <h3 class="text-4xl font-black text-slate-900 mb-3 break-keep leading-tight">먼저 소리를<br>들어요!</h3>
+              <p class="text-2xl font-bold text-slate-600 break-keep leading-relaxed">
+                📢 <span class="text-orange-500 font-black">소리듣기</span> 버튼을 눌러<br>미션을 들어봐요.
+              </p>
+            </div>
+            <!-- 일러스트 -->
+            <div class="flex-1 flex items-center justify-center">
+              <div class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-6 shadow-lg">
+                <div class="flex justify-end gap-2 mb-4">
+                  <div class="w-14 h-14 bg-orange-400 border-3 border-slate-900 rounded-full flex items-center justify-center text-3xl shadow-md">📢</div>
+                  <div class="w-14 h-14 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center text-3xl">🎤</div>
+                </div>
+                <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl p-4 text-center">
+                  <p class="text-lg font-black text-slate-700">🤖 로봇 목소리로<br>읽기</p>
+                </div>
+                <div class="mt-3 flex items-center gap-2 bg-orange-100 border-2 border-orange-300 rounded-xl px-3 py-2">
+                  <span class="text-xl">🔊</span>
+                  <span class="text-sm font-black text-orange-600">소리 재생 중...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 슬라이드 2: 책에서 찾기 -->
+          <div id="guide-slide-2" class="guide-slide absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-6 p-6 transition-all duration-300 opacity-0 translate-x-full">
+            <div class="flex-1 text-left">
+              <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-500 rounded-2xl text-white text-3xl font-black mb-4">2</div>
+              <h3 class="text-4xl font-black text-slate-900 mb-3 break-keep leading-tight">책에서<br>찾아봐요!</h3>
+              <p class="text-2xl font-bold text-slate-600 break-keep leading-relaxed">
+                📖 책을 펼쳐서<br>미션에 맞는<br>보물을 찾아요.
+              </p>
+            </div>
+            <div class="flex-1 flex items-center justify-center">
+              <div class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-6 shadow-lg">
+                <div class="text-6xl text-center mb-3">📖</div>
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 text-center mb-3">
+                  <p class="text-sm font-bold text-slate-500 mb-1">미션</p>
+                  <p class="text-lg font-black text-slate-800">마침표(.) 찾기</p>
+                </div>
+                <div class="flex items-center gap-2 justify-center">
+                  <span class="text-3xl">👀</span>
+                  <span class="text-xl font-black text-blue-600">찾아보는 중!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 슬라이드 3: 버튼 누르기 -->
+          <div id="guide-slide-3" class="guide-slide absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-6 p-6 transition-all duration-300 opacity-0 translate-x-full">
+            <div class="flex-1 text-left">
+              <div class="inline-flex items-center justify-center w-14 h-14 bg-green-500 rounded-2xl text-white text-3xl font-black mb-4">3</div>
+              <h3 class="text-4xl font-black text-slate-900 mb-3 break-keep leading-tight">버튼을<br>눌러요!</h3>
+              <p class="text-2xl font-bold text-slate-600 break-keep leading-relaxed">
+                찾았으면 🟠 <span class="text-orange-500 font-black">다음 미션</span><br>못 찾았으면 🟢 <span class="text-lime-600 font-black">다른 미션</span>
+              </p>
+            </div>
+            <div class="flex-1 flex items-center justify-center">
+              <div class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-6 shadow-lg flex flex-col gap-3">
+                <div class="bg-orange-400 border-3 border-slate-900 rounded-xl py-3 text-center text-xl font-black text-white shadow-md">🏃 다음 미션</div>
+                <div class="text-center text-slate-400 font-bold text-sm">찾았을 때</div>
+                <div class="border-t-2 border-slate-100 pt-3"></div>
+                <div class="bg-lime-400 border-3 border-slate-900 rounded-xl py-3 text-center text-xl font-black text-slate-900 shadow-md">🔄 다른 미션</div>
+                <div class="text-center text-slate-400 font-bold text-sm">못 찾았을 때</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 버튼 -->
+        <button id="guide-next-btn" onclick="guideNext()" class="mt-4 w-full max-w-sm bg-orange-400 border-4 border-slate-900 rounded-2xl py-4 text-3xl font-bold text-white active:scale-[0.98] transition-all hover:-translate-y-1 flex items-center justify-center flex-shrink-0">
+          다음으로 →
         </button>
       </section>
 
       <!-- [화면 4] 미션 개수 선택 -->
       <section id="view-select" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-yellow-50 z-10">
         <h2 class="text-4xl font-black text-slate-900 mb-8 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl">오늘의 사냥 목표는?</h2>
-        <div class="flex gap-4 w-full max-w-2xl justify-center items-center">
-          <button onclick="selectGoal(5)"  class="group w-36 h-36 md:w-44 md:h-44 bg-yellow-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-2 active:scale-95 transition-all hover:-translate-y-2 hover:bg-yellow-300"><span class="text-5xl md:text-6xl group-hover:scale-110 transition-transform">🖐️</span><span class="text-2xl md:text-3xl font-black text-slate-900">5개</span></button>
-          <button onclick="selectGoal(10)" class="group w-36 h-36 md:w-44 md:h-44 bg-orange-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-2 active:scale-95 transition-all hover:-translate-y-2 hover:bg-orange-300"><span class="text-5xl md:text-6xl group-hover:scale-110 transition-transform">👐</span><span class="text-2xl md:text-3xl font-black text-slate-900">10개</span></button>
-          <button onclick="selectGoal(15)" class="group w-36 h-36 md:w-44 md:h-44 bg-green-200  border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-2 active:scale-95 transition-all hover:-translate-y-2 hover:bg-green-300"><span class="text-5xl md:text-6xl group-hover:scale-110 transition-transform">👑</span><span class="text-2xl md:text-3xl font-black text-slate-900">15개</span></button>
+        <div class="flex gap-8 w-full max-w-xl justify-center items-center">
+          <button onclick="selectGoal(3)" class="group w-44 h-44 md:w-56 md:h-56 bg-yellow-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-3 active:scale-95 transition-all hover:-translate-y-2 hover:bg-yellow-300"><span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform">🌱</span><span class="text-3xl md:text-4xl font-black text-slate-900">3개</span><span class="text-sm font-bold text-slate-500">처음 시작!</span></button>
+          <button onclick="selectGoal(5)" class="group w-44 h-44 md:w-56 md:h-56 bg-green-200  border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-3 active:scale-95 transition-all hover:-translate-y-2 hover:bg-green-300"><span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform">⭐</span><span class="text-3xl md:text-4xl font-black text-slate-900">5개</span><span class="text-sm font-bold text-slate-500">도전!</span></button>
         </div>
         <p class="mt-8 text-slate-500 font-bold text-xl">목표를 선택하면 미션이 시작돼요!</p>
       </section>
@@ -272,7 +326,7 @@
           <button onclick="setStarRating(5)" class="text-7xl grayscale transition-all transform hover:scale-110 active:scale-95">⭐</button>
         </div>
         <div class="w-full max-w-lg">
-          <button onclick="goToSelfRating()" class="w-full bg-yellow-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1">다음으로 넘어가기 ➡️</button>
+          <button onclick="goToSelfRating()" class="w-full bg-yellow-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1 flex items-center justify-center">다음으로 넘어가기 ➡️</button>
         </div>
       </section>
 
@@ -289,7 +343,7 @@
           <button onclick="setHeartRating(5)" class="text-7xl grayscale transition-all transform hover:scale-110 active:scale-95">❤️</button>
         </div>
         <div class="w-full max-w-lg">
-          <button onclick="finishRatingFlow()" class="w-full bg-pink-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-white active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1">어항에 물고기 넣기 🌊</button>
+          <button onclick="finishRatingFlow()" class="w-full bg-pink-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-white active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1 flex items-center justify-center">어항에 물고기 넣기 🌊</button>
         </div>
       </section>
 
@@ -300,11 +354,10 @@
             <span id="aquarium-title-display" class="font-black text-slate-900 text-lg md:text-2xl">나의 책</span>
           </div>
           <div class="flex gap-4">
-            <button onclick="handleNav('calendar')" class="w-44 bg-sky-300 border-[3px] border-slate-900 px-4 py-2.5 rounded-xl text-xl font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm">다음으로 ➡️</button>
+            <button onclick="handleNav('calendar')" class="w-44 bg-sky-300 border-[3px] border-slate-900 px-4 py-2.5 rounded-xl text-xl font-bold text-slate-900 hover:bg-sky-400 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center">다음으로 ➡️</button>
           </div>
         </div>
         <div class="responsive-main flex-1 flex flex-row p-4 md:p-10 pt-2 md:pt-4 gap-4 md:gap-10 min-h-0 overflow-hidden z-10 items-center justify-center">
-          <!-- 어항 -->
           <div class="aquarium-wrap h-full flex flex-col justify-center items-center">
             <div id="aquarium-bg" class="h-full aquarium-base aquarium-stage-1">
               <div class="aquarium-glass-effect"></div>
@@ -316,10 +369,8 @@
                 <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
               </div>
             </div>
-            <!-- 어항 단계 표시 -->
             <div id="aquarium-stage-badge" class="mt-3 bg-white border-2 border-slate-900 rounded-full px-4 py-1 text-sm font-black text-slate-700 shadow-hard-sm"></div>
           </div>
-          <!-- 정보 카드 -->
           <div class="info-card w-80 flex flex-col gap-4 md:gap-6 bg-white border-[4px] border-slate-900 rounded-[2.5rem] p-5 md:p-8 justify-between h-full shadow-sm">
             <div class="flex flex-col items-center w-full gap-4">
               <div class="bg-yellow-100 border-2 border-yellow-200 px-6 py-2 rounded-xl w-full text-center">
@@ -344,7 +395,6 @@
               </div>
             </div>
             <div class="flex-1 flex flex-col justify-end w-full gap-3">
-              <!-- 누적 권수 + 이정표 -->
               <div id="total-books-display" class="text-center bg-yellow-50 border-2 border-yellow-200 rounded-2xl py-3 px-4">
                 <p class="text-3xl font-black text-yellow-600" id="total-books-count">0</p>
                 <p class="text-sm font-bold text-slate-500">권 읽었어요! 📚</p>
@@ -362,16 +412,13 @@
       <section id="view-mission" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-2 px-4 pb-2 bg-yellow-50 z-10 overflow-y-auto">
         <h2 id="mission-title-header" class="text-3xl font-black text-slate-900 mb-2 bg-yellow-400 px-8 py-2 border-[3px] border-slate-900 rounded-xl transform -rotate-1 flex-shrink-0">보물 찾기 미션</h2>
         <div class="pop-animation w-full max-w-4xl flex-1 bg-white border-[4px] border-slate-900 rounded-[2rem] px-8 py-4 relative flex flex-col gap-3 shadow-sm overflow-y-auto">
-          <!-- 음성/TTS 버튼 -->
           <div class="flex justify-end items-center flex-shrink-0">
             <div class="flex gap-2">
               <button id="btn-speak" onclick="speakMission()" class="bg-white border-2 border-slate-900 rounded-full w-16 h-16 flex items-center justify-center text-4xl active:scale-90 transition-all shadow-sm" title="미션 듣기">📢</button>
               <button id="btn-stt" onclick="toggleSTT()" class="bg-white border-2 border-slate-900 rounded-full w-16 h-16 flex items-center justify-center text-4xl active:scale-90 hover:bg-slate-50 transition-colors shadow-sm" title="음성으로 말하기">🎤</button>
             </div>
           </div>
-          <!-- 미션 내용 (자연스러운 흐름) -->
           <div id="mission-text-container" class="w-full flex flex-col items-center text-center"></div>
-          <!-- STT 결과 (hidden 시 공간 차지 안 함) -->
           <div id="stt-result-container" class="hidden w-full p-5 bg-blue-100 border-[3px] border-dashed border-blue-400 rounded-2xl shadow-inner flex-shrink-0">
             <div class="w-full text-center">
               <div class="flex items-center justify-center gap-2 mb-2">
@@ -381,11 +428,28 @@
               <p id="stt-result-text" class="text-slate-900 font-black text-3xl break-keep leading-snug px-3 min-h-[3rem]"></p>
             </div>
           </div>
-          <!-- 다른 미션 / 다음 미션 버튼 (STT 칸 아래) -->
           <div class="w-full flex justify-center flex-shrink-0">
             <button id="btn-next-mission" onclick="startMission()" class="w-full max-w-lg bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">🔄 다른 미션</button>
           </div>
         </div>
+      </section>
+
+      <!-- [화면 7-1] 미션 완료 피드백 (배움 쏙쏙) -->
+      <section id="view-mission-feedback" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-white z-10">
+        <div class="text-6xl mb-3">🌟</div>
+        <div id="feedback-progress" class="text-2xl font-bold text-slate-500 mb-4 bg-yellow-50 px-6 py-2 rounded-2xl border-2 border-yellow-200">
+          1번째 보물 발견!
+        </div>
+        <div class="w-full max-w-2xl bg-blue-50 border-4 border-blue-200 rounded-3xl p-8 mb-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">👩‍🏫</span>
+            <span class="text-2xl font-black text-blue-700">배움 쏙쏙</span>
+          </div>
+          <p id="feedback-concept" class="text-2xl font-bold text-slate-800 leading-relaxed break-keep"></p>
+        </div>
+        <button onclick="startMission()" class="w-full max-w-sm bg-yellow-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center">
+          다음 미션 계속! →
+        </button>
       </section>
 
       <!-- [화면 8] 보상 -->
@@ -403,7 +467,7 @@
           <div class="absolute -right-32 top-4 text-7xl pop-animation animate-bounce drop-shadow-lg">🎉</div>
           <div class="absolute -left-32 bottom-20 text-7xl pop-animation animate-bounce drop-shadow-lg" style="animation-delay:.5s">🎁</div>
         </div>
-        <button onclick="addFishToAquarium()" class="w-full max-w-lg bg-green-500 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 relative z-10">다음으로 ➡️</button>
+        <button onclick="addFishToAquarium()" class="w-full max-w-lg bg-green-500 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 relative z-10 flex items-center justify-center">다음으로 ➡️</button>
       </section>
 
       <!-- [화면 8-0] 독서 질문 선택 -->
@@ -432,7 +496,7 @@
           <textarea id="sentence-text-input" class="w-full bg-white border-3 border-purple-300 rounded-2xl px-5 py-4 text-xl text-slate-800 font-bold resize-none focus:outline-none focus:border-purple-500 transition-colors shadow-sm" rows="2" placeholder="여기에 입력하세요..."></textarea>
         </div>
         <div class="w-full max-w-lg">
-          <button onclick="goToBookRating()" class="w-full bg-yellow-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1">다음으로 넘어가기 ➡️</button>
+          <button onclick="goToBookRating()" class="w-full bg-yellow-400 border-[4px] border-slate-900 rounded-[2rem] py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all shadow-hard-sm hover:-translate-y-1 flex items-center justify-center">다음으로 넘어가기 ➡️</button>
         </div>
       </section>
 
@@ -447,23 +511,21 @@
         </button>
       </section>
 
-    </div><!-- /app-container -->
-  </div><!-- /binder -->
+    </div>
+  </div>
 
 <script>
-// ============================================================
-// 상태 변수
-// ============================================================
 let currentUser       = '';
-let currentUserNumber = 0;        // 출석번호
+let currentUserNumber = 0;
 let currentBook       = '나의 책';
-let myFish            = [];       // [{ icon, book }]
-let totalBooks   = 0;        // 누적 읽은 권수 (어항 단계용)
+let myFish            = [];
+let totalBooks        = 0;
 let targetMissionCount  = 5;
 let currentMissionCount = 0;
 let lastMissionIndex    = -1;
 let currentMissionData  = null;
 let currentMissionText  = '';
+let activeMissions      = [];   // 실제 사용할 미션 목록 (교사입력 or 기본)
 let currentGuideText    = '';
 let bookRating   = 0;
 let selfRating   = 0;
@@ -477,9 +539,6 @@ let accumulatedTranscript = '';
 let isSentenceMicOn  = false;
 let sentenceRecognition = null;
 
-// ============================================================
-// 어항 단계
-// ============================================================
 const AQUARIUM_STAGES = [
   { min:0,  max:2,  stage:1, label:'🪣 작은 물통',    floor:'<span class="text-3xl">🌿</span><span class="text-2xl">🪨</span>' },
   { min:3,  max:6,  stage:2, label:'🐟 작은 어항',    floor:'<span class="text-4xl">🌿</span><span class="text-3xl">🪨</span><span class="text-4xl">🐚</span>' },
@@ -487,71 +546,42 @@ const AQUARIUM_STAGES = [
   { min:15, max:24, stage:4, label:'🌊 큰 어항',      floor:'<span class="text-4xl">🌿</span><span class="text-3xl">🪨</span><span class="text-5xl">🪸</span><span class="text-6xl">🐚</span><span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>' },
   { min:25, max:999,stage:5, label:'🏆 전설의 수족관', floor:'<span class="text-5xl">🌿</span><span class="text-4xl">🪨</span><span class="text-6xl">🪸</span><span class="text-6xl">🐚</span><span class="text-5xl">🌊</span><span class="text-5xl">🌿</span><span class="text-4xl">🪨</span>' },
 ];
-
 const MILESTONES = [
-  { books:3,  label:'새싹 독서가 🌱',   emoji:'🌱' },
-  { books:7,  label:'책벌레 🐛',        emoji:'🐛' },
-  { books:15, label:'독서 탐험가 🗺️',   emoji:'🗺️' },
-  { books:25, label:'보물 사냥꾼 👑',   emoji:'👑' },
-  { books:40, label:'전설의 독서왕 🏆', emoji:'🏆' },
+  { books:3,  label:'새싹 독서가 🌱' },
+  { books:7,  label:'책벌레 🐛' },
+  { books:15, label:'독서 탐험가 🗺️' },
+  { books:25, label:'보물 사냥꾼 👑' },
+  { books:40, label:'전설의 독서왕 🏆' },
 ];
+function getStageInfo(count) { return AQUARIUM_STAGES.find(s => count >= s.min && count <= s.max) || AQUARIUM_STAGES[0]; }
+function getNextMilestone(count) { return MILESTONES.find(m => m.books > count) || null; }
 
-function getStageInfo(count) {
-  return AQUARIUM_STAGES.find(s => count >= s.min && count <= s.max) || AQUARIUM_STAGES[0];
-}
-
-function getNextMilestone(count) {
-  return MILESTONES.find(m => m.books > count) || null;
-}
-
-// ============================================================
-// GAS API 통신 (JSONP 방식 - CORS 우회)
-// ============================================================
-// ★★★ 아래 URL을 GAS 배포 URL로 교체하세요 ★★★
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxOE6kdjnvvHD2W5K1m_8uoAVrdGP6h7VDEgDxjNrWz-jDlagITcPKWY5ej695HlZ5ewQ/exec';
+// ★ GAS URL (업데이트됨)
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzImVSAVQuhdBSv6LIezZWyItsGiHZeqSSCCD2ZjoOWZ38PY0e0xA3y1s25O_7Kp50HNg/exec';
 
 function gasAPI(action, payload = {}) {
   return new Promise((resolve) => {
     const cbName = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-
-    // URL 파라미터 구성
     const params = new URLSearchParams({ action, callback: cbName });
     Object.entries(payload).forEach(([k, v]) => {
       params.append(k, typeof v === 'object' ? JSON.stringify(v) : v);
     });
-
-    // 타임아웃 처리 (10초)
-    const timer = setTimeout(() => {
-      cleanup();
-      resolve({ ok: false, error: '요청 시간 초과' });
-    }, 10000);
-
+    const timer = setTimeout(() => { cleanup(); resolve({ ok: false, error: '요청 시간 초과' }); }, 10000);
     function cleanup() {
       clearTimeout(timer);
       const el = document.getElementById(cbName);
       if (el) el.remove();
       delete window[cbName];
     }
-
-    // 콜백 함수 등록
-    window[cbName] = (res) => {
-      cleanup();
-      resolve(res);
-    };
-
-    // script 태그로 요청
+    window[cbName] = (res) => { cleanup(); resolve(res); };
     const script = document.createElement('script');
     script.id  = cbName;
     script.src = GAS_URL + '?' + params.toString();
-    script.onerror = () => {
-      cleanup();
-      resolve({ ok: false, error: '네트워크 오류' });
-    };
+    script.onerror = () => { cleanup(); resolve({ ok: false, error: '네트워크 오류' }); };
     document.body.appendChild(script);
   });
 }
 
-// 기록 저장
 async function saveRecordToSheets(data, callback) {
   showModal('저장 중...', '기록을 저장하고 있어요 ⏳', '💾');
   const res = await gasAPI('saveRecord', { data: data });
@@ -564,46 +594,39 @@ async function saveRecordToSheets(data, callback) {
   }
 }
 
-// 학생 기록 불러오기
 async function loadHistory(callback) {
   if (!currentUser) { callback([]); return; }
+
+  // ★ 프리패치된 데이터가 있으면 즉시 반환 (네트워크 요청 없음)
+  if (window._historyPreloaded !== null && window._historyPreloaded !== undefined) {
+    const data = window._historyPreloaded;
+    window._historyPreloaded = null; // 한 번만 사용
+    callback(data);
+    return;
+  }
+
   const res = await gasAPI('getHistory', { name: currentUser });
   callback(res.ok ? res.data : []);
 }
 
-// history 배열 → myFish 변환
 function buildFishFromData(historyArray) {
-  return historyArray
-    .filter(r => !!r.fish)
-    .map(r => ({ icon: r.fish, book: r.book || '제목 없음' }));
+  return historyArray.filter(r => !!r.fish).map(r => ({ icon: r.fish, book: r.book || '제목 없음' }));
 }
 
-// ============================================================
-// UI 유틸
-// ============================================================
 function setActiveTab(tabKey) {
   ['login','mission','home','calendar'].forEach(key => {
     const el = document.getElementById('tab-' + key);
     if (!el) return;
-    if (key === tabKey) {
-      el.classList.add('translate-x-3','z-10','shadow-[8px_8px_0px_rgba(15,23,42,1)]');
-      el.classList.remove('translate-x-0');
-    } else {
-      el.classList.remove('translate-x-3','z-10','shadow-[8px_8px_0px_rgba(15,23,42,1)]');
-      el.classList.add('translate-x-0');
-    }
+    if (key === tabKey) { el.classList.add('translate-x-3','z-10'); el.classList.remove('translate-x-0'); }
+    else { el.classList.remove('translate-x-3','z-10'); el.classList.add('translate-x-0'); }
   });
 }
 
 function showView(viewId) {
-  document.querySelectorAll('.view-section').forEach(el => {
-    el.classList.add('hidden'); el.classList.remove('flex');
-  });
+  document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
   const target = document.getElementById(viewId);
   if (!target) return;
-  target.classList.remove('hidden');
-  target.classList.add('flex');
-
+  target.classList.remove('hidden'); target.classList.add('flex');
   if      (viewId === 'view-calendar') { renderCalendar(); setActiveTab('calendar'); }
   else if (viewId === 'view-main')     { goHome(); }
   else if (viewId === 'view-mission')  { setActiveTab('mission'); }
@@ -612,7 +635,7 @@ function showView(viewId) {
 }
 
 function showModal(title, message, icon='📢', showCancel=false, confirmCallback=null) {
-  const modal      = document.getElementById('custom-modal');
+  const modal = document.getElementById('custom-modal');
   const confirmBtn = document.getElementById('modal-btn-confirm');
   const cancelBtn  = document.getElementById('modal-btn-cancel');
   document.getElementById('modal-title').innerText   = title;
@@ -625,23 +648,26 @@ function showModal(title, message, icon='📢', showCancel=false, confirmCallbac
   cancelBtn.onclick  = () => { modal.classList.add('hidden'); clear(); };
 }
 
-// ============================================================
-// 로그인 / 초기화
-// ============================================================
 window.addEventListener('load', () => {
-  myFish     = [];
-  totalBooks = 0;
+  myFish = []; totalBooks = 0;
   showView('view-login');
+  // ★ 교사 입력 미션 백그라운드 로드
+  gasAPI('getMissions').then(res => {
+    if (res.ok && res.data && res.data.length > 0) {
+      activeMissions = res.data;
+      console.log(`교사 미션 ${activeMissions.length}개 로드됨`);
+    } else {
+      activeMissions = missions; // 기본 미션 사용
+    }
+  }).catch(() => {
+    activeMissions = missions;
+  });
 
-  // 학생 목록 드롭다운 초기화 (fetch 방식)
   gasAPI('getStudentList').then(res => {
     const loading  = document.getElementById('student-loading');
     const select   = document.getElementById('student-select');
     const fallback = document.getElementById('username-fallback');
-    const errMsg   = document.getElementById('student-error-msg');
-
     loading.classList.add('hidden');
-
     if (res.ok && res.data && res.data.length > 0) {
       res.data.forEach(s => {
         const opt = document.createElement('option');
@@ -652,7 +678,6 @@ window.addEventListener('load', () => {
       select.classList.remove('hidden');
     } else {
       fallback.classList.remove('hidden');
-      errMsg.classList.add('hidden');  // 에러메시지는 숨김 (단순히 목록이 없을 수 있음)
     }
   }).catch(() => {
     document.getElementById('student-loading').classList.add('hidden');
@@ -663,36 +688,39 @@ window.addEventListener('load', () => {
 function checkLogin() {
   const select   = document.getElementById('student-select');
   const fallback = document.getElementById('username-fallback');
-
-  // 드롭다운이 보이면 선택값 사용, 아니면 fallback 텍스트 입력 사용
   if (!select.classList.contains('hidden')) {
-    if (!select.value) {
-      showModal('잠깐!', '이름을 선택해주세요! 📝', '👤'); return;
-    }
-    const student     = JSON.parse(select.value);
+    if (!select.value) { showModal('잠깐!', '이름을 선택해주세요! 📝', '👤'); return; }
+    const student = JSON.parse(select.value);
     currentUserNumber = student.number;
-    currentUser       = student.name;
+    currentUser = student.name;
   } else {
     const name = fallback.value.trim();
     if (!name) { showModal('잠깐!', '이름을 입력해주세요! 📝', '👤'); return; }
     currentUserNumber = 0;
-    currentUser       = name;
+    currentUser = name;
   }
   login();
 }
 
 function login() {
-  // GAS 환경에서는 항상 책 제목을 새로 입력 (학생마다 다른 책)
+  // 아직 미션 안 로드됐으면 기본 미션 사용
+  if (activeMissions.length === 0) activeMissions = missions;
+  // ★ 백그라운드 프리패치: 이름 선택 직후 기록 미리 로드 시작
+  // 책 입력 → 가이드 → 미션 하는 동안 로딩 완료됨
+  window._historyPreloaded = null;
+  gasAPI('getHistory', { name: currentUser }).then(res => {
+    window._historyPreloaded = res.ok ? res.data : [];
+  }).catch(() => {
+    window._historyPreloaded = [];
+  });
+
   document.getElementById('mic-permission-modal').classList.remove('hidden');
 }
 
 async function requestInitialMicPermission() {
   document.getElementById('mic-permission-modal').classList.add('hidden');
-  try {
-    micAccessStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-  } catch(e) {
-    showModal('마이크 권한 필요', '음성 인식을 위해 마이크 권한이 필요해요.', '🎤');
-  }
+  try { micAccessStream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+  catch(e) { showModal('마이크 권한 필요', '음성 인식을 위해 마이크 권한이 필요해요.', '🎤'); }
   showView('view-book-input-section');
 }
 
@@ -701,38 +729,81 @@ function saveBookStep() {
   if (!bookTitle) { showModal('잠깐!', '읽을 책 제목을 알려주세요!', '📖'); return; }
   currentBook = bookTitle;
   document.getElementById('guide-book-title').innerText = currentBook;
-
-  // 기존 기록 불러와서 물고기 + 누적 권수 복원
   loadHistory(historyArray => {
-    myFish     = buildFishFromData(historyArray);
+    myFish = buildFishFromData(historyArray);
     totalBooks = historyArray.length;
     showView('view-guide');
   });
 }
 
+// 가이드 슬라이드 제어
+let guideCurrentStep = 1;
+const guideTotalSteps = 3;
+
+function guideNext() {
+  if (guideCurrentStep < guideTotalSteps) {
+    // 현재 슬라이드 왼쪽으로 이동
+    const cur = document.getElementById('guide-slide-' + guideCurrentStep);
+    cur.style.opacity = '0';
+    cur.style.transform = 'translateX(-100%)';
+
+    guideCurrentStep++;
+
+    // 다음 슬라이드 등장
+    const next = document.getElementById('guide-slide-' + guideCurrentStep);
+    next.style.opacity = '1';
+    next.style.transform = 'translateX(0)';
+
+    // 점 업데이트
+    for (let i = 1; i <= guideTotalSteps; i++) {
+      const dot = document.getElementById('guide-dot-' + i);
+      if (dot) dot.className = i === guideCurrentStep
+        ? 'w-4 h-4 rounded-full bg-slate-900 transition-all scale-125'
+        : 'w-4 h-4 rounded-full bg-slate-300 transition-all';
+    }
+    document.getElementById('guide-step-label').innerText = guideCurrentStep + ' / ' + guideTotalSteps;
+
+    // 마지막 단계면 버튼 텍스트 변경
+    if (guideCurrentStep === guideTotalSteps) {
+      document.getElementById('guide-next-btn').innerText = '시작해요! 🚀';
+    }
+  } else {
+    // 슬라이드 초기화 후 선택 화면으로
+    guideCurrentStep = 1;
+    for (let i = 1; i <= guideTotalSteps; i++) {
+      const slide = document.getElementById('guide-slide-' + i);
+      const dot   = document.getElementById('guide-dot-' + i);
+      if (slide) {
+        slide.style.opacity = i === 1 ? '1' : '0';
+        slide.style.transform = i === 1 ? 'translateX(0)' : 'translateX(100%)';
+      }
+      if (dot) dot.className = i === 1
+        ? 'w-4 h-4 rounded-full bg-slate-900 transition-all'
+        : 'w-4 h-4 rounded-full bg-slate-300 transition-all';
+    }
+    document.getElementById('guide-step-label').innerText = '1 / ' + guideTotalSteps;
+    document.getElementById('guide-next-btn').innerText = '다음으로 →';
+    showSelectStep();
+  }
+}
+
 function showSelectStep() { showView('view-select'); }
 
 function handleNav(target) {
-  if (!currentUser && target !== 'login') {
-    showModal('잠깐!', '이름을 먼저 써주세요!', '📛');
-    showView('view-login'); return;
-  }
+  if (!currentUser && target !== 'login') { showModal('잠깐!', '이름을 먼저 써주세요!', '📛'); showView('view-login'); return; }
   if      (target === 'login')    showView('view-login');
   else if (target === 'mission')  showView('view-select');
   else if (target === 'home')     goHome();
   else if (target === 'calendar') showView('view-calendar');
 }
 
-// ============================================================
-// 미션
-// ============================================================
 const reflectionQuestions = [
-  { title:'소감',      question:'이 책을 읽고 어떤 마음이 들었나요?',         examples:['책을 다 읽으니 마음이 포근하고 따뜻해졌어요.','주인공이 문제를 해결할 때 정말 신나고 통쾌했어요!'], icon:'💖' },
-  { title:'보물 문장', question:'가장 기억에 남는 보물 문장은 무엇인가요?',    examples:['\'우리는 모두 특별한 존재야\'라는 말이 가장 멋졌어요.','주인공이 마지막에 한 말이 기억나요.'], icon:'💎' },
-  { title:'한 줄 소개',question:'친구들에게 이 책을 한 줄로 소개한다면?',      examples:['웃음이 팡팡 터지는 세상에서 가장 재미있는 책이에요.','용기 있는 모험을 보고 싶은 친구들에게 꼭 추천해요.'], icon:'📢' },
-  { title:'주인공에게',question:'주인공에게 어떤 말을 해주고 싶나요?',         examples:['주인공아, 끝까지 포기하지 않는 모습이 정말 대단해!','너처럼 용감한 친구가 내 곁에도 있으면 좋겠어.'], icon:'💌' },
-  { title:'내가 주인공', question:'내가 주인공이라면 어떻게 했을까요?',        examples:['내가 주인공이었다면 무서워하지 않고 먼저 손을 내밀었을 거예요.','사탕 숲을 발견했다면 친구들 모두를 초대했을 거예요.'], icon:'🎭' },
-  { title:'추천 이유', question:'내가 이 책을 \'최고\'로 뽑은 이유는?',       examples:['평소에 궁금했던 비밀을 알게 되어서 정말 좋았어요.','그림이 알록달록 예쁘고 이야기가 흥미진진해요.'], icon:'👑' },
+  { title:'소감',       question:'이 책을 읽고 어떤 마음이 들었나요?',        examples:['책을 다 읽으니 마음이 포근하고 따뜻해졌어요.','주인공이 문제를 해결할 때 정말 신나고 통쾌했어요!'], icon:'💖' },
+  { title:'보물 문장',  question:'가장 기억에 남는 보물 문장은 무엇인가요?',   examples:['\'우리는 모두 특별한 존재야\'라는 말이 가장 멋졌어요.','주인공이 마지막에 한 말이 기억나요.'], icon:'💎' },
+  { title:'한 줄 소개', question:'친구들에게 이 책을 한 줄로 소개한다면?',     examples:['웃음이 팡팡 터지는 세상에서 가장 재미있는 책이에요.','용기 있는 모험을 보고 싶은 친구들에게 꼭 추천해요.'], icon:'📢' },
+  { title:'주인공에게', question:'주인공에게 어떤 말을 해주고 싶나요?',        examples:['주인공아, 끝까지 포기하지 않는 모습이 정말 대단해!','너처럼 용감한 친구가 내 곁에도 있으면 좋겠어.'], icon:'💌' },
+  { title:'내가 주인공',question:'내가 주인공이라면 어떻게 했을까요?',        examples:['내가 주인공이었다면 무서워하지 않고 먼저 손을 내밀었을 거예요.','사탕 숲을 발견했다면 친구들 모두를 초대했을 거예요.'], icon:'🎭' },
+  { title:'추천 이유',  question:'내가 이 책을 \'최고\'로 뽑은 이유는?',      examples:['평소에 궁금했던 비밀을 알게 되어서 정말 좋았어요.','그림이 알록달록 예쁘고 이야기가 흥미진진해요.'], icon:'👑' },
 ];
 
 const missions = [
@@ -759,216 +830,161 @@ const missions = [
 ];
 
 const fishes = [
-  { icon:'🐠', name:'니모(아네모네피시)' },
-  { icon:'🐡', name:'복어' },
-  { icon:'🐙', name:'문어' },
-  { icon:'🦀', name:'꽃게' },
-  { icon:'🐬', name:'돌고래' },
-  { icon:'🐳', name:'고래' },
-  { icon:'🦈', name:'상어' },
-  { icon:'🦐', name:'새우' },
-  { icon:'🦑', name:'오징어' },
-  { icon:'🐟', name:'물고기' },
+  { icon:'🐠', name:'니모(아네모네피시)' }, { icon:'🐡', name:'복어' },
+  { icon:'🐙', name:'문어' }, { icon:'🦀', name:'꽃게' },
+  { icon:'🐬', name:'돌고래' }, { icon:'🐳', name:'고래' },
+  { icon:'🦈', name:'상어' }, { icon:'🦐', name:'새우' },
+  { icon:'🦑', name:'오징어' }, { icon:'🐟', name:'물고기' },
   { icon:'🐋', name:'혹등고래' },
 ];
 
-function selectGoal(count) {
-  targetMissionCount  = count;
-  currentMissionCount = 0;
-  startMission();
-}
+function selectGoal(count) { targetMissionCount = count; currentMissionCount = 0; startMission(); }
 
 function startMission() {
   let randomIdx;
-  do { randomIdx = Math.floor(Math.random() * missions.length); }
-  while (randomIdx === lastMissionIndex);
-  lastMissionIndex   = randomIdx;
-  const mission      = missions[randomIdx];
+  // ★ 교사 미션 우선 사용, 없으면 기본 미션
+  const missionPool = activeMissions.length > 0 ? activeMissions : missions;
+  do { randomIdx = Math.floor(Math.random() * missionPool.length); } while (randomIdx === lastMissionIndex && missionPool.length > 1);
+  lastMissionIndex = randomIdx;
+  const mission = missionPool[randomIdx];
   currentMissionData = mission;
   currentMissionText = mission.text;
   currentGuideText   = mission.guide;
-
-  document.getElementById('mission-title-header').innerText =
-    `보물 찾기 미션 (${currentMissionCount + 1}/${targetMissionCount})`;
-
+  document.getElementById('mission-title-header').innerText = `보물 찾기 미션 (${currentMissionCount + 1}/${targetMissionCount})`;
   document.getElementById('mission-text-container').innerHTML = `
     <div class="flex flex-col items-center justify-start w-full gap-3 py-1">
       <div class="w-full">
-        <h3 class="text-4xl font-black text-slate-900 inline-block mb-3 border-b-4 border-yellow-300 px-2">${mission.text}</h3>
-        <div class="bg-blue-100/50 border-2 border-blue-200 rounded-2xl p-5 mb-3 w-full text-left">
-          <div class="flex items-center gap-2 mb-2"><span class="text-2xl">👩‍🏫</span><span class="text-base font-bold text-slate-500 uppercase tracking-wider">배움 쏙쏙</span></div>
-          <p class="text-slate-800 text-2xl font-bold leading-snug break-keep">${mission.conceptExplanation}</p>
-        </div>
-        <div class="bg-yellow-50 border-2 border-dashed border-yellow-400 rounded-xl p-4 w-full text-slate-700 text-2xl text-center break-keep font-bold">
+        <h3 class="text-4xl font-black text-slate-900 inline-block mb-4 border-b-4 border-yellow-300 px-2">${mission.text}</h3>
+        <div class="bg-yellow-50 border-2 border-dashed border-yellow-400 rounded-xl p-5 w-full text-slate-700 text-2xl text-center break-keep font-bold">
           💡 힌트: ${mission.guide}
         </div>
       </div>
     </div>
   `;
-
   isRecording = false;
   if (recognition) recognition.abort();
   accumulatedTranscript = '';
-  // 미션 바뀔 때 스피커 버튼 초기화
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   setSpeakBtnActive(false);
-
   const nextBtn = document.getElementById('btn-next-mission');
   if (nextBtn) {
-    nextBtn.classList.remove('hidden');
     nextBtn.innerText = '🔄 다른 미션';
     nextBtn.onclick   = () => startMission();
     nextBtn.className = 'w-full max-w-lg bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
   }
-
   const sttContainer = document.getElementById('stt-result-container');
-  sttContainer.classList.remove('hidden','bg-green-100','border-green-400','animate-pulse');
-  sttContainer.classList.add('bg-blue-100','border-blue-400');
+  sttContainer.classList.add('hidden');
   document.getElementById('stt-result-text').innerText = '🎤 마이크를 누르고 보물의 이름을 말해봐요!';
-
   showView('view-mission');
 }
-let isSpeaking = false;
 
+let isSpeaking = false;
 function setSpeakBtnActive(active) {
   const btn = document.getElementById('btn-speak');
   if (!btn) return;
-  if (active) {
-    btn.classList.remove('bg-white');
-    btn.classList.add('bg-orange-400', 'border-orange-600', 'scale-110');
-    btn.innerText = '🔊';
-  } else {
-    btn.classList.add('bg-white');
-    btn.classList.remove('bg-orange-400', 'border-orange-600', 'scale-110');
-    btn.innerText = '📢';
-    isSpeaking = false;
-  }
+  if (active) { btn.classList.remove('bg-white'); btn.classList.add('bg-orange-400','border-orange-600','scale-110'); btn.innerText = '🔊'; }
+  else { btn.classList.add('bg-white'); btn.classList.remove('bg-orange-400','border-orange-600','scale-110'); btn.innerText = '📢'; isSpeaking = false; }
 }
 
 function speakMission() {
   if (!('speechSynthesis' in window) || !currentMissionData) return;
-
-  if (isSpeaking) {
-    window.speechSynthesis.cancel();
-    setSpeakBtnActive(false);
-    return;
-  }
-
+  if (isSpeaking) { window.speechSynthesis.cancel(); setSpeakBtnActive(false); return; }
   window.speechSynthesis.cancel();
-  const clean = s => (s||'').replace(/\([^)]*\)/g,'').replace(/[\/\"\'\`~]/g,' ');
+  const clean = s => (s||'').replace(/\([^)]*\)/g,'').replace(/[\/\"\'`~]/g,' ');
   const text  = `미션. ${clean(currentMissionData.text)}. ${clean(currentMissionData.conceptExplanation)}. 힌트. ${clean(currentMissionData.guide)}`;
   const utt   = new SpeechSynthesisUtterance(text);
   utt.lang = 'ko-KR'; utt.rate = 0.9; utt.pitch = 1.1;
-
   utt.onstart = () => { isSpeaking = true;  setSpeakBtnActive(true);  };
   utt.onend   = () => {                     setSpeakBtnActive(false); };
   utt.onerror = () => {                     setSpeakBtnActive(false); };
-
   window.speechSynthesis.speak(utt);
+}
+
+function showMissionFeedback(missionData, count, total) {
+  document.getElementById('feedback-progress').innerText =
+    `🌟 ${count}번째 보물 발견! (${total - count}개 남음)`;
+  document.getElementById('feedback-concept').innerText =
+    missionData ? missionData.conceptExplanation : '';
+
+  // 섹션 전환
+  document.querySelectorAll('.view-section').forEach(el => {
+    el.classList.add('hidden'); el.classList.remove('flex');
+  });
+  const target = document.getElementById('view-mission-feedback');
+  target.classList.remove('hidden'); target.classList.add('flex');
+  setActiveTab('mission');
 }
 
 function completeMission() {
   currentMissionCount++;
   if (currentMissionCount < targetMissionCount) {
-    showModal(
-      `🌟 ${currentMissionCount}번째 보물 발견!`,
-      `아주 잘했어요! 아직 ${targetMissionCount - currentMissionCount}개의 보물이 남아있어요. 계속 도전해봐요!`,
-      '🎉', false, () => startMission()
-    );
+    // 배움 쏙쏙 피드백 화면 표시
+    showMissionFeedback(currentMissionData, currentMissionCount, targetMissionCount);
   } else {
     const randomFishObj = fishes[Math.floor(Math.random() * fishes.length)];
     pendingFish = randomFishObj.icon;
-    document.getElementById('reward-fish').innerText        = pendingFish;
+    document.getElementById('reward-fish').innerText = pendingFish;
     document.getElementById('reward-progress-text').innerText = '축하합니다! 모든 미션을 성공했어요!';
-    document.getElementById('reward-fish-name').innerText   = `전설의 [${randomFishObj.name}] 친구 등장!`;
+    document.getElementById('reward-fish-name').innerText = `전설의 [${randomFishObj.name}] 친구 등장!`;
     showView('view-reward');
   }
 }
 
-function addFishToAquarium() {
-  renderQuestionSelect();
-  showView('view-question-select');
-}
+function addFishToAquarium() { renderQuestionSelect(); showView('view-question-select'); }
 
-// ============================================================
-// 평가 및 저장
-// ============================================================
 function setStarRating(rating) {
   bookRating = rating;
   const btns = document.getElementById('star-rating-container').getElementsByTagName('button');
   for (let i = 0; i < btns.length; i++) btns[i].classList.toggle('grayscale', i >= rating);
 }
-
 function setHeartRating(rating) {
   selfRating = rating;
   const btns = document.getElementById('heart-rating-container').getElementsByTagName('button');
   for (let i = 0; i < btns.length; i++) btns[i].classList.toggle('grayscale', i >= rating);
 }
-
 function goToSelfRating() {
   if (bookRating === 0) { showModal('잠깐만요!', '별점을 눌러 책이 얼마나 재미있었는지 알려주세요! ⭐', '🧐'); return; }
   showView('view-self-rating');
 }
-
-// ★ 핵심 변경: 비동기 저장 후 goHome
 function finishRatingFlow() {
   if (selfRating === 0) { showModal('잠깐만요!', '하트를 눌러 오늘의 내 노력을 칭찬해주세요! ❤️', '🧐'); return; }
-
   const fishIcon = pendingFish || '🐠';
   pendingFish    = null;
   const today    = new Date();
   const dateStr  = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
-
   const data = {
-    date          : dateStr,
-    number        : currentUserNumber,
-    name          : currentUser,
-    book          : currentBook,
-    sentence      : window._todaySentence || '',
-    questionTitle : selectedQuestionData ? selectedQuestionData.title : '',
-    stars         : bookRating,
-    hearts        : selfRating,
-    fish          : fishIcon
+    date: dateStr, number: currentUserNumber, name: currentUser, book: currentBook,
+    sentence: window._todaySentence || '',
+    questionTitle: selectedQuestionData ? selectedQuestionData.title : '',
+    stars: bookRating, hearts: selfRating, fish: fishIcon
   };
-
   saveRecordToSheets(data, () => {
-    // 저장 완료 후 기록 다시 불러와서 myFish 갱신
     loadHistory(historyArray => {
       myFish = buildFishFromData(historyArray);
-      // totalBooks는 saveRecordToSheets 안에서 이미 업데이트됨
       document.getElementById('custom-modal').classList.add('hidden');
       goHome();
     });
   });
 }
 
-// ============================================================
-// 질문 선택 & 문장 입력
-// ============================================================
 function renderQuestionSelect() {
   const container = document.getElementById('question-list-container');
   container.innerHTML = '';
   reflectionQuestions.forEach((q, idx) => {
     const btn = document.createElement('button');
     btn.className = 'bg-white border-4 border-slate-900 rounded-[2rem] p-6 flex flex-col items-center gap-3 active:scale-95 transition-all hover:-translate-y-1 hover:bg-yellow-50 shadow-hard-sm pop-animation';
-    btn.onclick   = () => selectQuestion(idx);
-    btn.innerHTML = `
-      <span class="text-5xl mb-2">${q.icon}</span>
-      <span class="text-sm font-black text-blue-500 bg-blue-50 px-3 py-1 rounded-full border-2 border-blue-100">${q.title}</span>
-      <span class="text-xl font-black text-slate-800 break-keep text-center leading-tight mt-1">${q.question}</span>
-    `;
+    btn.onclick = () => selectQuestion(idx);
+    btn.innerHTML = `<span class="text-5xl mb-2">${q.icon}</span><span class="text-sm font-black text-blue-500 bg-blue-50 px-3 py-1 rounded-full border-2 border-blue-100">${q.title}</span><span class="text-xl font-black text-slate-800 break-keep text-center leading-tight mt-1">${q.question}</span>`;
     container.appendChild(btn);
   });
 }
 
 function selectQuestion(idx) {
   selectedQuestionData = reflectionQuestions[idx];
-  document.getElementById('question-display-title').innerHTML =
-    `<span class="text-purple-600">[${selectedQuestionData.title}]</span><br>${selectedQuestionData.question}`;
-  document.getElementById('sentence-examples-list').innerHTML =
-    selectedQuestionData.examples.map(ex =>
-      `<div class="bg-blue-50 border-2 border-blue-200 rounded-2xl px-5 py-3 text-lg text-slate-700 font-bold mb-1 shadow-sm break-keep">✨ ${ex}</div>`
-    ).join('');
+  document.getElementById('question-display-title').innerHTML = `<span class="text-purple-600">[${selectedQuestionData.title}]</span><br>${selectedQuestionData.question}`;
+  document.getElementById('sentence-examples-list').innerHTML = selectedQuestionData.examples.map(ex =>
+    `<div class="bg-blue-50 border-2 border-blue-200 rounded-2xl px-5 py-3 text-lg text-slate-700 font-bold mb-1 shadow-sm break-keep">✨ ${ex}</div>`
+  ).join('');
   document.getElementById('sentence-stt-text').innerText = '🎤 아래 마이크 버튼을 눌러 말해보세요!';
   document.getElementById('sentence-text-input').value   = '';
   document.getElementById('sentence-mic-icon').innerText  = '🎤';
@@ -984,103 +1000,58 @@ function goToBookRating() {
   showView('view-book-rating');
 }
 
-// ============================================================
-// 결과 화면 (어항)
-// ============================================================
 function goHome() {
-  renderAquarium();
-  setActiveTab('home');
-
+  renderAquarium(); setActiveTab('home');
   document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
   const mainView = document.getElementById('view-main');
   if (mainView) { mainView.classList.remove('hidden'); mainView.classList.add('flex'); }
-
-  document.getElementById('aquarium-title-display').innerText =
-    currentBook ? `나의 책: ${currentBook}` : '나의 어항';
-
+  document.getElementById('aquarium-title-display').innerText = currentBook ? `나의 책: ${currentBook}` : '나의 어항';
   const sentenceDisplay = document.getElementById('current-sentence-display');
   if (sentenceDisplay) sentenceDisplay.innerText = window._todaySentence || '오늘의 멋진 보물을 기록해봐요! ✨';
-
-  // 별점/하트 업데이트
   document.getElementById('aquarium-star-display').querySelectorAll('span').forEach((s,i) => s.classList.toggle('grayscale', i >= bookRating));
   document.getElementById('aquarium-heart-display').querySelectorAll('span').forEach((s,i) => s.classList.toggle('grayscale', i >= selfRating));
-
-  // 누적 권수 표시
   document.getElementById('total-books-count').innerText = totalBooks;
-
-  // 다음 이정표
   const next = getNextMilestone(totalBooks);
-  const nextEl = document.getElementById('next-milestone-display');
-  if (next) {
-    nextEl.innerText = `다음 목표: ${next.books}권 → ${next.label}`;
-  } else {
-    nextEl.innerText = '🏆 모든 이정표를 달성했어요!';
-  }
-
-  // 미션 상태
-  document.getElementById('mission-status').innerHTML =
-    currentMissionCount < targetMissionCount
-      ? `현재 ${currentMissionCount}개 성공!<br>목표 ${targetMissionCount}개까지 화이팅!`
-      : `대단해요! ${targetMissionCount}개의 보물을<br>모두 찾았습니다! 🏆`;
+  document.getElementById('next-milestone-display').innerText = next ? `다음 목표: ${next.books}권 → ${next.label}` : '🏆 모든 이정표를 달성했어요!';
+  document.getElementById('mission-status').innerHTML = currentMissionCount < targetMissionCount
+    ? `현재 ${currentMissionCount}개 성공!<br>목표 ${targetMissionCount}개까지 화이팅!`
+    : `대단해요! ${targetMissionCount}개의 보물을<br>모두 찾았습니다! 🏆`;
 }
 
 function renderAquarium() {
-  const fishZone = document.getElementById('fish-zone');
+  const fishZone   = document.getElementById('fish-zone');
   const aquariumBg = document.getElementById('aquarium-bg');
   const stageBadge = document.getElementById('aquarium-stage-badge');
   const floorDeco  = document.getElementById('aquarium-floor-deco');
   if (!fishZone || !aquariumBg) return;
-
-  // 어항 단계 적용
   const stageInfo = getStageInfo(totalBooks);
   AQUARIUM_STAGES.forEach((s,i) => aquariumBg.classList.remove('aquarium-stage-' + (i+1)));
   aquariumBg.classList.add('aquarium-stage-' + stageInfo.stage);
   if (stageBadge) stageBadge.innerText = stageInfo.label;
   if (floorDeco)  floorDeco.innerHTML  = stageInfo.floor;
-
-  // 물고기 렌더링
   fishZone.innerHTML = '';
-  const displayFish  = myFish.slice(-20);
-  displayFish.forEach(fishData => {
+  myFish.slice(-20).forEach(fishData => {
     const fishEl = document.createElement('div');
     fishEl.classList.add('fish');
     const speed = 8 + Math.random() * 12;
     fishEl.style.animationDuration = `${speed}s, 2s`;
     fishEl.style.animationDelay    = `-${Math.random()*10}s, -${Math.random()*2}s`;
     fishEl.style.top               = (20 + Math.random() * 55) + '%';
-    fishEl.innerHTML = `
-      <div class="fish-title counter-flip" style="animation-duration:${speed}s">${fishData.book}</div>
-      <div class="fish-icon">${fishData.icon}</div>
-    `;
+    fishEl.innerHTML = `<div class="fish-title counter-flip" style="animation-duration:${speed}s">${fishData.book}</div><div class="fish-icon">${fishData.icon}</div>`;
     fishZone.appendChild(fishEl);
   });
 }
 
-// ============================================================
-// 기록(앨범) 화면 — 비동기 로드
-// ============================================================
 function renderCalendar() {
   const historyList = document.getElementById('history-list');
   if (!historyList) return;
-  historyList.innerHTML = `
-    <div class="bg-white border-4 border-dashed border-slate-300 rounded-[2rem] p-20 text-center w-full">
-      <span class="text-6xl mb-4 block">⏳</span>
-      <p class="text-xl font-bold text-slate-400">기록을 불러오는 중이에요...</p>
-    </div>
-  `;
-
+  historyList.innerHTML = `<div class="bg-white border-4 border-dashed border-slate-300 rounded-[2rem] p-20 text-center w-full"><span class="text-6xl mb-4 block">⏳</span><p class="text-xl font-bold text-slate-400">기록을 불러오는 중이에요...</p></div>`;
   loadHistory(historyArray => {
     historyList.innerHTML = '';
     if (!historyArray || historyArray.length === 0) {
-      historyList.innerHTML = `
-        <div class="bg-white border-4 border-dashed border-slate-300 rounded-[2rem] p-20 text-center w-full">
-          <span class="text-6xl mb-4 block">🏝️</span>
-          <p class="text-xl font-bold text-slate-400">아직 탐험 기록이 없어요.<br>첫 번째 보물을 찾아볼까요?</p>
-        </div>
-      `;
+      historyList.innerHTML = `<div class="bg-white border-4 border-dashed border-slate-300 rounded-[2rem] p-20 text-center w-full"><span class="text-6xl mb-4 block">🏝️</span><p class="text-xl font-bold text-slate-400">아직 탐험 기록이 없어요.<br>첫 번째 보물을 찾아볼까요?</p></div>`;
       return;
     }
-
     const pageSize = 6;
     for (let i = 0; i < historyArray.length; i += pageSize) {
       const pageIdx = Math.floor(i / pageSize) + 1;
@@ -1148,19 +1119,14 @@ function saveCalendar() {
   });
 }
 
-// ============================================================
-// STT (음성 인식)
-// ============================================================
 function initSTT() {
   if (sttInitialized) return true;
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    showModal('알림', '이 브라우저는 음성 인식을 지원하지 않아요. 크롬을 권장해요!', '🚫');
-    return false;
+    showModal('알림', '이 브라우저는 음성 인식을 지원하지 않아요. 크롬을 권장해요!', '🚫'); return false;
   }
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   recognition = new SR();
   recognition.lang = 'ko-KR'; recognition.interimResults = true; recognition.continuous = true;
-
   recognition.onstart  = () => { isRecording = true;  updateSTTUI(); };
   recognition.onend    = () => { isRecording = false; updateSTTUI(); };
   recognition.onerror  = (e) => {
