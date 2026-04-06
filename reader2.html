@@ -453,9 +453,23 @@
         <div class="responsive-main flex-1 flex flex-row px-3 pb-2 gap-3 min-h-0 overflow-hidden z-10 items-stretch">
 
           <!-- 어항 영역 -->
-          <div class="aquarium-wrap flex flex-col justify-center items-center" style="flex:3; min-width:0;">
-            <!-- 어항 컨테이너: 단계 뱃지 오버레이 포함 -->
-            <div class="relative w-full" style="aspect-ratio:1/1; max-height:100%">
+          <div class="aquarium-wrap flex flex-col justify-center items-center gap-2" style="flex:3; min-width:0;">
+
+            <!-- 어항 위 뱃지: 단계 + 권수 + 연속 -->
+            <div class="flex items-center gap-2 flex-wrap justify-center flex-shrink-0">
+              <div id="aquarium-stage-badge" class="bg-white border-[3px] border-slate-900 rounded-2xl px-4 py-2 text-base font-black text-slate-700 shadow-hard-sm"></div>
+              <div id="total-books-display" class="flex items-center gap-1 bg-yellow-400 border-[3px] border-slate-900 px-4 py-2 rounded-2xl shadow-hard-sm">
+                <span class="text-base font-black text-slate-900" id="total-books-count">0</span>
+                <span class="text-base font-black text-slate-800">권 📚</span>
+              </div>
+              <div id="streak-badge" class="hidden items-center gap-1 bg-orange-400 border-[3px] border-slate-900 px-4 py-2 rounded-2xl shadow-hard-sm">
+                <span class="text-base">🔥</span>
+                <span class="text-base font-black text-white" id="streak-count">0일 연속</span>
+              </div>
+            </div>
+
+            <!-- 어항 본체 -->
+            <div class="relative w-full flex-1 min-h-0" style="max-height:calc(100% - 48px)">
               <div id="aquarium-bg" class="w-full h-full aquarium-base aquarium-stage-1">
                 <div class="aquarium-glass-effect"></div>
                 <div class="water-surface"></div>
@@ -466,41 +480,29 @@
                   <span class="text-4xl">🌿</span><span class="text-3xl">🪨</span>
                 </div>
               </div>
-              <!-- 어항 위에 오버레이: 단계 뱃지 -->
-              <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-30 flex-wrap px-2">
-                <div id="aquarium-stage-badge" class="bg-white/90 border-2 border-slate-900 rounded-full px-3 py-1 text-xs font-black text-slate-700 shadow-md backdrop-blur-sm"></div>
-                <div id="total-books-display" class="flex items-center gap-1 bg-yellow-400/90 border-2 border-slate-900 px-3 py-1 rounded-full shadow-md backdrop-blur-sm">
-                  <span class="text-sm font-black text-slate-900" id="total-books-count">0</span>
-                  <span class="text-xs font-black text-slate-800">권 📚</span>
-                </div>
-                <div id="streak-badge" class="hidden items-center gap-1 bg-orange-400/90 border-2 border-slate-900 px-2 py-1 rounded-full shadow-md backdrop-blur-sm">
-                  <span class="text-xs">🔥</span>
-                  <span class="text-xs font-black text-white" id="streak-count">0일</span>
-                </div>
-              </div>
             </div>
           </div>
 
           <!-- 정보 카드 -->
-          <div class="info-card flex flex-col gap-2 bg-white border-[4px] border-slate-900 rounded-[2rem] p-4 shadow-sm" style="flex:2; min-width:0;">
+          <div class="info-card flex flex-col gap-3 bg-white border-[4px] border-slate-900 rounded-[2rem] p-5 shadow-sm" style="flex:2; min-width:0;">
 
-            <!-- 나의 생각 보물 (핵심 - 가장 크게) -->
-            <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-3 py-2 flex-shrink-0">
-              <p class="text-xs font-black text-yellow-600 text-center mb-1">💬 나의 생각 보물</p>
-              <span id="current-sentence-display" class="font-black text-xl text-slate-800 break-keep leading-snug block text-center">오늘의 멋진 보물을 기록해봐요! ✨</span>
+            <!-- 나의 생각 보물 -->
+            <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-4 py-3 flex-shrink-0">
+              <p class="text-base font-black text-yellow-600 text-center mb-2">💬 나의 생각 보물</p>
+              <span id="current-sentence-display" class="font-black text-2xl text-slate-800 break-keep leading-snug block text-center">오늘의 멋진 보물을 기록해봐요! ✨</span>
             </div>
 
-            <!-- 별/하트 (크게) -->
+            <!-- 책 후기 / 나의 노력 -->
             <div class="flex gap-2 flex-shrink-0">
-              <div class="flex-1 flex flex-col items-center bg-yellow-50 border-2 border-yellow-200 rounded-xl py-2 gap-1">
-                <span class="text-xs font-bold text-slate-400">책 후기</span>
-                <div id="aquarium-star-display" class="flex text-2xl">
+              <div class="flex-1 flex flex-col items-center bg-yellow-50 border-2 border-yellow-200 rounded-xl py-3 gap-1">
+                <span class="text-base font-bold text-slate-500">책 후기</span>
+                <div id="aquarium-star-display" class="flex text-3xl">
                   <span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span><span class="grayscale">⭐</span>
                 </div>
               </div>
-              <div class="flex-1 flex flex-col items-center bg-pink-50 border-2 border-pink-200 rounded-xl py-2 gap-1">
-                <span class="text-xs font-bold text-slate-400">나의 노력</span>
-                <div id="aquarium-heart-display" class="flex text-2xl">
+              <div class="flex-1 flex flex-col items-center bg-pink-50 border-2 border-pink-200 rounded-xl py-3 gap-1">
+                <span class="text-base font-bold text-slate-500">나의 노력</span>
+                <div id="aquarium-heart-display" class="flex text-3xl">
                   <span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span><span class="grayscale">❤️</span>
                 </div>
               </div>
@@ -508,15 +510,17 @@
 
             <!-- 칭호 + 이정표 -->
             <div class="flex flex-col items-center gap-1 flex-shrink-0">
-              <div id="user-title-badge" class="hidden items-center bg-purple-100 border-2 border-purple-300 px-3 py-1 rounded-full">
-                <span id="user-title-text" class="text-sm font-black text-purple-700"></span>
+              <div id="user-title-badge" class="hidden items-center bg-purple-100 border-[3px] border-purple-400 px-4 py-1.5 rounded-full">
+                <span id="user-title-text" class="text-lg font-black text-purple-700"></span>
               </div>
-              <div id="next-milestone-display" class="text-center text-sm font-bold text-slate-400"></div>
+              <div id="next-milestone-display" class="text-center text-base font-bold text-slate-500"></div>
             </div>
 
-            <!-- 미션 상태 + 다음으로 버튼 -->
-            <div id="mission-status" class="text-center font-bold text-slate-400 text-xs flex-shrink-0"></div>
-            <button onclick="handleNav('calendar')" class="w-full bg-sky-400 border-[3px] border-slate-900 py-3 rounded-2xl text-lg font-black text-slate-900 hover:bg-sky-500 transition-all active:scale-95 flex items-center justify-center flex-shrink-0">
+            <!-- 미션 상태 -->
+            <div id="mission-status" class="text-center font-bold text-slate-500 text-base flex-shrink-0"></div>
+
+            <!-- 기록 보러가기 버튼 -->
+            <button onclick="handleNav('calendar')" class="w-full bg-sky-400 border-[3px] border-slate-900 py-3 rounded-2xl text-xl font-black text-slate-900 hover:bg-sky-500 transition-all active:scale-95 flex items-center justify-center flex-shrink-0">
               기록 보러가기 ➡️
             </button>
           </div>
