@@ -244,11 +244,12 @@
     <div id="app-container" class="relative w-full h-full bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10">
 
       <!-- 전역 상단 뱃지: 이름 + 책제목 (로그인 후 표시) -->
-      <div id="global-user-bar" class="hidden justify-center items-center gap-3 px-6 pt-3 pb-1 flex-shrink-0 z-30 flex-wrap">
-        <div class="bg-pink-300 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
+      <!-- 전역 뱃지: absolute로 각 화면 위에 오버레이 -->
+      <div id="global-user-bar" class="hidden absolute top-3 left-0 right-0 justify-center items-center gap-3 px-6 z-40 flex-wrap pointer-events-none">
+        <div class="bg-pink-300 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0 pointer-events-auto">
           <span id="global-user-name" class="text-xl font-black text-slate-900">탐험가</span>
         </div>
-        <div class="bg-blue-200 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
+        <div class="bg-blue-200 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0 pointer-events-auto">
           <span class="text-xl font-black text-slate-900">📖 </span><span id="global-book-name" class="text-xl font-black text-slate-900">나의 책</span>
         </div>
       </div>
@@ -300,10 +301,6 @@
       <!-- [화면 3] 가이드 (슬라이드 튜토리얼) -->
       <section id="view-guide" class="view-section hidden w-full h-full flex-col items-center justify-between p-4 bg-yellow-50 z-10 overflow-hidden">
 
-        <!-- 진행 표시 -->
-        <!-- 이름 + 책 제목 표시 -->
-        </div>
-        <!-- 진행 표시 -->
         <div class="flex items-center gap-3 mb-2 flex-shrink-0">
           <div id="guide-dot-1" class="w-4 h-4 rounded-full bg-slate-900 transition-all"></div>
           <div id="guide-dot-2" class="w-4 h-4 rounded-full bg-slate-300 transition-all"></div>
@@ -1548,7 +1545,7 @@ function renderAquarium(newFishIcon = null) {
     fishEl.style.animationDuration = `${speed}s, 2s`;
     fishEl.style.animationDelay    = `-${Math.random()*10}s, -${Math.random()*2}s`;
     fishEl.style.top               = (20 + Math.random() * 55) + '%';
-    fishEl.innerHTML = `<div class="fish-title counter-flip" style="animation-duration:${speed}s">${fishData.book}</div><div class="fish-icon">${fishData.icon}</div>`;
+    fishEl.innerHTML = `<div class="fish-title" style="animation-duration:${speed}s">${fishData.book}</div><div class="fish-icon">${fishData.icon}</div>`;
     fishZone.appendChild(fishEl);
   });
 
@@ -1562,7 +1559,7 @@ function renderAquarium(newFishIcon = null) {
       fishEl.style.left = landX + '%';
       fishEl.style.top  = (25 + Math.random() * 45) + '%';
       fishEl.innerHTML  = `
-        <div class="fish-title counter-flip" style="animation-duration:${speed}s">${currentBook}</div>
+        <div class="fish-title" style="animation-duration:${speed}s">${currentBook}</div>
         <div class="fish-icon" style="font-size:3rem">${newFishIcon}</div>
       `;
       fishZone.appendChild(fishEl);
