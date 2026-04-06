@@ -507,7 +507,8 @@ function getNextMilestone(count) {
 // ============================================================
 // GAS API 통신 (JSONP 방식 - CORS 우회)
 // ============================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwvz3TlSkSnMlb6rtYuMEqDMCfMeattiExLywljBXdGxo_xONsLedQKqDUZN8lQg9iFNw/exec';
+// ★★★ 아래 URL을 GAS 배포 URL로 교체하세요 ★★★
+const GAS_URL = 'https://script.google.com/macros/s/여기에_배포ID_붙여넣기/exec';
 
 function gasAPI(action, payload = {}) {
   return new Promise((resolve) => {
@@ -516,7 +517,7 @@ function gasAPI(action, payload = {}) {
     // URL 파라미터 구성
     const params = new URLSearchParams({ action, callback: cbName });
     Object.entries(payload).forEach(([k, v]) => {
-      params.append(k, typeof v === 'object' ? encodeURIComponent(JSON.stringify(v)) : v);
+      params.append(k, typeof v === 'object' ? JSON.stringify(v) : v);
     });
 
     // 타임아웃 처리 (10초)
