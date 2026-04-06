@@ -400,6 +400,11 @@
               <span class="text-2xl font-black text-slate-900" id="total-books-count">0</span>
               <span class="text-base font-black text-slate-800">권 📚</span>
             </div>
+            <!-- 연속 기록 뱃지 -->
+            <div id="streak-badge" class="hidden items-center gap-2 bg-orange-400 border-[3px] border-slate-900 px-4 py-2 rounded-2xl shadow-hard-sm flex-shrink-0">
+              <span class="text-xl">🔥</span>
+              <span class="text-base font-black text-white" id="streak-count">0일 연속</span>
+            </div>
             <!-- 다음 이정표 -->
             <div id="next-milestone-display" class="text-sm font-bold text-slate-600 bg-white border-2 border-slate-200 rounded-xl px-3 py-2 flex-shrink-0 hidden md:block"></div>
           </div>
@@ -504,6 +509,19 @@
         </div>
         <button onclick="startMission()" class="w-full max-w-sm bg-yellow-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-black text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center">
           다음 미션 계속! →
+        </button>
+      </section>
+
+      <!-- [화면 7-2] 연속 기록 특별 보상 -->
+      <section id="view-streak-reward" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-gradient-to-b from-orange-50 to-yellow-50 z-10 relative overflow-hidden">
+        <div class="text-8xl mb-4 pop-animation" id="streak-reward-emoji">🔥</div>
+        <h2 id="streak-reward-title" class="text-5xl font-black text-orange-500 mb-3 transform -rotate-1">🔥 3일 연속!</h2>
+        <div id="streak-reward-badge" class="bg-white border-4 border-slate-900 rounded-full px-8 py-3 text-2xl font-black text-slate-800 shadow-hard-sm mb-6">독서 챔피언</div>
+        <div class="bg-white border-4 border-slate-900 rounded-3xl p-6 max-w-sm w-full text-center mb-8 shadow-sm">
+          <p class="text-xl font-bold text-slate-600 break-keep leading-relaxed" id="streak-reward-msg">매일매일 꾸준히 책을 읽고 있어요!<br>정말 대단해요! 🌟</p>
+        </div>
+        <button onclick="afterStreakReward()" class="w-full max-w-sm bg-orange-400 border-4 border-slate-900 rounded-3xl py-5 text-3xl font-black text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center">
+          계속하기 🚀
         </button>
       </section>
 
@@ -726,6 +744,9 @@ function showModal(title, message, icon='📢', showCancel=false, confirmCallbac
 window.addEventListener('load', () => {
   myFish = []; totalBooks = 0;
   showView('view-login');
+  // ★ 미저장 기록 자동 동기화 (로그인 전 백그라운드 시도)
+  syncPendingRecords();
+
   // ★ 교사 입력 미션 백그라운드 로드
   gasAPI('getMissions').then(res => {
     if (res.ok && res.data && res.data.length > 0) {
@@ -812,6 +833,8 @@ function saveBookStep() {
   loadHistory(historyArray => {
     myFish     = buildFishFromData(historyArray);
     totalBooks = historyArray.length;
+    // 연속 기록 UI 업데이트
+    updateStreakUI(calculateStreak(historyArray));
   });
 }
 
@@ -985,6 +1008,163 @@ function speakMission() {
   utt.onend   = () => {                     setSpeakBtnActive(false); };
   utt.onerror = () => {                     setSpeakBtnActive(false); };
   window.speechSynthesis.speak(utt);
+}
+
+// ── 오프라인 임시 저장 시스템 ──
+const OFFLINE_KEY = 'bookTreasure_pendingRecords';
+
+// 미저장 기록을 localStorage에 보관
+function savePendingRecord(data) {
+  try {
+    const pending = getPendingRecords();
+    pending.push({ ...data, _savedAt: Date.now() });
+    localStorage.setItem(OFFLINE_KEY, JSON.stringify(pending));
+    console.log('📦 임시 저장 완료:', data.book);
+  } catch(e) { console.error('임시 저장 실패:', e); }
+}
+
+function getPendingRecords() {
+  try {
+    return JSON.parse(localStorage.getItem(OFFLINE_KEY) || '[]');
+  } catch(e) { return []; }
+}
+
+function clearPendingRecord(idx) {
+  try {
+    const pending = getPendingRecords();
+    pending.splice(idx, 1);
+    localStorage.setItem(OFFLINE_KEY, JSON.stringify(pending));
+  } catch(e) {}
+}
+
+// 앱 시작 시 미저장 기록 자동 업로드 시도
+async function syncPendingRecords() {
+  const pending = getPendingRecords();
+  if (pending.length === 0) return;
+
+  console.log(`📤 미저장 기록 ${pending.length}개 업로드 시도...`);
+  let successCount = 0;
+
+  for (let i = pending.length - 1; i >= 0; i--) {
+    const record = pending[i];
+    try {
+      const res = await gasAPI('saveRecord', { data: record });
+      if (res.ok) {
+        clearPendingRecord(i);
+        successCount++;
+      }
+    } catch(e) { /* 네트워크 안 되면 다음에 다시 시도 */ }
+  }
+
+  if (successCount > 0) {
+    showModal(
+      '📤 기록 동기화 완료!',
+      `저장되지 않았던 기록 ${successCount}개가 업로드됐어요!`,
+      '✅'
+    );
+  }
+}
+
+// 저장 함수: 실패 시 로컬 임시 저장
+// ── 연속 기록 시스템 ──
+const STREAK_MILESTONES = [
+  { days: 3,  emoji: '⭐', title: '3일 연속!',  badge: '독서 챔피언',   msg: '3일 동안 매일 책을 읽었어요!\n정말 멋진 독서 습관이에요! 🌟' },
+  { days: 7,  emoji: '🏆', title: '7일 연속!',  badge: '전설의 독서왕', msg: '일주일 내내 책을 읽은\n전설의 독서왕이에요! 👑' },
+  { days: 10, emoji: '🦄', title: '10일 연속!', badge: '독서의 신',     msg: '10일 연속 독서!\n당신은 독서의 신이에요! 🦄✨' },
+];
+
+let currentStreak = 0;
+let _streakRewardCallback = null;
+
+// 연속 일수 계산 (엄격 모드: 매일)
+function calculateStreak(historyArray) {
+  if (!historyArray || historyArray.length === 0) return 0;
+
+  // 날짜만 추출해서 유니크하게 정렬 (최신순)
+  const dates = [...new Set(
+    historyArray.map(r => {
+      const d = r.date;
+      if (!d) return null;
+      // "2025-04-06" 또는 Date 객체 처리
+      return String(d).split('T')[0].replace(/\./g, '-').slice(0, 10);
+    }).filter(Boolean)
+  )].sort((a, b) => b.localeCompare(a));
+
+  if (dates.length === 0) return 0;
+
+  // 오늘 날짜
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+
+  // 가장 최근 기록이 오늘 또는 어제여야 연속
+  const diff0 = dayDiff(dates[0], todayStr);
+  if (diff0 > 1) return 0; // 오늘/어제 기록 없으면 0
+
+  let streak = 1;
+  for (let i = 1; i < dates.length; i++) {
+    const diff = dayDiff(dates[i], dates[i-1]);
+    if (diff === 1) streak++;
+    else break;
+  }
+  return streak;
+}
+
+function dayDiff(olderStr, newerStr) {
+  const a = new Date(olderStr);
+  const b = new Date(newerStr);
+  return Math.round((b - a) / 86400000);
+}
+
+// 연속 UI 업데이트
+function updateStreakUI(streak) {
+  currentStreak = streak;
+  const badge = document.getElementById('streak-badge');
+  const count  = document.getElementById('streak-count');
+  if (!badge || !count) return;
+  if (streak >= 2) {
+    badge.classList.remove('hidden');
+    badge.classList.add('flex');
+    count.innerText = streak + '일 연속';
+    // 7일 이상이면 금색, 10일 이상이면 보라색
+    badge.className = badge.className
+      .replace(/bg-\S+-400/g, '')
+      .replace(/border-\S+-900/g, '');
+    if (streak >= 10) {
+      badge.classList.add('bg-purple-500', 'border-slate-900');
+    } else if (streak >= 7) {
+      badge.classList.add('bg-yellow-500', 'border-slate-900');
+    } else {
+      badge.classList.add('bg-orange-400', 'border-slate-900');
+    }
+  } else {
+    badge.classList.add('hidden');
+    badge.classList.remove('flex');
+  }
+}
+
+// 연속 달성 시 보상 화면 표시
+function showStreakReward(streak, callback) {
+  const milestone = STREAK_MILESTONES.slice().reverse().find(m => streak === m.days);
+  if (!milestone) { if (callback) callback(); return; }
+
+  _streakRewardCallback = callback;
+  document.getElementById('streak-reward-emoji').innerText  = milestone.emoji;
+  document.getElementById('streak-reward-title').innerText  = '🔥 ' + milestone.title;
+  document.getElementById('streak-reward-badge').innerText  = milestone.badge;
+  document.getElementById('streak-reward-msg').innerText    = milestone.msg;
+
+  // 보상 화면 표시
+  document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
+  const el = document.getElementById('view-streak-reward');
+  el.classList.remove('hidden'); el.classList.add('flex');
+  setActiveTab('home');
+
+  // 폭죽!
+  setTimeout(() => launchConfetti(), 100);
+}
+
+function afterStreakReward() {
+  if (_streakRewardCallback) { _streakRewardCallback(); _streakRewardCallback = null; }
 }
 
 // ── 폭죽 효과 ──
