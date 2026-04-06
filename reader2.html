@@ -415,8 +415,8 @@
         </div>
         <div class="responsive-main flex-1 flex flex-row p-3 md:p-6 pt-2 gap-3 md:gap-6 min-h-0 overflow-hidden z-10 items-stretch justify-center">
           <!-- 어항: 고정 비율 -->
-          <div class="aquarium-wrap flex-shrink-0 flex flex-col justify-center items-center" style="width:min(38%, 320px)">
-            <div id="aquarium-bg" class="w-full aquarium-base aquarium-stage-1" style="height:min(100%,320px)">
+          <div class="aquarium-wrap flex-1 min-w-0 flex flex-col justify-center items-center">
+            <div id="aquarium-bg" class="w-full aquarium-base aquarium-stage-1" style="aspect-ratio:1/1; max-height:100%">
               <div class="aquarium-glass-effect"></div>
               <div class="water-surface"></div>
               <div id="fish-zone" class="absolute inset-0 z-20 overflow-hidden pointer-events-auto"></div>
@@ -488,7 +488,7 @@
             </div>
           </div>
           <div class="w-full flex gap-3 flex-shrink-0">
-            <button id="btn-retry-stt" onclick="retryStt()" class="hidden w-28 bg-white border-[3px] border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-700 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-1 flex-shrink-0">🔁 다시</button>
+            <button id="btn-retry-stt" onclick="retryStt()" class="hidden flex-1 bg-white border-[3px] border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-700 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-1">🔁 다시</button>
             <button id="btn-next-mission" onclick="startMission()" class="flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">🔄 다른 미션</button>
           </div>
         </div>
@@ -657,13 +657,23 @@ function gasAPI(action, payload = {}) {
 
 async function saveRecordToSheets(data, callback) {
   showModal('저장 중...', '기록을 저장하고 있어요 ⏳', '💾');
-  const res = await gasAPI('saveRecord', { data: data });
-  document.getElementById('custom-modal').classList.add('hidden');
-  if (res.ok) {
-    totalBooks = res.totalBooks;
-    if (callback) callback();
-  } else {
-    showModal('저장 오류', '기록 저장에 실패했어요: ' + (res.error || ''), '⚠️');
+  try {
+    const res = await gasAPI('saveRecord', { data: data });
+    document.getElementById('custom-modal').classList.add('hidden');
+    if (res.ok) {
+      totalBooks = res.totalBooks;
+      if (callback) callback();
+    } else {
+      throw new Error(res.error || '저장 실패');
+    }
+  } catch(e) {
+    document.getElementById('custom-modal').classList.add('hidden');
+    // 네트워크 실패 → 로컬 임시 저장
+    savePendingRecord(data);
+    totalBooks = (totalBooks || 0) + 1;
+    showModal('📦 임시 저장됨', '인터넷이 불안정해요. 기록은 안전히 보관되고 다음 접속 시 자동 업로드돼요!', '📶', false, () => {
+      if (callback) callback();
+    });
   }
 }
 
@@ -1065,7 +1075,6 @@ async function syncPendingRecords() {
   }
 }
 
-// 저장 함수: 실패 시 로컬 임시 저장
 // ── 연속 기록 시스템 ──
 const STREAK_MILESTONES = [
   { days: 3,  emoji: '⭐', title: '3일 연속!',  badge: '독서 챔피언',   msg: '3일 동안 매일 책을 읽었어요!\n정말 멋진 독서 습관이에요! 🌟' },
@@ -1270,16 +1279,28 @@ function finishRatingFlow() {
     stars: bookRating, hearts: selfRating, fish: fishIcon
   };
 
-  // ★ 새 물고기를 즉시 myFish에 추가 → 어항 바로 반영
+  // ★ 즉시 어항에 새 물고기 추가 (낙관적 업데이트 - 빠른 반응)
   myFish.push({ icon: fishIcon, book: currentBook });
   totalBooks += 1;
-
-  // 어항 화면으로 이동 + 새 물고기 입장 애니메이션
   document.getElementById('custom-modal').classList.add('hidden');
-  goHome(fishIcon); // ★ 새 물고기 아이콘 전달 → 입장 애니메이션 실행
+  goHome(fishIcon);
 
-  // 백그라운드에서 Sheets에 저장 (실패해도 어항은 이미 업데이트됨)
-  saveRecordToSheets(data, null);
+  // 저장 후 시트에서 전체 기록 다시 불러와 어항 갱신 (과거 물고기 포함)
+  saveRecordToSheets(data, () => {
+    loadHistory(historyArray => {
+      myFish     = buildFishFromData(historyArray);
+      totalBooks = historyArray.length;
+      const streak = calculateStreak(historyArray);
+      updateStreakUI(streak);
+      // 어항 조용히 갱신 (화면 전환 없이)
+      renderAquarium();
+      document.getElementById('total-books-count').innerText = totalBooks;
+      // 연속 달성 보상
+      if ([3, 7, 10].includes(streak)) {
+        showStreakReward(streak, () => goHome());
+      }
+    });
+  });
 }
 
 function renderQuestionSelect() {
@@ -1568,7 +1589,7 @@ function updateSTTUI() {
     btn.classList.remove('recording-active', 'bg-red-400'); btn.classList.add('bg-purple-400');
     if (micIcon)  micIcon.innerText  = '🎤';
     if (micLabel) micLabel.innerText = accumulatedTranscript.trim() ? '다시 말하기' : '마이크 켜고 말하기';
-    btn.innerText = ''; // btn에 직접 텍스트 없음 (span으로 처리)
+    // 버튼 텍스트는 span으로 처리 (innerText 건드리지 않음)
     ctr.classList.remove('hidden','bg-blue-100','border-blue-400','animate-pulse');
     ctr.classList.add('bg-green-100','border-green-400');
     if (accumulatedTranscript.trim()) {
