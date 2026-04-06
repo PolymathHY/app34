@@ -254,7 +254,7 @@
       </div>
 
       <!-- [화면 1] 로그인 -->
-      <section id="view-login" class="view-section relative flex w-full h-full flex-col items-center justify-center p-8 bg-yellow-50">
+      <section id="view-login" class="view-section relative flex w-full flex-1 flex-col items-center justify-center p-8 bg-yellow-50">
         <div class="absolute top-6 left-6 bg-white border-4 border-slate-900 rounded-full px-8 py-3 z-20 transform -rotate-2">
           <span class="text-2xl font-black text-slate-900">초등학교 2학년 국어</span>
         </div>
@@ -284,7 +284,7 @@
       </section>
 
       <!-- [화면 2] 책 제목 입력 -->
-      <section id="view-book-input-section" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-yellow-50 z-10">
+      <section id="view-book-input-section" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-8 bg-yellow-50 z-10">
         <h2 class="text-4xl font-black text-slate-900 mb-6 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl">어떤 책을 읽나요?</h2>
         <div class="w-full max-w-lg bg-white border-4 border-slate-900 rounded-3xl p-10 mb-5 relative">
           <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-blue-300 px-6 py-1 border-2 border-slate-900 rounded-xl text-lg font-bold">책 제목</div>
@@ -298,7 +298,7 @@
       </section>
 
       <!-- [화면 3] 가이드 (슬라이드 튜토리얼) -->
-      <section id="view-guide" class="view-section hidden w-full h-full flex-col items-center justify-between p-4 bg-yellow-50 z-10 overflow-hidden">
+      <section id="view-guide" class="view-section hidden w-full flex-1 flex-col items-center justify-between p-4 bg-yellow-50 z-10 overflow-hidden">
 
         <div class="flex items-center gap-3 mb-2 flex-shrink-0">
           <div id="guide-dot-1" class="w-4 h-4 rounded-full bg-slate-900 transition-all"></div>
@@ -396,7 +396,7 @@
       </section>
 
       <!-- [화면 4] 미션 개수 선택 -->
-      <section id="view-select" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-yellow-50 z-10">
+      <section id="view-select" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-8 bg-yellow-50 z-10">
         <h2 class="text-4xl font-black text-slate-900 mb-8 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl">오늘의 사냥 목표는?</h2>
         <div class="flex gap-8 w-full max-w-xl justify-center items-center">
           <button onclick="selectGoal(3)" class="group w-44 h-44 md:w-56 md:h-56 bg-yellow-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-3 active:scale-95 transition-all hover:-translate-y-2 hover:bg-yellow-300"><span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform">🌱</span><span class="text-3xl md:text-4xl font-black text-slate-900">3개</span><span class="text-sm font-bold text-slate-500">처음 시작!</span></button>
@@ -406,7 +406,7 @@
       </section>
 
       <!-- [화면 5-1] 책 별점 -->
-      <section id="view-book-rating" class="view-section hidden w-full h-full flex flex-col items-center justify-center p-8 bg-blue-50 z-10">
+      <section id="view-book-rating" class="view-section hidden w-full flex-1 flex flex-col items-center justify-center p-8 bg-blue-50 z-10">
         <div class="text-7xl mb-8">⭐</div>
         <h2 class="text-4xl font-black text-slate-900 mb-6 text-center break-keep leading-tight">오늘 함께 보물을 찾은 <br><span class="text-blue-500">책</span>은 얼마나 재미있었나요?</h2>
         <p class="text-2xl font-bold text-slate-600 mb-10">친구들에게 추천하고 싶은 만큼 별을 눌러주세요!</p>
@@ -423,7 +423,7 @@
       </section>
 
       <!-- [화면 5-2] 자기평가 하트 -->
-      <section id="view-self-rating" class="view-section hidden w-full h-full flex flex-col items-center justify-center p-8 bg-pink-50 z-10">
+      <section id="view-self-rating" class="view-section hidden w-full flex-1 flex flex-col items-center justify-center p-8 bg-pink-50 z-10">
         <div class="text-7xl mb-8">💖</div>
         <h2 class="text-4xl font-black text-slate-900 mb-6 text-center break-keep leading-tight">모든 미션을 멋지게 해낸 <br><span class="text-pink-500">우리 탐험가 친구!</span><br>오늘 나의 노력에 하트를 보내주세요!</h2>
         <p class="text-2xl font-bold text-slate-600 mb-10">내가 기울인 노력만큼 하트를 톡톡 채워봐요!</p>
@@ -440,7 +440,7 @@
       </section>
 
       <!-- [화면 6] 결과(어항) -->
-      <section id="view-main" class="view-section hidden w-full h-full flex-col bg-yellow-50 overflow-hidden">
+      <section id="view-main" class="view-section hidden w-full flex-1 flex-col bg-yellow-50 overflow-hidden">
 
         <!-- 헤더: 다음으로 버튼만 -->
         <div class="flex justify-end items-center px-4 pt-2 pb-1 z-20">
@@ -524,7 +524,7 @@
       </section>
 
       <!-- [화면 7] 미션 -->
-      <section id="view-mission" class="view-section hidden w-full h-full flex flex-col items-center justify-between p-4 bg-yellow-50 z-10">
+      <section id="view-mission" class="view-section hidden w-full flex-1 flex flex-col items-center justify-between p-4 bg-yellow-50 z-10">
 
         <!-- 상단: 미션 제목 + 내용 + 힌트 -->
         <div class="w-full flex-1 flex flex-col items-center justify-center gap-4 min-h-0">
@@ -568,7 +568,7 @@
       </section>
 
       <!-- [화면 7-1] 미션 완료 피드백 (배움 쏙쏙) -->
-      <section id="view-mission-feedback" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-white z-10">
+      <section id="view-mission-feedback" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-8 bg-white z-10">
         <div class="text-6xl mb-3">🌟</div>
         <div id="feedback-progress" class="text-2xl font-bold text-slate-500 mb-4 bg-yellow-50 px-6 py-2 rounded-2xl border-2 border-yellow-200">
           1번째 보물 발견!
@@ -586,7 +586,7 @@
       </section>
 
       <!-- [화면 7-2] 연속 기록 특별 보상 -->
-      <section id="view-streak-reward" class="view-section hidden w-full h-full flex-col items-center justify-center p-8 bg-gradient-to-b from-orange-50 to-yellow-50 z-10 relative overflow-hidden">
+      <section id="view-streak-reward" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-8 bg-gradient-to-b from-orange-50 to-yellow-50 z-10 relative overflow-hidden">
         <div class="text-8xl mb-4 pop-animation" id="streak-reward-emoji">🔥</div>
         <h2 id="streak-reward-title" class="text-5xl font-black text-orange-500 mb-3 transform -rotate-1">🔥 3일 연속!</h2>
         <div id="streak-reward-badge" class="bg-white border-4 border-slate-900 rounded-full px-8 py-3 text-2xl font-black text-slate-800 shadow-hard-sm mb-6">독서 챔피언</div>
@@ -599,7 +599,7 @@
       </section>
 
       <!-- [화면 8] 보상 -->
-      <section id="view-reward" class="view-section hidden w-full h-full flex-col items-center justify-center p-6 bg-white overflow-hidden z-10 relative">
+      <section id="view-reward" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-6 bg-white overflow-hidden z-10 relative">
         <div class="relative mb-2 flex justify-center z-10">
           <h1 class="text-7xl font-black text-orange-500 mb-2 transform -rotate-2 relative z-10">성공!!</h1>
         </div>
@@ -617,13 +617,13 @@
       </section>
 
       <!-- [화면 8-0] 독서 질문 선택 -->
-      <section id="view-question-select" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-8 px-8 bg-orange-50 z-10 overflow-hidden">
+      <section id="view-question-select" class="view-section hidden w-full flex-1 flex flex-col items-center justify-start pt-8 px-8 bg-orange-50 z-10 overflow-hidden">
         <h2 class="text-4xl font-black text-slate-900 mb-8 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl shadow-sm">어떤 생각 보물을 기록할까요? 🤔</h2>
         <div id="question-list-container" class="grid grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl p-2 overflow-y-auto custom-scroll pb-10"></div>
       </section>
 
       <!-- [화면 8-1] 한 문장 입력 -->
-      <section id="view-sentence" class="view-section hidden w-full h-full flex flex-col items-center justify-between p-4 bg-purple-50 z-10">
+      <section id="view-sentence" class="view-section hidden w-full flex-1 flex flex-col items-center justify-between p-4 bg-purple-50 z-10">
 
         <!-- 상단: 질문 카드 -->
         <div class="w-full flex-1 flex flex-col items-center justify-center gap-3 min-h-0 max-w-2xl mx-auto">
@@ -665,7 +665,7 @@
       </section>
 
       <!-- [화면 9] 기록(앨범) -->
-      <section id="view-calendar" class="view-section hidden w-full h-full flex flex-col items-center justify-start pt-8 px-8 bg-blue-50 z-10 overflow-hidden">
+      <section id="view-calendar" class="view-section hidden w-full flex-1 flex flex-col items-center justify-start pt-8 px-8 bg-blue-50 z-10 overflow-hidden">
         <h2 class="text-4xl font-black text-slate-900 mb-6 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl shadow-sm">나의 보물 탐험 일지</h2>
         <div id="calendar-capture-area" class="w-full max-w-2xl flex-1 overflow-y-auto custom-scroll pr-2 mb-4">
           <div id="history-list" class="flex flex-col gap-6 w-full"></div>
