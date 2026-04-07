@@ -686,7 +686,7 @@
 <script>
 let currentUser       = '';
 let currentUserNumber = 0;
-let currentBook       = '나의 책';
+let currentBook       = '';
 let myFish            = [];
 let totalBooks        = 0;
 let targetMissionCount  = 5;
@@ -1038,23 +1038,32 @@ function guidePrev() {
 function showSelectStep() { showView('view-select'); }
 
 function handleNav(target) {
+  // 로그인 안 됐으면 → 로그인 화면
   if (!currentUser && target !== 'login') {
     showModal('잠깐!', '이름을 먼저 써주세요!', '📛');
     showView('view-login'); return;
   }
+
   if (target === 'login') {
-    // 로그인된 상태면 책 입력으로, 아니면 로그인으로
+    // 준비: 로그인 됐으면 책 입력, 아니면 로그인
     if (currentUser) showView('view-book-input-section');
     else             showView('view-login');
   }
   else if (target === 'mission') {
-    // 책 제목이 있으면 미션 선택, 없으면 책 입력부터
-    if (currentBook) showView('view-select');
-    else {
-      showModal('잠깐!', '먼저 책 제목을 입력해주세요! 📖', '📖', false, () => showView('view-book-input-section'));
+    // 미션: 책 제목 입력됐으면 미션 선택, 없으면 책 입력 유도
+    if (currentBook && currentBook !== '나의 책') {
+      showView('view-select');
+    } else {
+      showModal('잠깐!', '먼저 책 제목을 입력해주세요! 📖', '📖', false, () => {
+        showView('view-book-input-section');
+      });
     }
   }
-  else if (target === 'home')     goHome();
+  else if (target === 'home') {
+    // 결과: 로그인 + 책 있으면 어항 화면, 없으면 책 입력 유도
+    if (currentBook && currentBook !== '나의 책') goHome();
+    else showView('view-book-input-section');
+  }
   else if (target === 'calendar') showView('view-calendar');
 }
 
@@ -1490,7 +1499,7 @@ function goHome(newFishIcon = null) {
   const mainView = document.getElementById('view-main');
   if (mainView) { mainView.classList.remove('hidden'); mainView.classList.add('flex'); }
   const titleEl = document.getElementById('aquarium-title-display');
-  if (titleEl) titleEl.innerText = currentBook ? `나의 책: ${currentBook}` : '나의 어항';
+  if (titleEl) titleEl.innerText = (currentBook && currentBook !== '나의 책') ? `나의 책: ${currentBook}` : '나의 어항';
   // 전역 뱃지 업데이트
   const gName = document.getElementById('global-user-name');
   const gBook = document.getElementById('global-book-name');
@@ -1655,7 +1664,7 @@ function renderCalendar() {
 // 새 책으로 다시 시작
 function startNewBook() {
   // 상태 초기화
-  currentBook = '';
+  currentBook = '';  // 책 제목 초기화
   bookRating  = 0;
   selfRating  = 0;
   pendingFish = null;
