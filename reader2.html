@@ -397,13 +397,24 @@
       </section>
 
       <!-- [화면 4] 미션 개수 선택 -->
-      <section id="view-select" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-8 bg-yellow-50 z-10">
-        <h2 class="text-4xl font-black text-slate-900 mb-8 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl">오늘의 사냥 목표는?</h2>
-        <div class="flex gap-8 w-full max-w-xl justify-center items-center">
-          <button onclick="selectGoal(3)" class="group w-44 h-44 md:w-56 md:h-56 bg-yellow-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-3 active:scale-95 transition-all hover:-translate-y-2 hover:bg-yellow-300"><span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform">🌱</span><span class="text-3xl md:text-4xl font-black text-slate-900">3개</span><span class="text-sm font-bold text-slate-500">처음 시작!</span></button>
-          <button onclick="selectGoal(5)" class="group w-44 h-44 md:w-56 md:h-56 bg-green-200  border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-3 active:scale-95 transition-all hover:-translate-y-2 hover:bg-green-300"><span class="text-6xl md:text-7xl group-hover:scale-110 transition-transform">⭐</span><span class="text-3xl md:text-4xl font-black text-slate-900">5개</span><span class="text-sm font-bold text-slate-500">도전!</span></button>
+      <section id="view-select" class="view-section hidden w-full flex-1 flex-col items-center justify-center p-6 bg-yellow-50 z-10">
+        <h2 class="text-3xl font-black text-slate-900 mb-6 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl">오늘의 사냥 목표는?</h2>
+        <div class="flex gap-4 w-full max-w-2xl justify-center items-center">
+          <button onclick="selectGoal(1)" class="group w-36 h-36 md:w-44 md:h-44 bg-yellow-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-2 active:scale-95 transition-all hover:-translate-y-2 hover:bg-yellow-300">
+            <span class="text-5xl group-hover:scale-110 transition-transform">🌱</span>
+            <span class="text-3xl font-black text-slate-900">1개</span>
+          </button>
+          <button onclick="selectGoal(2)" class="group w-36 h-36 md:w-44 md:h-44 bg-orange-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-2 active:scale-95 transition-all hover:-translate-y-2 hover:bg-orange-300">
+            <span class="text-5xl group-hover:scale-110 transition-transform">⭐</span>
+            <span class="text-3xl font-black text-slate-900">2개</span>
+          </button>
+          <button onclick="selectGoal(3)" class="group w-36 h-36 md:w-44 md:h-44 bg-purple-200 border-4 border-slate-900 rounded-3xl flex flex-col items-center justify-center gap-2 active:scale-95 transition-all hover:-translate-y-2 hover:bg-purple-300">
+            <span class="text-5xl group-hover:scale-110 transition-transform">🔥</span>
+            <span class="text-3xl font-black text-slate-900">3개</span>
+          </button>
         </div>
-        <p class="mt-8 text-slate-500 font-bold text-xl">목표를 선택하면 미션이 시작돼요!</p>
+        <p class="mt-8 text-slate-900 font-black text-2xl text-center break-keep">목표를 선택하면 미션이 시작돼요!</p>
+        <p class="mt-3 text-slate-500 font-bold text-lg text-center break-keep">✨ 더 많은 미션을 수행할수록 특별한 보물을 얻을 수 있어요!</p>
       </section>
 
       <!-- [화면 5-1] 책 별점 -->
@@ -457,15 +468,15 @@
           <div class="aquarium-wrap flex flex-col justify-center items-center gap-2" style="flex:3; min-width:0;">
 
             <!-- 어항 위 뱃지: 단계 + 권수 + 연속 -->
-            <div class="flex items-center gap-2 flex-wrap justify-center flex-shrink-0">
-              <div id="aquarium-stage-badge" class="bg-white border-[3px] border-slate-900 rounded-2xl px-4 py-2 text-base font-black text-slate-700 shadow-hard-sm"></div>
-              <div id="total-books-display" class="flex items-center gap-1 bg-yellow-400 border-[3px] border-slate-900 px-4 py-2 rounded-2xl shadow-hard-sm">
-                <span class="text-base font-black text-slate-900" id="total-books-count">0</span>
-                <span class="text-base font-black text-slate-800">권 📚</span>
+            <div class="flex items-center gap-2 justify-center flex-shrink-0">
+              <div id="aquarium-stage-badge" class="w-24 h-16 bg-white border-[3px] border-slate-900 rounded-2xl flex items-center justify-center text-sm font-black text-slate-700 shadow-hard-sm text-center px-2"></div>
+              <div id="total-books-display" class="w-24 h-16 flex flex-col items-center justify-center bg-yellow-400 border-[3px] border-slate-900 rounded-2xl shadow-hard-sm">
+                <span class="text-xl font-black text-slate-900 leading-none" id="total-books-count">0</span>
+                <span class="text-xs font-black text-slate-800">권 📚</span>
               </div>
-              <div id="streak-badge" class="hidden items-center gap-1 bg-orange-400 border-[3px] border-slate-900 px-4 py-2 rounded-2xl shadow-hard-sm">
-                <span class="text-base">🔥</span>
-                <span class="text-base font-black text-white" id="streak-count">0일 연속</span>
+              <div id="streak-badge" class="hidden w-24 h-16 flex-col items-center justify-center bg-orange-400 border-[3px] border-slate-900 rounded-2xl shadow-hard-sm">
+                <span class="text-lg">🔥</span>
+                <span class="text-xs font-black text-white" id="streak-count">0일 연속</span>
               </div>
             </div>
 
@@ -711,19 +722,51 @@ let sentenceRecognition = null;
 const AQUARIUM_STAGES = [
   { min:0,  max:2,  stage:1, shape:'aquarium-shape-1', label:'🪣 작은 물통',
     floor:'<span class="text-2xl">🌿</span><span class="text-xl">🪨</span>',
-    bg: ['🌊'],
+    decos: [], // 장식 없음
     specialFish: [] },
   { min:3,  max:6,  stage:2, shape:'aquarium-shape-2', label:'🐟 작은 어항',
     floor:'<span class="text-3xl">🌿</span><span class="text-2xl">🪨</span><span class="text-3xl">🐚</span>',
+    decos: [
+      { icon:'🫧', x:15, y:20, size:1.5, speed:4 },
+      { icon:'🫧', x:75, y:40, size:1.2, speed:5 },
+    ],
     specialFish: ['🐡'] },
   { min:7,  max:14, stage:3, shape:'aquarium-shape-3', label:'🪸 산호 어항',
     floor:'<span class="text-3xl">🌿</span><span class="text-2xl">🪨</span><span class="text-4xl">🪸</span><span class="text-3xl">🐚</span><span class="text-3xl">🌿</span>',
+    decos: [
+      { icon:'🫧', x:10, y:25, size:1.5, speed:4 },
+      { icon:'🫧', x:80, y:35, size:1.2, speed:6 },
+      { icon:'🪸', x:20, y:60, size:2.5, speed:0, opacity:0.3 },
+      { icon:'⭐', x:70, y:15, size:1.8, speed:3 },
+    ],
     specialFish: ['🐠','🦀'] },
   { min:15, max:24, stage:4, shape:'aquarium-shape-4', label:'🌊 큰 어항',
     floor:'<span class="text-3xl">🌿</span><span class="text-2xl">🪨</span><span class="text-4xl">🪸</span><span class="text-4xl">🐚</span><span class="text-3xl">🌿</span><span class="text-3xl">⭐</span>',
+    decos: [
+      { icon:'🫧', x:8,  y:20, size:2,   speed:3 },
+      { icon:'🫧', x:50, y:10, size:1.5, speed:5 },
+      { icon:'🫧', x:85, y:30, size:1.8, speed:4 },
+      { icon:'🪸', x:15, y:55, size:3,   speed:0, opacity:0.25 },
+      { icon:'🪸', x:65, y:60, size:2.5, speed:0, opacity:0.2 },
+      { icon:'⭐', x:40, y:15, size:2,   speed:6 },
+      { icon:'💫', x:78, y:20, size:1.5, speed:4 },
+    ],
     specialFish: ['🐬','🦑'] },
   { min:25, max:999,stage:5, shape:'aquarium-shape-5', label:'🏆 전설의 수족관',
     floor:'<span class="text-4xl">🌿</span><span class="text-3xl">🪨</span><span class="text-5xl">🪸</span><span class="text-5xl">🐚</span><span class="text-4xl">🌊</span><span class="text-4xl">💎</span><span class="text-3xl">🪨</span>',
+    decos: [
+      { icon:'🫧', x:5,  y:15, size:2.5, speed:3 },
+      { icon:'🫧', x:30, y:8,  size:2,   speed:5 },
+      { icon:'🫧', x:60, y:20, size:1.8, speed:4 },
+      { icon:'🫧', x:88, y:35, size:2.2, speed:6 },
+      { icon:'🪸', x:10, y:50, size:3.5, speed:0, opacity:0.3 },
+      { icon:'🪸', x:60, y:55, size:3,   speed:0, opacity:0.25 },
+      { icon:'💎', x:25, y:20, size:2,   speed:5 },
+      { icon:'💎', x:75, y:12, size:1.8, speed:4 },
+      { icon:'⭐', x:45, y:10, size:2.5, speed:7 },
+      { icon:'✨', x:82, y:18, size:2,   speed:3 },
+      { icon:'🌟', x:15, y:12, size:2.2, speed:6 },
+    ],
     specialFish: ['🐳','🦈','🐙'] },
 ];
 const MILESTONES = [
@@ -1099,14 +1142,37 @@ const missions = [
   { icon:'🌈', text:'색깔을 나타내는 말 찾기',   concept:'꾸며 주는 말',   conceptExplanation:'어떤 색깔인지 자세하게 설명해 주는 말이에요.',                  guide:'빨간, 파란, 노란, 검은...' },
 ];
 
-const fishes = [
-  { icon:'🐠', name:'니모(아네모네피시)' }, { icon:'🐡', name:'복어' },
-  { icon:'🐙', name:'문어' }, { icon:'🦀', name:'꽃게' },
-  { icon:'🐬', name:'돌고래' }, { icon:'🐳', name:'고래' },
-  { icon:'🦈', name:'상어' }, { icon:'🦐', name:'새우' },
-  { icon:'🦑', name:'오징어' }, { icon:'🐟', name:'물고기' },
-  { icon:'🐋', name:'혹등고래' },
-];
+// 미션 개수별 물고기 등급
+const fishes = {
+  normal: [  // 1개: 일반
+    { icon:'🐠', name:'니모(아네모네피시)' },
+    { icon:'🐡', name:'복어' },
+    { icon:'🐟', name:'물고기' },
+    { icon:'🦐', name:'새우' },
+    { icon:'🦀', name:'꽃게' },
+  ],
+  special: [ // 2개: 특별
+    { icon:'🐙', name:'문어' },
+    { icon:'🦑', name:'오징어' },
+    { icon:'🐬', name:'돌고래' },
+    { icon:'🦞', name:'바닷가재' },
+    { icon:'🦭', name:'물개' },
+  ],
+  rare: [    // 3개: 희귀
+    { icon:'🐳', name:'고래' },
+    { icon:'🦈', name:'상어' },
+    { icon:'🐋', name:'혹등고래' },
+    { icon:'🦄', name:'유니콘' },
+    { icon:'🐉', name:'용' },
+  ],
+};
+
+// 미션 개수에 따라 물고기 풀 선택
+function getFishPool(missionCount) {
+  if (missionCount >= 3) return fishes.rare;
+  if (missionCount >= 2) return fishes.special;
+  return fishes.normal;
+}
 
 function selectGoal(count) { targetMissionCount = count; currentMissionCount = 0; startMission(); }
 
@@ -1393,13 +1459,20 @@ function completeMission() {
     // 배움 쏙쏙 피드백 화면 표시
     showMissionFeedback(currentMissionData, currentMissionCount, targetMissionCount);
   } else {
-    const randomFishObj = fishes[Math.floor(Math.random() * fishes.length)];
+    const fishPool = getFishPool(targetMissionCount);
+    const randomFishObj = fishPool[Math.floor(Math.random() * fishPool.length)];
     pendingFish = randomFishObj.icon;
     document.getElementById('reward-fish').innerText = pendingFish;
     document.getElementById('reward-progress-text').innerText = '축하합니다! 모든 미션을 성공했어요!';
-    document.getElementById('reward-fish-name').innerText = `전설의 [${randomFishObj.name}] 친구 등장!`;
+    const grade = targetMissionCount >= 3 ? '희귀' : targetMissionCount >= 2 ? '특별' : '일반';
+    document.getElementById('reward-fish-name').innerText = `[${grade}] ${randomFishObj.name} 등장!`;
     showView('view-reward');
-    setTimeout(() => launchConfetti(), 100); // 화면 전환 후 폭죽
+    // 등급별 폭죽 효과
+    if (targetMissionCount >= 3) {
+      setTimeout(() => { launchConfetti(); setTimeout(launchConfetti, 600); }, 100);
+    } else if (targetMissionCount >= 2) {
+      setTimeout(() => launchConfetti(), 100);
+    }
   }
 }
 
@@ -1546,13 +1619,31 @@ function renderAquarium(newFishIcon = null) {
   if (stageBadge) stageBadge.innerText = stageInfo.label;
   if (floorDeco)  floorDeco.innerHTML  = stageInfo.floor;
 
-  // 단계별 특별 배경 생물 추가
+  // 단계별 장식 추가
   const bgZone = document.getElementById('fish-zone');
+  const decos = stageInfo.decos || [];
+  decos.forEach(d => {
+    const el = document.createElement('div');
+    const anim = d.speed > 0
+      ? `float ${d.speed}s ease-in-out infinite alternate`
+      : 'none';
+    el.style.cssText = `
+      position:absolute; font-size:${d.size}rem;
+      opacity:${d.opacity || 0.18};
+      left:${d.x}%; top:${d.y}%;
+      z-index:5; pointer-events:none;
+      animation:${anim};
+    `;
+    el.innerText = d.icon;
+    bgZone.appendChild(el);
+  });
+
+  // specialFish (기존 유지)
   const specialFish = stageInfo.specialFish || [];
   specialFish.forEach((icon, idx) => {
     const bg = document.createElement('div');
-    bg.style.cssText = `position:absolute; font-size:${2+idx*0.3}rem; opacity:0.15;
-      bottom:${15+idx*12}%; left:${10+idx*25}%; z-index:5; pointer-events:none;
+    bg.style.cssText = `position:absolute; font-size:${1.8+idx*0.2}rem; opacity:0.12;
+      bottom:${18+idx*10}%; left:${8+idx*28}%; z-index:4; pointer-events:none;
       animation: float ${3+idx}s ease-in-out infinite alternate;`;
     bg.innerText = icon;
     bgZone.appendChild(bg);
