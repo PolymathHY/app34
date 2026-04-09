@@ -203,7 +203,7 @@
     }
   </style>
 </head>
-<body class="bg-yellow-200 h-screen w-screen flex items-center justify-center overflow-hidden" style="padding-right:6rem; box-sizing:border-box;">
+<body class="bg-yellow-200 h-screen w-screen flex items-center justify-center overflow-hidden" style="padding-right:6rem; box-sizing:border-box;" id="app-body">
 
   <!-- 커스텀 모달 -->
   <div id="custom-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay">
@@ -233,7 +233,7 @@
   </div>
 
   <!-- 바인더 본체 -->
-  <div class="relative" style="width:min(94%, calc(100vw - 7rem)); height:min(calc(100vh - 12px), 95vw); flex-shrink:0;">
+  <div id="binder-wrap" class="relative" style="width:min(94%, calc(100vw - 7rem)); height:min(calc(100vh - 12px), 95vw); flex-shrink:0;">
 
     <!-- 탭 -->
     <div id="tab-login"    onclick="handleNav('login')"    class="nav-tab absolute -right-20 w-28 h-20 bg-red-400    border-4 border-l-0 border-slate-900 rounded-r-2xl z-0 flex items-center justify-center text-slate-900 text-xl font-bold cursor-pointer active:scale-95 text-center" style="top:3.5rem; box-shadow:5px 5px 0px rgba(15,23,42,1)">준비</div>
@@ -533,10 +533,15 @@
             <!-- 미션 상태 -->
             <div id="mission-status" class="text-center font-bold text-slate-500 text-lg flex-shrink-0"></div>
 
-            <!-- 기록 보러가기 버튼 -->
-            <button onclick="handleNav('calendar')" class="w-full bg-sky-400 border-[3px] border-slate-900 py-3 rounded-2xl text-2xl font-black text-slate-900 hover:bg-sky-500 transition-all active:scale-95 flex items-center justify-center flex-shrink-0">
-              기록 보러가기 ➡️
-            </button>
+            <!-- 하단 버튼 행 -->
+            <div class="flex gap-2 flex-shrink-0">
+              <button onclick="showRewardGuide()" class="bg-purple-100 border-[3px] border-purple-400 py-3 px-4 rounded-2xl text-base font-black text-purple-700 hover:bg-purple-200 transition-all active:scale-95 flex items-center justify-center gap-1 flex-shrink-0">
+                🎁 보상
+              </button>
+              <button onclick="handleNav('calendar')" class="flex-1 bg-sky-400 border-[3px] border-slate-900 py-3 rounded-2xl text-xl font-black text-slate-900 hover:bg-sky-500 transition-all active:scale-95 flex items-center justify-center">
+                기록 보러가기 ➡️
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -1755,6 +1760,26 @@ function renderCalendar() {
 }
 
 // 새 책으로 다시 시작
+function showRewardGuide() {
+  const msg = `
+🌱 1개 미션 → 🐠 일반 물고기
+(니모, 복어, 꽃게 등)
+
+⭐ 2개 미션 → 🐙 특별 물고기
+(문어, 돌고래, 물개 등)
+
+🔥 3개 미션 → 🐳 희귀 물고기
+(고래, 상어, 용 등) + 🎉 폭죽!
+
+📚 책을 읽을수록 어항이 성장해요!
+물통 → 어항 → 산호 어항 → 큰 어항 → 🏆 전설의 수족관
+
+🔥 매일 읽으면 연속 기록 보상!
+3일 ⭐ / 7일 🏆 / 10일 🦄
+  `.trim();
+  showModal('🎁 보상 시스템', msg, '🏆');
+}
+
 function startNewBook() {
   // 상태 초기화
   currentBook = '';  // 책 제목 초기화
@@ -1976,6 +2001,41 @@ function toggleSentenceMic() {
   document.getElementById('sentence-mic-label').innerText = '듣고 있어요... (클릭해서 중지)';
   document.getElementById('btn-sentence-mic').classList.replace('bg-purple-400','bg-red-500');
 }
+
+// ── 자동 스케일: 뷰포트에 맞게 앱 전체 비율 조정 ──
+(function autoScale() {
+  const BASE_W = 1200; // 기준 너비
+  const BASE_H = 800;  // 기준 높이
+
+  function applyScale() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const binder = document.getElementById('binder-wrap');
+    if (!binder) return;
+
+    // 실제 바인더 크기 계산 (CSS와 동일한 로직)
+    const binderW = Math.min(vw * 0.94, vw - 112); // 7rem ≈ 112px
+    const binderH = Math.min(vh - 12, vw * 0.95);
+
+    // 가로/세로 중 더 작은 비율로 스케일
+    const scaleX = binderW / BASE_W;
+    const scaleY = binderH / BASE_H;
+    const scale  = Math.min(scaleX, scaleY, 1.2); // 최대 1.2배까지만 확대
+
+    binder.style.transformOrigin = 'center center';
+    binder.style.transform       = `scale(${scale})`;
+
+    // 실제 차지하는 공간을 스케일에 맞게 보정
+    binder.style.width  = BASE_W + 'px';
+    binder.style.height = BASE_H + 'px';
+    binder.style.marginLeft = `${(binderW - BASE_W * scale) / 2}px`;
+  }
+
+  window.addEventListener('resize', applyScale);
+  window.addEventListener('load', applyScale);
+  document.addEventListener('DOMContentLoaded', applyScale);
+  setTimeout(applyScale, 100); // 폰트 로드 후 재계산
+})();
 </script>
 </body>
 </html>
