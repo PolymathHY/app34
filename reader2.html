@@ -218,6 +218,54 @@
     </div>
   </div>
 
+  <!-- 성장 비법 모달 -->
+  <div id="reward-guide-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay">
+    <div class="bg-white border-4 border-slate-900 rounded-3xl p-6 w-full max-w-3xl pop-animation">
+      <div class="text-center mb-4">
+        <span class="text-4xl">🌟</span>
+        <h3 class="text-2xl font-black text-slate-900 mt-1">성장 비법</h3>
+      </div>
+      <!-- 3열 가로 배치 -->
+      <div class="grid grid-cols-3 gap-4 mb-5">
+        <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl p-4 text-center flex flex-col gap-2">
+          <div class="text-3xl">🌱</div>
+          <p class="text-base font-black text-slate-800">1개 미션</p>
+          <p class="text-sm font-bold text-slate-500">🐠 일반 물고기</p>
+          <p class="text-xs text-slate-400">니모, 복어, 꽃게 등</p>
+        </div>
+        <div class="bg-orange-50 border-2 border-orange-300 rounded-2xl p-4 text-center flex flex-col gap-2">
+          <div class="text-3xl">⭐</div>
+          <p class="text-base font-black text-slate-800">2개 미션</p>
+          <p class="text-sm font-bold text-slate-500">🐙 특별 물고기</p>
+          <p class="text-xs text-slate-400">돌고래, 문어, 물개 등</p>
+        </div>
+        <div class="bg-purple-50 border-2 border-purple-300 rounded-2xl p-4 text-center flex flex-col gap-2">
+          <div class="text-3xl">🔥</div>
+          <p class="text-base font-black text-slate-800">3개 미션</p>
+          <p class="text-sm font-bold text-slate-500">🐳 희귀 물고기 + 🎉</p>
+          <p class="text-xs text-slate-400">고래, 상어, 용 등</p>
+        </div>
+      </div>
+      <!-- 2열 가로 배치 -->
+      <div class="grid grid-cols-2 gap-4 mb-5">
+        <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 text-center flex flex-col gap-1">
+          <div class="text-2xl">📚</div>
+          <p class="text-base font-black text-slate-800">어항 성장</p>
+          <p class="text-sm text-slate-500">물통 → 어항 → 산호 → 큰 어항 → 🏆 수족관</p>
+        </div>
+        <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 text-center flex flex-col gap-1">
+          <div class="text-2xl">🔥</div>
+          <p class="text-base font-black text-slate-800">연속 기록 보상</p>
+          <p class="text-sm text-slate-500">3일 ⭐ 챔피언 &nbsp;|&nbsp; 7일 🏆 독서왕 &nbsp;|&nbsp; 10일 🦄 독서의 신</p>
+        </div>
+      </div>
+      <button onclick="document.getElementById('reward-guide-modal').classList.add('hidden')"
+        class="w-full bg-yellow-400 border-3 border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-900 active:translate-y-0.5 transition-transform">
+        확인
+      </button>
+    </div>
+  </div>
+
   <!-- 마이크 권한 안내 모달 -->
   <div id="mic-permission-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-6 modal-overlay">
     <div class="bg-white border-4 border-slate-900 rounded-3xl p-8 max-w-md w-full pop-animation text-center">
@@ -527,7 +575,7 @@
             <!-- 하단 버튼 행 -->
             <div class="flex gap-2 flex-shrink-0">
               <button onclick="showRewardGuide()" class="bg-purple-100 border-[3px] border-purple-400 py-3 px-4 rounded-2xl text-base font-black text-purple-700 hover:bg-purple-200 transition-all active:scale-95 flex items-center justify-center gap-1 flex-shrink-0">
-                🎯 미션 안내
+                🌟 성장 비법
               </button>
               <button onclick="handleNav('calendar')" class="flex-1 bg-sky-400 border-[3px] border-slate-900 py-3 rounded-2xl text-xl font-black text-slate-900 hover:bg-sky-500 transition-all active:scale-95 flex items-center justify-center">
                 기록 보러가기 ➡️
@@ -1796,7 +1844,7 @@ function showRewardGuide() {
 🔥 매일 읽으면 연속 기록 보상!
 3일 ⭐ / 7일 🏆 / 10일 🦄
   `.trim();
-  showModal('🎯 미션 안내', msg, '🏆');
+  showModal('🌟 성장 비법', msg, '🏆');
 }
 
 function startNewBook() {
