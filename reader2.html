@@ -2034,59 +2034,49 @@ function toggleSentenceMic() {
   function applyScale() {
     const binder    = document.getElementById('binder-wrap');
     const container = document.getElementById('app-container');
-    const body      = document.getElementById('app-body');
     if (!binder || !container) return;
 
     const vw = window.innerWidth;
     const vh = window.innerHeight;
+    const padding = 8;
 
-    // 스케일: 바인더 + 탭 전체가 화면에 들어오도록
-    const scale = Math.min(
-      vw / (BASE_W + BASE_TAB_W),
-      vh / BASE_H,
-      1.2
-    );
+    // 높이 기준 스케일 (탭도 같은 비율)
+    const scaleH = (vh - padding * 2) / BASE_H;
+    const tabW   = Math.round(BASE_TAB_W * scaleH);
+    const tabH   = Math.round(BASE_TAB_H * scaleH);
+    const tabFont = Math.round(BASE_TAB_FONT * scaleH);
 
-    const bW   = Math.round(BASE_W * scale);
-    const bH   = Math.round(BASE_H * scale);
-    const tabW = Math.round(BASE_TAB_W * scale);
-    const tabH = Math.round(BASE_TAB_H * scale);
-    const tabFont = Math.round(BASE_TAB_FONT * scale);
+    // 바인더는 탭을 뺀 나머지 가로 전체를 채움
+    const bW = vw - tabW - padding * 2;
+    const bH = Math.round(BASE_H * scaleH);
 
-    // 바인더: 탭 공간 제외한 너비
-    binder.style.width    = bW + 'px';
-    binder.style.height   = bH + 'px';
-    binder.style.overflow = 'visible'; // 탭이 밖으로 나올 수 있게
+    // X/Y 스케일 독립 계산 (바인더를 꽉 채움)
+    const scaleX = bW / BASE_W;
+    const scaleY = bH / BASE_H;
 
-    // body: 전체(바인더+탭) 중앙 정렬을 위해 padding-right 보정
-    if (body) {
-      body.style.paddingRight = tabW + 'px';
-      body.style.boxSizing    = 'border-box';
-    }
+    // 바인더 크기
+    binder.style.width  = bW + 'px';
+    binder.style.height = bH + 'px';
 
-    // app-container: 기준 크기 → scale
+    // app-container: 기준 크기 → X/Y 독립 스케일
     container.style.width           = BASE_W + 'px';
     container.style.height          = BASE_H + 'px';
     container.style.position        = 'absolute';
     container.style.top             = '0';
     container.style.left            = '0';
     container.style.transformOrigin = 'top left';
-    container.style.transform       = 'scale(' + scale + ')';
+    container.style.transform       = 'scale(' + scaleX + ', ' + scaleY + ')';
 
-    // 탭 컬럼 크기 조정
+    // 탭 크기 조정
     document.querySelectorAll('.nav-tab').forEach(function(tab) {
       tab.style.width    = tabW + 'px';
       tab.style.height   = tabH + 'px';
       tab.style.fontSize = tabFont + 'px';
-      tab.style.right    = '';
-      tab.style.top      = '';
-      tab.style.position = '';
     });
     var col = document.getElementById('tabs-column');
-    if (col) col.style.gap = Math.round(8 * scale) + 'px';
+    if (col) col.style.gap = Math.round(8 * scaleH) + 'px';
 
-
-    // 스케일 후 활성 탭 재적용 (right 재계산)
+    // 활성 탭 재적용
     var activeId = ['login','mission','home','calendar'].find(function(key) {
       var el = document.getElementById('tab-' + key);
       return el && el.style.zIndex === '10';
