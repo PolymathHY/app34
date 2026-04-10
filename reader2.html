@@ -203,7 +203,7 @@
     }
   </style>
 </head>
-<body class="bg-yellow-200 h-screen w-screen flex items-center justify-center overflow-hidden" style="padding-right:6rem; box-sizing:border-box;" id="app-body">
+<body class="bg-yellow-200 w-screen h-screen flex items-center justify-center overflow-hidden" id="app-body">
 
   <!-- 커스텀 모달 -->
   <div id="custom-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay">
@@ -233,7 +233,7 @@
   </div>
 
   <!-- 바인더 본체 -->
-  <div id="binder-wrap" class="relative" style="width:min(94%, calc(100vw - 7rem)); height:min(calc(100vh - 12px), 95vw); flex-shrink:0;">
+  <div id="binder-wrap" class="relative" style="width:min(94vw, calc(100vw - 7rem)); height:min(calc(100vh - 8px), 95vw); flex-shrink:0;">
 
     <!-- 탭 -->
     <div id="tab-login"    onclick="handleNav('login')"    class="nav-tab absolute -right-20 w-28 h-20 bg-red-400    border-4 border-l-0 border-slate-900 rounded-r-2xl z-0 flex items-center justify-center text-slate-900 text-xl font-bold cursor-pointer active:scale-95 text-center" style="top:3.5rem; box-shadow:5px 5px 0px rgba(15,23,42,1)">준비</div>
@@ -850,8 +850,18 @@ function setActiveTab(tabKey) {
   ['login','mission','home','calendar'].forEach(key => {
     const el = document.getElementById('tab-' + key);
     if (!el) return;
-    if (key === tabKey) { el.classList.add('translate-x-3','z-10'); el.classList.remove('translate-x-0'); }
-    else { el.classList.remove('translate-x-3','z-10'); el.classList.add('translate-x-0'); }
+    el.classList.remove('translate-x-3','translate-x-0','z-10');
+    // 탭 너비는 autoScale이 설정한 값 사용
+    const tabW = parseInt(el.style.width) || 112;
+    if (key === tabKey) {
+      el.style.right = (-tabW + 12) + 'px'; // 12px 튀어나옴
+      el.style.zIndex = '10';
+      el.style.boxShadow = '5px 5px 0px rgba(15,23,42,1)';
+    } else {
+      el.style.right = (-tabW) + 'px'; // 완전히 숨김
+      el.style.zIndex = '0';
+      el.style.boxShadow = '5px 5px 0px rgba(15,23,42,1)';
+    }
   });
 }
 
@@ -1997,48 +2007,55 @@ function toggleSentenceMic() {
 
 // ── 자동 스케일: 뷰포트에 맞게 앱 전체 비율 조정 ──
 (function autoScale() {
-  const BASE_W = 1100; // 기준 너비
-  const BASE_H = 750;  // 기준 높이
+  // 기준 설계 크기
+  const BASE_W = 1200;
+  const BASE_H = 800;
 
   function applyScale() {
-    const binder = document.getElementById('binder-wrap');
-    if (!binder) return;
+    const binder    = document.getElementById('binder-wrap');
+    const container = document.getElementById('app-container');
+    if (!binder || !container) return;
 
-    // transform 초기화 후 실제 CSS 렌더 크기 측정
-    binder.style.transform = 'none';
-    binder.style.width  = '';
-    binder.style.height = '';
+    // binder의 실제 렌더 크기
+    const bW = binder.offsetWidth  || BASE_W;
+    const bH = binder.offsetHeight || BASE_H;
 
-    const rect = binder.getBoundingClientRect();
-    const actualW = rect.width  || BASE_W;
-    const actualH = rect.height || BASE_H;
+    // 콘텐츠: 기준 크기 고정 후 바인더를 꽉 채우도록 스케일
+    container.style.width    = BASE_W + 'px';
+    container.style.height   = BASE_H + 'px';
+    container.style.position = 'absolute';
+    container.style.top      = '0';
+    container.style.left     = '0';
+    container.style.transformOrigin = 'top left';
+    const scaleX = bW / BASE_W;
+    const scaleY = bH / BASE_H;
+    container.style.transform = `scale(${scaleX}, ${scaleY})`;
 
-    const scale = Math.min(actualW / BASE_W, actualH / BASE_H, 1.3);
+    // 탭: transform 대신 실제 크기/위치를 픽셀로 직접 계산
+    const tabScale   = bH / BASE_H;
+    const tabW       = Math.round(112 * tabScale);   // 기준 너비 112px
+    const tabH       = Math.round(80  * tabScale);   // 기준 높이 80px
+    const tabFontPx  = Math.round(20  * tabScale);   // 기준 폰트 20px
+    const tabTops    = [56, 144, 232, 320];           // 기준 top px (3.5rem, 9rem, 14.5rem, 20rem at 16px)
 
-    // 고정 크기로 설정 후 scale 적용
-    binder.style.width           = BASE_W + 'px';
-    binder.style.height          = BASE_H + 'px';
-    binder.style.transformOrigin = 'top left';
-    binder.style.transform       = `scale(${scale})`;
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.style.transform = '';  // transform 제거
+      tab.style.width     = tabW + 'px';
+      tab.style.height    = tabH + 'px';
+      tab.style.fontSize  = tabFontPx + 'px';
+      tab.style.right     = (-tabW) + 'px';  // 탭이 바인더 밖으로 딱 붙게
+    });
 
-    // 스케일 후 남는 공간 보정 (가운데 정렬)
-    const scaledW = BASE_W * scale;
-    const scaledH = BASE_H * scale;
-    binder.style.marginLeft = Math.max(0, (actualW - scaledW) / 2) + 'px';
-    binder.style.marginTop  = Math.max(0, (actualH - scaledH) / 2) + 'px';
+    ['tab-login','tab-mission','tab-home','tab-calendar'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.style.top = Math.round(tabTops[i] * tabScale) + 'px';
+    });
   }
 
-  // 여러 타이밍에 적용 (폰트/이미지 로드 후 포함)
   window.addEventListener('resize', applyScale);
-  document.addEventListener('DOMContentLoaded', () => {
-    applyScale();
-    setTimeout(applyScale, 200);
-    setTimeout(applyScale, 600);
-  });
-  if (document.readyState !== 'loading') {
-    applyScale();
-    setTimeout(applyScale, 200);
-  }
+  document.addEventListener('DOMContentLoaded', applyScale);
+  setTimeout(applyScale, 50);
+  setTimeout(applyScale, 300);
 })();
 </script>
 </body>
