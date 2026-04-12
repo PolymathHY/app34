@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-    html { font-size: 18px; }
+    html { font-size: 16px; }
   </style>
   <title>생각 보물 사냥꾼</title>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -203,7 +203,7 @@
     }
   </style>
 </head>
-<body class="bg-yellow-200 w-screen h-screen flex items-center justify-center" style="overflow:visible; margin:0; padding:0;" id="app-body">
+<body id="app-body" style="margin:0; padding:0; width:100vw; height:100vh; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#FEF9C3;">
 
   <!-- 커스텀 모달 -->
   <div id="custom-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 modal-overlay">
@@ -280,14 +280,18 @@
     </div>
   </div>
 
-  <!-- 바인더 본체 -->
-  <!-- 전체 래퍼: 바인더 + 탭 -->
-  <div id="outer-wrap" style="display:flex; flex-direction:row; align-items:center; flex-shrink:0; position:relative;">
+  <!-- scale-wrapper: 1100×730 고정 크기, JS가 transform:scale() 적용 -->
+  <div id="scale-wrapper" style="width:1100px; height:730px; position:relative; flex-shrink:0; transform-origin:center center;">
 
-    <!-- 바인더 -->
-    <div id="binder-wrap" class="relative" style="flex-shrink:0;">
+    <!-- 탭: scale-wrapper 오른쪽에 절대 배치 -->
+    <div id="tabs-column" style="position:absolute; right:-104px; top:40px; display:flex; flex-direction:column; gap:8px;">
+      <div id="tab-login"    onclick="handleNav('login')"    class="nav-tab bg-red-400    border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">준비</div>
+      <div id="tab-mission"  onclick="handleNav('mission')"  class="nav-tab bg-yellow-400 border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">미션</div>
+      <div id="tab-home"     onclick="handleNav('home')"     class="nav-tab bg-green-400  border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">결과</div>
+      <div id="tab-calendar" onclick="handleNav('calendar')" class="nav-tab bg-blue-400   border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">기록</div>
+    </div>
 
-    <!-- 앱 컨테이너 -->
+    <!-- 앱 컨테이너: scale-wrapper를 꽉 채움 -->
     <div id="app-container" class="relative w-full h-full bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10">
 
       <!-- 전역 상단 뱃지: 이름 + 책제목 (로그인 후 표시) -->
@@ -738,17 +742,7 @@
       </section>
 
     </div>
-    </div><!-- /binder-wrap -->
-
-    <!-- 탭 컬럼: 바인더 오른쪽에 세로 배치 -->
-    <div id="tabs-column" style="display:flex; flex-direction:column; gap:8px; flex-shrink:0; align-self:flex-start; padding-top:40px;">
-      <div id="tab-login" onclick="handleNav('login')"    class="nav-tab bg-red-400    border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center text-slate-900 font-bold cursor-pointer active:scale-95 text-center" style="box-shadow:5px 5px 0px rgba(15,23,42,1); width:100px; height:72px; font-size:18px;">준비</div>
-      <div id="tab-mission" onclick="handleNav('mission')"  class="nav-tab bg-yellow-400 border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center text-slate-900 font-bold cursor-pointer active:scale-95 text-center" style="box-shadow:5px 5px 0px rgba(15,23,42,1); width:100px; height:72px; font-size:18px;">미션</div>
-      <div id="tab-home"     onclick="handleNav('home')"     class="nav-tab bg-green-400  border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center text-slate-900 font-bold cursor-pointer active:scale-95 text-center" style="box-shadow:5px 5px 0px rgba(15,23,42,1); width:100px; height:72px; font-size:18px;">결과</div>
-      <div id="tab-calendar" onclick="handleNav('calendar')" class="nav-tab bg-blue-400   border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center text-slate-900 font-bold cursor-pointer active:scale-95 text-center" style="box-shadow:5px 5px 0px rgba(15,23,42,1); width:100px; height:72px; font-size:18px;">기록</div>
-    </div><!-- /tabs-column -->
-
-  </div><!-- /outer-wrap -->
+  </div><!-- /scale-wrapper -->
 
 <script>
 let currentUser       = '';
@@ -2070,59 +2064,27 @@ function toggleSentenceMic() {
 }
 
 // ── 자동 스케일: 뷰포트에 맞게 앱 전체 비율 조정 ──
-(function autoScale() {
-  const BASE_W     = 1200; // 앱 기준 너비
-  const BASE_H     = 800;  // 앱 기준 높이
-  const BASE_TAB_W = 100;  // 탭 기준 너비
-  const BASE_TAB_H = 72;   // 탭 기준 높이
-  const BASE_TAB_FONT = 24; // 탭 기준 폰트
-  // 탭 top 기준 (px): 바인더 높이 800 기준
-  const TAB_TOPS = [60, 150, 240, 330];
+(function() {
+  const BASE_W    = 1100;  // scale-wrapper 너비
+  const BASE_H    = 730;   // scale-wrapper 높이
+  const TAB_W     = 104;   // 탭 너비 (오른쪽 절대 배치)
+  const MIN_SCALE = 0.4;
+  const MAX_SCALE = 2.0;
 
   function applyScale() {
-    const binder    = document.getElementById('binder-wrap');
-    const container = document.getElementById('app-container');
-    if (!binder || !container) return;
+    const wrapper = document.getElementById('scale-wrapper');
+    if (!wrapper) return;
 
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    const padding = 8;
 
-    // 높이 기준 스케일 (탭도 같은 비율)
-    const scaleH = (vh - padding * 2) / BASE_H;
-    const tabW   = Math.round(BASE_TAB_W * scaleH);
-    const tabH   = Math.round(BASE_TAB_H * scaleH);
-    const tabFont = Math.round(BASE_TAB_FONT * scaleH);
+    // 탭이 오른쪽에 절대 배치되므로 TAB_W*2 여유 확보
+    const scaleW = vw / (BASE_W + TAB_W * 2);
+    const scaleH = vh / BASE_H;
+    const scale  = Math.min(scaleW, scaleH, MAX_SCALE);
+    const finalScale = Math.max(scale, MIN_SCALE);
 
-    // 바인더는 탭을 뺀 나머지 가로 전체를 채움
-    const bW = vw - tabW - padding * 2;
-    const bH = Math.round(BASE_H * scaleH);
-
-    // X/Y 스케일 독립 계산 (바인더를 꽉 채움)
-    const scaleX = bW / BASE_W;
-    const scaleY = bH / BASE_H;
-
-    // 바인더 크기
-    binder.style.width  = bW + 'px';
-    binder.style.height = bH + 'px';
-
-    // app-container: 기준 크기 → X/Y 독립 스케일
-    container.style.width           = BASE_W + 'px';
-    container.style.height          = BASE_H + 'px';
-    container.style.position        = 'absolute';
-    container.style.top             = '0';
-    container.style.left            = '0';
-    container.style.transformOrigin = 'top left';
-    container.style.transform       = 'scale(' + scaleX + ', ' + scaleY + ')';
-
-    // 탭 크기 조정
-    document.querySelectorAll('.nav-tab').forEach(function(tab) {
-      tab.style.width    = tabW + 'px';
-      tab.style.height   = tabH + 'px';
-      tab.style.fontSize = tabFont + 'px';
-    });
-    var col = document.getElementById('tabs-column');
-    if (col) col.style.gap = Math.round(8 * scaleH) + 'px';
+    wrapper.style.transform = 'scale(' + finalScale + ')';
 
     // 활성 탭 재적용
     var activeId = ['login','mission','home','calendar'].find(function(key) {
@@ -2133,10 +2095,8 @@ function toggleSentenceMic() {
     else setActiveTab('login');
   }
 
+  applyScale();
   window.addEventListener('resize', applyScale);
-  document.addEventListener('DOMContentLoaded', applyScale);
-  setTimeout(applyScale, 50);
-  setTimeout(applyScale, 300);
 })();
 </script>
 </body>
