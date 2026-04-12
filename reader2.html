@@ -283,16 +283,16 @@
   <!-- scale-wrapper: 1100×730 고정 크기, JS가 transform:scale() 적용 -->
   <div id="scale-wrapper" style="width:1100px; height:730px; position:relative; flex-shrink:0; transform-origin:center center;">
 
-    <!-- 탭: scale-wrapper 오른쪽에 절대 배치 -->
-    <div id="tabs-column" style="position:absolute; right:-104px; top:40px; display:flex; flex-direction:column; gap:8px;">
+    <!-- 탭: scale-wrapper 안 오른쪽 끝에 절대 배치 (함께 스케일됨) -->
+    <div id="tabs-column" style="position:absolute; right:0; top:40px; display:flex; flex-direction:column; gap:8px; z-index:50;">
       <div id="tab-login"    onclick="handleNav('login')"    class="nav-tab bg-red-400    border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">준비</div>
       <div id="tab-mission"  onclick="handleNav('mission')"  class="nav-tab bg-yellow-400 border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">미션</div>
       <div id="tab-home"     onclick="handleNav('home')"     class="nav-tab bg-green-400  border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">결과</div>
       <div id="tab-calendar" onclick="handleNav('calendar')" class="nav-tab bg-blue-400   border-4 border-l-0 border-slate-900 rounded-r-2xl flex items-center justify-center font-bold cursor-pointer text-center" style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">기록</div>
     </div>
 
-    <!-- 앱 컨테이너: scale-wrapper를 꽉 채움 -->
-    <div id="app-container" class="relative w-full h-full bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10">
+    <!-- 앱 컨테이너: 탭 너비(100px) 제외한 영역 채움 -->
+    <div id="app-container" class="relative bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10" style="position:absolute; left:0; top:0; width:1000px; height:730px;">
 
       <!-- 전역 상단 뱃지: 이름 + 책제목 (로그인 후 표시) -->
       <div id="global-user-bar" class="hidden w-full justify-center items-center gap-3 px-6 py-2 flex-shrink-0 z-30 flex-wrap bg-yellow-100">
@@ -2078,8 +2078,8 @@ function toggleSentenceMic() {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // 탭이 오른쪽에 절대 배치되므로 TAB_W*2 여유 확보
-    const scaleW = vw / (BASE_W + TAB_W * 2);
+    // 탭이 scale-wrapper 안에 있으므로 wrapper 전체 기준
+    const scaleW = vw / BASE_W;
     const scaleH = vh / BASE_H;
     const scale  = Math.min(scaleW, scaleH, MAX_SCALE);
     const finalScale = Math.max(scale, MIN_SCALE);
