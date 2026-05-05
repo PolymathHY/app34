@@ -147,7 +147,6 @@
       box-shadow: 2px 2px 0px rgba(0, 0, 0, .2);
       z-index: 30;
       animation: counterFlip linear infinite;
-      /* 물고기 반전에 맞춰 제목 역방향 보정 */
     }
 
     .counter-flip {
@@ -175,7 +174,6 @@
       backdrop-filter: blur(2px);
     }
 
-    /* ── 단계별 배경 ── */
     .aquarium-stage-1 {
       background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 80%, #D4C5A0 80%, #EDE0C4 100%);
     }
@@ -196,8 +194,6 @@
       background: linear-gradient(180deg, #006064 0%, #00838F 40%, #004D40 75%, #1B5E20 75%, #2E7D32 100%);
     }
 
-    /* ── 단계별 어항 모양 ── */
-    /* 1단계: 작은 원통형 물통 */
     .aquarium-shape-1 {
       border: 5px solid #78716c;
       border-radius: 12px 12px 20px 20px;
@@ -206,7 +202,6 @@
       aspect-ratio: 3/4 !important;
     }
 
-    /* 2단계: 작은 직사각 어항 */
     .aquarium-shape-2 {
       border: 5px solid #0891b2;
       border-radius: 10px;
@@ -214,7 +209,6 @@
       aspect-ratio: 4/3 !important;
     }
 
-    /* 3단계: 산호 어항 - 아치형 */
     .aquarium-shape-3 {
       border: 5px solid #0e7490;
       border-radius: 50% 50% 8px 8px / 20% 20% 8px 8px;
@@ -222,7 +216,6 @@
       aspect-ratio: 1/1 !important;
     }
 
-    /* 4단계: 큰 어항 - 넓은 직사각 */
     .aquarium-shape-4 {
       border: 6px solid #0369a1;
       border-radius: 16px;
@@ -230,7 +223,6 @@
       aspect-ratio: 5/3 !important;
     }
 
-    /* 5단계: 전설 수족관 - 팔각형 느낌 */
     .aquarium-shape-5 {
       border: 7px solid #FFD700;
       border-radius: 24px;
@@ -330,7 +322,6 @@
       cursor: pointer;
     }
 
-    /* ── 새 물고기 입장 애니메이션 ── */
     @keyframes fishEnter {
       0% {
         top: -15%;
@@ -359,7 +350,6 @@
         float 2s 1s ease-in-out infinite alternate !important;
     }
 
-    /* ── 폭죽 효과 ── */
     @keyframes confettiFall {
       0% {
         transform: translateY(-10px) rotate(0deg);
@@ -459,7 +449,6 @@
         <span class="text-4xl">🌟</span>
         <h3 class="text-2xl font-black text-slate-900 mt-1">성장 비법</h3>
       </div>
-      <!-- 3열 가로 배치 -->
       <div class="grid grid-cols-3 gap-4 mb-5">
         <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl p-4 text-center flex flex-col gap-2">
           <div class="text-3xl">🌱</div>
@@ -480,7 +469,6 @@
           <p class="text-xs text-slate-400">고래, 상어, 용 등</p>
         </div>
       </div>
-      <!-- 2열 가로 배치 -->
       <div class="grid grid-cols-2 gap-4 mb-5">
         <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 text-center flex flex-col gap-1">
           <div class="text-2xl">📚</div>
@@ -517,11 +505,11 @@
     </div>
   </div>
 
-  <!-- scale-wrapper: 1100×730 고정 크기, JS가 transform:scale() 적용 -->
+  <!-- scale-wrapper -->
   <div id="scale-wrapper"
     style="width:1100px; height:730px; position:relative; flex-shrink:0; transform-origin:center center;">
 
-    <!-- 탭: scale-wrapper 안 오른쪽 끝에 절대 배치 (함께 스케일됨) -->
+    <!-- 탭 -->
     <div id="tabs-column"
       style="position:absolute; right:0; top:40px; display:flex; flex-direction:column; gap:8px; z-index:50;">
       <div id="tab-login" onclick="handleNav('login')"
@@ -538,12 +526,12 @@
         style="width:100px; height:72px; font-size:22px; box-shadow:5px 5px 0px rgba(15,23,42,1);">기록</div>
     </div>
 
-    <!-- 앱 컨테이너: 탭 너비(100px) 제외한 영역 채움 -->
+    <!-- 앱 컨테이너 -->
     <div id="app-container"
       class="relative bg-yellow-100 border-[6px] border-slate-900 rounded-[3rem] overflow-hidden flex flex-col z-10"
       style="position:absolute; left:0; top:0; width:1000px; height:730px;">
 
-      <!-- 전역 상단 뱃지: 이름 + 책제목 (로그인 후 표시) -->
+      <!-- 전역 상단 뱃지 -->
       <div id="global-user-bar"
         class="hidden w-full justify-center items-center gap-3 px-6 py-2 flex-shrink-0 z-30 flex-wrap bg-yellow-100">
         <div class="bg-pink-300 border-[3px] border-slate-900 rounded-full px-6 py-2 shadow-hard-sm flex-shrink-0">
@@ -611,7 +599,7 @@
         </button>
       </section>
 
-      <!-- [화면 3] 가이드 (슬라이드 튜토리얼) -->
+      <!-- [화면 3] 가이드 -->
       <section id="view-guide"
         class="view-section hidden w-full flex-1 flex-col items-center justify-between p-4 bg-yellow-50 z-10 overflow-hidden">
 
@@ -623,10 +611,8 @@
           <span id="guide-step-label" class="text-slate-400 font-bold text-lg ml-2">1 / 4</span>
         </div>
 
-        <!-- 슬라이드 카드 -->
         <div class="w-full flex-1 min-h-0 relative overflow-hidden">
 
-          <!-- 슬라이드 1: 소리 듣기 -->
           <div id="guide-slide-1"
             class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300">
             <div
@@ -645,7 +631,6 @@
             </div>
           </div>
 
-          <!-- 슬라이드 2: 책에서 찾기 -->
           <div id="guide-slide-2"
             class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
             <div
@@ -661,7 +646,6 @@
             </div>
           </div>
 
-          <!-- 슬라이드 3: 버튼 누르기 -->
           <div id="guide-slide-3"
             class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
             <div
@@ -681,7 +665,6 @@
             </div>
           </div>
 
-          <!-- 슬라이드 4: 보상 시스템 -->
           <div id="guide-slide-4"
             class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
             <div
@@ -716,7 +699,6 @@
 
         </div>
 
-        <!-- 버튼: 이전 + 다음 -->
         <div class="flex gap-3 mt-2 w-full max-w-sm flex-shrink-0">
           <button id="guide-prev-btn" onclick="guidePrev()"
             class="hidden w-20 bg-white border-4 border-slate-900 rounded-2xl py-4 text-2xl font-bold text-slate-700 active:scale-[0.98] transition-all flex items-center justify-center flex-shrink-0">
@@ -781,47 +763,37 @@
         </div>
       </section>
 
-      <!-- [화면 5-2] 자기평가 하트 -->
-
+      <!-- [화면 5-2] 자기평가 하트 (삭제됨) -->
 
       <!-- [화면 6] 결과(어항) -->
       <section id="view-main" class="view-section hidden w-full flex-1 flex-col bg-yellow-50 overflow-hidden">
 
-        <!-- 헤더: 다음으로 버튼만 -->
         <div class="flex justify-end items-center px-4 pt-2 pb-1 z-20">
           <button onclick="handleNav('calendar')"
             class="bg-orange-400 border-[3px] border-slate-900 px-5 py-2 rounded-2xl text-lg font-bold text-white hover:bg-orange-500 transition-all active:scale-95 shadow-hard-sm flex items-center justify-center">다음으로
             ➡️</button>
         </div>
-        <!-- aquarium-title-display 유지 (JS에서 업데이트용) -->
         <span id="aquarium-title-display" class="hidden"></span>
 
-        <!-- 본문: 어항 + 정보카드 -->
         <div class="responsive-main flex-1 flex flex-row px-3 pb-2 gap-3 min-h-0 overflow-hidden z-10 items-stretch">
 
-          <!-- 어항 영역 -->
           <div class="aquarium-wrap flex flex-col justify-center items-end gap-2" style="flex:3; min-width:0;">
-            <!-- 어항 위 뱃지: 1행으로 -->
             <div class="flex items-center gap-2 justify-end flex-shrink-0 w-full flex-nowrap">
-              <!-- 어항 이름 -->
               <div id="aquarium-stage-badge"
                 class="w-28 h-11 bg-white border-[3px] border-slate-900 rounded-2xl flex items-center justify-start gap-1.5 text-sm font-black text-slate-700 shadow-hard-sm px-3 whitespace-nowrap overflow-hidden">
               </div>
-              <!-- 권수 -->
               <div id="total-books-display"
                 class="w-28 h-11 flex items-center justify-start gap-1.5 bg-yellow-400 border-[3px] border-slate-900 rounded-2xl shadow-hard-sm px-3 flex-shrink-0">
                 <span class="text-lg">📚</span>
                 <span class="text-base font-black text-slate-900" id="total-books-count">0</span>
                 <span class="text-sm font-black text-slate-800">권</span>
               </div>
-              <!-- 연속 -->
               <div id="streak-badge"
                 class="hidden w-28 h-11 items-center justify-start gap-1.5 bg-orange-400 border-[3px] border-slate-900 rounded-2xl shadow-hard-sm px-3 flex-shrink-0">
                 <span class="text-lg">🔥</span>
                 <span class="text-sm font-black text-white" id="streak-count">0일 연속</span>
               </div>
             </div>
-            <!-- 어항 본체 -->
             <div class="relative w-full flex-1 min-h-0" style="max-height:calc(100% - 56px)">
               <div id="aquarium-bg" class="w-full h-full aquarium-base aquarium-stage-1">
                 <div class="aquarium-glass-effect"></div>
@@ -836,11 +808,9 @@
             </div>
           </div>
 
-          <!-- 정보 카드 -->
           <div class="info-card flex flex-col gap-2 bg-white border-[4px] border-slate-900 rounded-[2rem] p-4 shadow-sm"
             style="flex:2; min-width:0;">
 
-            <!-- 나의 생각 보물 -->
             <div class="bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-4 py-3 flex-shrink-0">
               <p class="text-lg font-black text-yellow-600 text-center mb-2">💬 나의 생각 보물</p>
               <span id="current-sentence-display"
@@ -848,7 +818,6 @@
                 ✨</span>
             </div>
 
-            <!-- 책 후기 -->
             <div class="flex-shrink-0">
               <div
                 class="w-full flex flex-col items-center bg-yellow-50 border-2 border-yellow-200 rounded-xl py-2 gap-1">
@@ -860,7 +829,6 @@
               </div>
             </div>
 
-            <!-- 칭호 + 이정표 (1행으로) -->
             <div class="flex items-center gap-3 justify-center flex-shrink-0 flex-wrap">
               <div id="user-title-badge"
                 class="hidden items-center bg-purple-100 border-[3px] border-purple-400 px-4 py-1.5 rounded-full">
@@ -869,10 +837,8 @@
               <div id="next-milestone-display" class="text-center text-lg font-bold text-slate-500"></div>
             </div>
 
-            <!-- 미션 상태 -->
             <div id="mission-status" class="text-center font-bold text-slate-500 text-lg flex-shrink-0"></div>
 
-            <!-- 하단 버튼 행 -->
             <div class="flex gap-2 flex-shrink-0">
               <button onclick="showRewardGuide()"
                 class="bg-purple-100 border-[3px] border-purple-400 py-3 px-4 rounded-2xl text-base font-black text-purple-700 hover:bg-purple-200 transition-all active:scale-95 flex items-center justify-center gap-1 flex-shrink-0">
@@ -891,17 +857,13 @@
       <section id="view-mission"
         class="view-section hidden w-full flex-1 flex flex-col items-center justify-between p-4 bg-yellow-50 z-10">
 
-        <!-- 상단: 미션 제목 + 내용 + 힌트 -->
         <div class="w-full flex-1 flex flex-col items-center justify-center gap-4 min-h-0">
-          <!-- 미션 헤더 -->
           <h2 id="mission-title-header"
             class="text-2xl font-black text-slate-900 bg-yellow-400 px-6 py-2 border-[3px] border-slate-900 rounded-xl transform -rotate-1 flex-shrink-0">
             보물 찾기 미션</h2>
 
-          <!-- 미션 카드 -->
           <div
             class="w-full max-w-2xl bg-white border-[4px] border-slate-900 rounded-[2rem] p-4 flex flex-col gap-2 shadow-sm flex-1 justify-center">
-            <!-- 소리듣기 버튼 + 미션 제목 -->
             <div class="flex items-center gap-3">
               <button id="btn-speak" onclick="speakMission()"
                 class="w-12 h-12 bg-white border-2 border-slate-900 rounded-full flex items-center justify-center text-2xl active:scale-90 transition-all shadow-sm flex-shrink-0">📢</button>
@@ -910,11 +872,9 @@
                 <h3 id="mission-title-text" class="text-4xl font-black text-slate-900 leading-tight break-keep"></h3>
               </div>
             </div>
-            <!-- 힌트 -->
             <div id="mission-hint-box"
               class="bg-yellow-50 border-2 border-dashed border-yellow-400 rounded-xl px-4 py-3 text-2xl font-bold text-slate-700 text-center break-keep">
             </div>
-            <!-- STT 결과: 말했을 때만 표시 -->
             <div id="stt-result-container"
               class="hidden bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2 text-center">
               <p id="stt-status-label" class="text-sm font-bold text-slate-400 mb-1">내 대답</p>
@@ -923,15 +883,12 @@
           </div>
         </div>
 
-        <!-- 하단: 버튼 영역 -->
         <div class="w-full max-w-2xl flex flex-col gap-3 flex-shrink-0 pt-3">
-          <!-- 마이크 버튼 -->
           <button id="btn-stt" onclick="toggleSTT()"
             class="w-full bg-purple-400 border-[3px] border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all flex items-center justify-center gap-3">
             <span id="stt-mic-icon">🎤</span>
             <span id="stt-mic-label">마이크 켜고 말하기</span>
           </button>
-          <!-- 다시/다른 미션 -->
           <div class="flex gap-3">
             <button id="btn-retry-stt" onclick="retryStt()"
               class="hidden flex-1 bg-white border-[3px] border-slate-900 rounded-xl py-3 text-xl font-bold text-slate-700 active:scale-95 transition-all flex items-center justify-center gap-1">🔁
@@ -944,7 +901,7 @@
 
       </section>
 
-      <!-- [화면 7-1] 미션 완료 피드백 (배움 쏙쏙) -->
+      <!-- [화면 7-1] 미션 완료 피드백 -->
       <section id="view-mission-feedback"
         class="view-section hidden w-full flex-1 flex-col items-center justify-center p-8 bg-white z-10">
         <div class="text-6xl mb-3">🌟</div>
@@ -1025,23 +982,18 @@
       <section id="view-sentence"
         class="view-section hidden w-full flex-1 flex flex-col items-center justify-between p-4 bg-purple-50 z-10">
 
-        <!-- 상단: 질문 카드 -->
         <div class="w-full flex-1 flex flex-col items-center justify-center gap-3 min-h-0 max-w-2xl mx-auto">
           <div class="w-full bg-white border-[4px] border-slate-900 rounded-[2rem] p-6 flex flex-col gap-4 shadow-sm">
 
-            <!-- 질문 제목 -->
             <h2 id="question-display-title"
               class="text-2xl font-black text-slate-900 text-center break-keep leading-tight"></h2>
 
-            <!-- 예시 -->
             <div id="sentence-examples-list"></div>
 
-            <!-- 통합 입력칸: 말하면 자동 입력, 타이핑도 가능 -->
             <div class="relative">
               <textarea id="sentence-text-input"
                 class="w-full bg-slate-50 border-2 border-purple-200 rounded-2xl px-4 py-4 text-xl text-slate-800 font-bold resize-none focus:outline-none focus:border-purple-400 transition-colors"
                 rows="3" placeholder="🎤 마이크로 말하거나 여기에 써봐요!"></textarea>
-              <!-- 숨겨진 STT 상태 저장용 -->
               <span id="sentence-stt-text" class="hidden"></span>
               <div id="sentence-stt-container" class="hidden"></div>
             </div>
@@ -1049,7 +1001,6 @@
           </div>
         </div>
 
-        <!-- 하단 버튼 -->
         <div class="w-full max-w-2xl flex flex-col gap-3 flex-shrink-0 pt-3">
           <button id="btn-sentence-mic" onclick="toggleSentenceMic()"
             class="w-full bg-purple-400 border-[3px] border-slate-900 rounded-2xl py-4 text-2xl font-black text-white active:scale-95 transition-all flex items-center justify-center gap-3">
@@ -1093,7 +1044,7 @@
     let lastMissionIndex = -1;
     let currentMissionData = null;
     let currentMissionText = '';
-    let activeMissions = [];   // 실제 사용할 미션 목록 (교사입력 or 기본)
+    let activeMissions = [];
     let currentGuideText = '';
     let bookRating = 0;
     let selfRating = 0;
@@ -1111,7 +1062,7 @@
       {
         min: 0, max: 2, stage: 1, shape: 'aquarium-shape-1', label: '🪣 작은 물통',
         floor: '<span class="text-2xl">🌿</span><span class="text-xl">🪨</span>',
-        decos: [], // 장식 없음
+        decos: [],
         specialFish: []
       },
       {
@@ -1177,7 +1128,6 @@
     function getStageInfo(count) { return AQUARIUM_STAGES.find(s => count >= s.min && count <= s.max) || AQUARIUM_STAGES[0]; }
     function getNextMilestone(count) { return MILESTONES.find(m => m.books > count) || null; }
 
-    // ★ GAS URL (업데이트됨)
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbzImVSAVQuhdBSv6LIezZWyItsGiHZeqSSCCD2ZjoOWZ38PY0e0xA3y1s25O_7Kp50HNg/exec';
 
     function gasAPI(action, payload = {}) {
@@ -1216,7 +1166,6 @@
         }
       } catch (e) {
         document.getElementById('custom-modal').classList.add('hidden');
-        // 네트워크 실패 → 로컬 임시 저장
         savePendingRecord(data);
         totalBooks = (totalBooks || 0) + 1;
         showModal('📦 임시 저장됨', '인터넷이 불안정해요. 기록은 안전히 보관되고 다음 접속 시 자동 업로드돼요!', '📶', false, () => {
@@ -1227,15 +1176,12 @@
 
     async function loadHistory(callback) {
       if (!currentUser) { callback([]); return; }
-
-      // ★ 프리패치된 데이터가 있으면 즉시 반환 (네트워크 요청 없음)
       if (window._historyPreloaded !== null && window._historyPreloaded !== undefined) {
         const data = window._historyPreloaded;
-        window._historyPreloaded = null; // 한 번만 사용
+        window._historyPreloaded = null;
         callback(data);
         return;
       }
-
       const res = await gasAPI('getHistory', { name: currentUser });
       callback(res.ok ? res.data : []);
     }
@@ -1257,14 +1203,14 @@
           el.style.zIndex = '10';
           el.style.opacity = '1';
           el.style.fontWeight = '900';
-          el.style.color = '#0f172a'; // 검정
+          el.style.color = '#0f172a';
           el.style.outline = '3px solid #0f172a';
           el.style.outlineOffset = '-2px';
         } else {
           el.style.zIndex = '0';
           el.style.opacity = '0.85';
           el.style.fontWeight = '700';
-          el.style.color = '#ffffff'; // 흰색
+          el.style.color = '#ffffff';
           el.style.outline = 'none';
         }
         el.style.boxShadow = '4px 4px 0px rgba(15,23,42,1)';
@@ -1283,7 +1229,6 @@
       else if (viewId === 'view-select') setActiveTab('mission');
       else if (viewId === 'view-guide') {
         setActiveTab('login');
-        // 슬라이드 초기화
         guideCurrentStep = 1;
         for (let i = 1; i <= 4; i++) {
           const slide = document.getElementById('guide-slide-' + i);
@@ -1323,16 +1268,13 @@
     window.addEventListener('load', () => {
       myFish = []; totalBooks = 0;
       showView('view-login');
-      // ★ 미저장 기록 자동 동기화 (로그인 전 백그라운드 시도)
       syncPendingRecords();
 
-      // ★ 교사 입력 미션 백그라운드 로드
       gasAPI('getMissions').then(res => {
         if (res.ok && res.data && res.data.length > 0) {
           activeMissions = res.data;
-          console.log(`교사 미션 ${activeMissions.length}개 로드됨`);
         } else {
-          activeMissions = missions; // 기본 미션 사용
+          activeMissions = missions;
         }
       }).catch(() => {
         activeMissions = missions;
@@ -1378,20 +1320,15 @@
     }
 
     function login() {
-      // 로그인 시 전역 뱃지 숨기기 (책 제목 입력 후 표시됨)
       const globalBar = document.getElementById('global-user-bar');
       if (globalBar) { globalBar.classList.add('hidden'); globalBar.classList.remove('flex'); }
-      // 아직 미션 안 로드됐으면 기본 미션 사용
       if (activeMissions.length === 0) activeMissions = missions;
-      // ★ 백그라운드 프리패치: 이름 선택 직후 기록 미리 로드 시작
-      // 책 입력 → 가이드 → 미션 하는 동안 로딩 완료됨
       window._historyPreloaded = null;
       gasAPI('getHistory', { name: currentUser }).then(res => {
         window._historyPreloaded = res.ok ? res.data : [];
       }).catch(() => {
         window._historyPreloaded = [];
       });
-
       document.getElementById('mic-permission-modal').classList.remove('hidden');
     }
 
@@ -1411,26 +1348,13 @@
           return;
         }
         currentBook = bookTitle;
-
-        // 가이드 화면 이름 + 책 제목 설정
-        const guideTitleEl = document.getElementById('guide-book-title');
-        if (guideTitleEl) guideTitleEl.innerText = currentBook;
-        const guideUserEl = document.getElementById('guide-user-name');
-        if (guideUserEl) guideUserEl.innerText = currentUser + ' 탐험가!';
-        const guideBookEl = document.getElementById('guide-book-name');
-        if (guideBookEl) guideBookEl.innerText = currentBook;
-        // 전역 뱃지 업데이트 + 표시
         const globalBar = document.getElementById('global-user-bar');
         const globalName = document.getElementById('global-user-name');
         const globalBook = document.getElementById('global-book-name');
         if (globalName) globalName.innerText = currentUser + ' 탐험가!';
         if (globalBook) globalBook.innerText = currentBook;
         if (globalBar) { globalBar.classList.remove('hidden'); globalBar.classList.add('flex'); }
-
-        // 바로 가이드로 이동
         showView('view-guide');
-
-        // 백그라운드에서 기록 로드
         if (currentUser) {
           loadHistory(function (historyArray) {
             myFish = buildFishFromData(historyArray || []);
@@ -1440,16 +1364,14 @@
         }
       } catch (e) {
         console.error('saveBookStep 오류:', e);
-        showView('view-guide'); // 오류나도 화면은 이동
+        showView('view-guide');
       }
     }
 
-    // 가이드 슬라이드 제어
     let guideCurrentStep = 1;
     const guideTotalSteps = 4;
 
     function updateGuideUI() {
-      // 점 업데이트
       for (let i = 1; i <= guideTotalSteps; i++) {
         const dot = document.getElementById('guide-dot-' + i);
         if (dot) dot.className = i === guideCurrentStep
@@ -1457,9 +1379,7 @@
           : 'w-4 h-4 rounded-full bg-slate-300 transition-all';
       }
       document.getElementById('guide-step-label').innerText = guideCurrentStep + ' / ' + guideTotalSteps;
-      // 다음 버튼 텍스트
       document.getElementById('guide-next-btn').innerText = guideCurrentStep === guideTotalSteps ? '시작해요! 🚀' : '다음으로 →';
-      // 이전 버튼 표시/숨김
       const guideP = document.getElementById('guide-prev-btn');
       if (guideP) {
         if (guideCurrentStep > 1) guideP.classList.remove('hidden');
@@ -1498,19 +1418,15 @@
     function showSelectStep() { showView('view-select'); }
 
     function handleNav(target) {
-      // 로그인 안 됐으면 → 로그인 화면
       if (!currentUser && target !== 'login') {
         showModal('잠깐!', '이름을 먼저 써주세요!', '📛');
         showView('view-login'); return;
       }
-
       if (target === 'login') {
-        // 준비: 로그인 됐으면 책 입력, 아니면 로그인
         if (currentUser) showView('view-book-input-section');
         else showView('view-login');
       }
       else if (target === 'mission') {
-        // 미션: 책 제목 입력됐으면 미션 선택, 없으면 책 입력 유도
         if (currentBook && currentBook !== '나의 책') {
           showView('view-select');
         } else {
@@ -1519,16 +1435,13 @@
           });
         }
       }
-      else if (target === 'home') {
-        // 결과: 로그인됐으면 항상 어항 화면 (동기유발)
-        goHome();
-      }
+      else if (target === 'home') { goHome(); }
       else if (target === 'calendar') showView('view-calendar');
     }
 
     const reflectionQuestions = [
       { title: '소감', question: '이 책을 읽고 어떤 마음이 들었나요?', examples: ['책을 다 읽으니 마음이 포근하고 따뜻해졌어요.', '주인공이 문제를 해결할 때 정말 신나고 통쾌했어요!'], icon: '💖' },
-      { title: '보물 문장', question: '가장 기억에 남는 문장은 무엇인가요?', examples: ['\"우리는 모두 특별한 존재야\"라는 말이 가장 멋졌어요.', '주인공이 마지막에 한 말이 기억나요.'], icon: '💎' },
+      { title: '보물 문장', question: '가장 기억에 남는 문장은 무엇인가요?', examples: ['"우리는 모두 특별한 존재야"라는 말이 가장 멋졌어요.', '주인공이 마지막에 한 말이 기억나요.'], icon: '💎' },
       { title: '한 줄 소개', question: '친구들에게 이 책을 한 문장으로 소개해 봐요!', examples: ['웃음이 팡팡 터지는 세상에서 가장 재미있는 책이에요.', '용기 있는 모험을 보고 싶은 친구들에게 꼭 추천해요.'], icon: '📢' },
       { title: '주인공에게', question: '주인공에게 하고 싶은 말을 전해 봐요!', examples: ['주인공아, 끝까지 포기하지 않는 모습이 정말 대단해!', '너처럼 용감한 친구가 내 곁에도 있으면 좋겠어.'], icon: '💌' },
       { title: '내가 주인공', question: '내가 주인공이었다면 어떻게 했을 것 같아요?', examples: ['내가 주인공이었다면 무서워하지 않고 먼저 손을 내밀었을 거예요.', '사탕 숲을 발견했다면 친구들 모두를 초대했을 거예요.'], icon: '🎭' },
@@ -1557,23 +1470,22 @@
       { icon: '💭', text: '이 책을 읽고 떠오르는 낱말을 말해봐요!', concept: '연상 놀이', conceptExplanation: '책을 읽고 생각나는 낱말을 자유롭게 떠올리면 생각이 넓어져요.', guide: '책을 읽고 머릿속에 가장 먼저 떠오르는 낱말을 말해 봐요!' },
     ];
 
-    // 미션 개수별 물고기 등급
     const fishes = {
-      normal: [  // 1개: 일반
+      normal: [
         { icon: '🐠', name: '니모(아네모네피시)' },
         { icon: '🐡', name: '복어' },
         { icon: '🐟', name: '물고기' },
         { icon: '🦐', name: '새우' },
         { icon: '🦀', name: '꽃게' },
       ],
-      special: [ // 2개: 특별
+      special: [
         { icon: '🐙', name: '문어' },
         { icon: '🦑', name: '오징어' },
         { icon: '🐬', name: '돌고래' },
         { icon: '🦞', name: '바닷가재' },
         { icon: '🦭', name: '물개' },
       ],
-      rare: [    // 3개: 희귀
+      rare: [
         { icon: '🐳', name: '고래' },
         { icon: '🦈', name: '상어' },
         { icon: '🐋', name: '혹등고래' },
@@ -1582,7 +1494,6 @@
       ],
     };
 
-    // 미션 개수에 따라 물고기 풀 선택
     function getFishPool(missionCount) {
       if (missionCount >= 3) return fishes.rare;
       if (missionCount >= 2) return fishes.special;
@@ -1593,7 +1504,6 @@
 
     function startMission() {
       let randomIdx;
-      // ★ 교사 미션 우선 사용, 없으면 기본 미션
       const missionPool = activeMissions.length > 0 ? activeMissions : missions;
       do { randomIdx = Math.floor(Math.random() * missionPool.length); } while (randomIdx === lastMissionIndex && missionPool.length > 1);
       lastMissionIndex = randomIdx;
@@ -1602,7 +1512,6 @@
       currentMissionText = mission.text;
       currentGuideText = mission.guide;
       document.getElementById('mission-title-header').innerText = `보물 찾기 미션 (${currentMissionCount + 1}/${targetMissionCount})`;
-      // 미션 제목 + 힌트 직접 주입
       const titleEl = document.getElementById('mission-title-text');
       const hintEl = document.getElementById('mission-hint-box');
       if (titleEl) titleEl.innerText = mission.text;
@@ -1657,13 +1566,11 @@
     // ── 오프라인 임시 저장 시스템 ──
     const OFFLINE_KEY = 'bookTreasure_pendingRecords';
 
-    // 미저장 기록을 localStorage에 보관
     function savePendingRecord(data) {
       try {
         const pending = getPendingRecords();
         pending.push({ ...data, _savedAt: Date.now() });
         localStorage.setItem(OFFLINE_KEY, JSON.stringify(pending));
-        console.log('📦 임시 저장 완료:', data.book);
       } catch (e) { console.error('임시 저장 실패:', e); }
     }
 
@@ -1681,31 +1588,19 @@
       } catch (e) { }
     }
 
-    // 앱 시작 시 미저장 기록 자동 업로드 시도
     async function syncPendingRecords() {
       const pending = getPendingRecords();
       if (pending.length === 0) return;
-
-      console.log(`📤 미저장 기록 ${pending.length}개 업로드 시도...`);
       let successCount = 0;
-
       for (let i = pending.length - 1; i >= 0; i--) {
         const record = pending[i];
         try {
           const res = await gasAPI('saveRecord', { data: record });
-          if (res.ok) {
-            clearPendingRecord(i);
-            successCount++;
-          }
-        } catch (e) { /* 네트워크 안 되면 다음에 다시 시도 */ }
+          if (res.ok) { clearPendingRecord(i); successCount++; }
+        } catch (e) { }
       }
-
       if (successCount > 0) {
-        showModal(
-          '📤 기록 동기화 완료!',
-          `저장되지 않았던 기록 ${successCount}개가 업로드됐어요!`,
-          '✅'
-        );
+        showModal('📤 기록 동기화 완료!', `저장되지 않았던 기록 ${successCount}개가 업로드됐어요!`, '✅');
       }
     }
 
@@ -1719,30 +1614,20 @@
     let currentStreak = 0;
     let _streakRewardCallback = null;
 
-    // 연속 일수 계산 (엄격 모드: 매일)
     function calculateStreak(historyArray) {
       if (!historyArray || historyArray.length === 0) return 0;
-
-      // 날짜만 추출해서 유니크하게 정렬 (최신순)
       const dates = [...new Set(
         historyArray.map(r => {
           const d = r.date;
           if (!d) return null;
-          // "2025-04-06" 또는 Date 객체 처리
           return String(d).split('T')[0].replace(/\./g, '-').slice(0, 10);
         }).filter(Boolean)
       )].sort((a, b) => b.localeCompare(a));
-
       if (dates.length === 0) return 0;
-
-      // 오늘 날짜
       const today = new Date();
       const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-
-      // 가장 최근 기록이 오늘 또는 어제여야 연속
       const diff0 = dayDiff(dates[0], todayStr);
-      if (diff0 > 1) return 0; // 오늘/어제 기록 없으면 0
-
+      if (diff0 > 1) return 0;
       let streak = 1;
       for (let i = 1; i < dates.length; i++) {
         const diff = dayDiff(dates[i], dates[i - 1]);
@@ -1758,7 +1643,6 @@
       return Math.round((b - a) / 86400000);
     }
 
-    // 연속 UI 업데이트
     function updateStreakUI(streak) {
       currentStreak = streak;
       const badge = document.getElementById('streak-badge');
@@ -1768,10 +1652,7 @@
         badge.classList.remove('hidden');
         badge.classList.add('flex');
         count.innerText = streak + '일 연속';
-        // 7일 이상이면 금색, 10일 이상이면 보라색
-        badge.className = badge.className
-          .replace(/bg-\S+-400/g, '')
-          .replace(/border-\S+-900/g, '');
+        badge.className = badge.className.replace(/bg-\S+-400/g, '').replace(/border-\S+-900/g, '');
         if (streak >= 10) {
           badge.classList.add('bg-purple-500', 'border-slate-900');
         } else if (streak >= 7) {
@@ -1785,24 +1666,18 @@
       }
     }
 
-    // 연속 달성 시 보상 화면 표시
     function showStreakReward(streak, callback) {
       const milestone = STREAK_MILESTONES.slice().reverse().find(m => streak === m.days);
       if (!milestone) { if (callback) callback(); return; }
-
       _streakRewardCallback = callback;
       document.getElementById('streak-reward-emoji').innerText = milestone.emoji;
       document.getElementById('streak-reward-title').innerText = '🔥 ' + milestone.title;
       document.getElementById('streak-reward-badge').innerText = milestone.badge;
       document.getElementById('streak-reward-msg').innerText = milestone.msg;
-
-      // 보상 화면 표시
       document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
       const el = document.getElementById('view-streak-reward');
       el.classList.remove('hidden'); el.classList.add('flex');
       setActiveTab('home');
-
-      // 폭죽!
       setTimeout(() => launchConfetti(), 100);
     }
 
@@ -1810,13 +1685,10 @@
       if (_streakRewardCallback) { _streakRewardCallback(); _streakRewardCallback = null; }
     }
 
-    // ── 폭죽 효과 ──
     function launchConfetti() {
       const colors = ['#FDE047', '#F97316', '#EF4444', '#22C55E', '#3B82F6', '#A855F7', '#EC4899', '#14B8A6'];
       const count = 80;
       const container = document.body;
-
-      // 비 처럼 떨어지는 조각들
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
         el.className = 'confetti-piece';
@@ -1830,8 +1702,6 @@
         container.appendChild(el);
         el.addEventListener('animationend', () => el.remove());
       }
-
-      // 중앙 폭발 버스트
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
       for (let i = 0; i < 30; i++) {
@@ -1854,15 +1724,9 @@
     }
 
     function showMissionFeedback(missionData, count, total) {
-      document.getElementById('feedback-progress').innerText =
-        `🌟 ${count}번째 보물 발견! (${total - count}개 남음)`;
-      document.getElementById('feedback-concept').innerText =
-        missionData ? missionData.conceptExplanation : '';
-
-      // 섹션 전환
-      document.querySelectorAll('.view-section').forEach(el => {
-        el.classList.add('hidden'); el.classList.remove('flex');
-      });
+      document.getElementById('feedback-progress').innerText = `🌟 ${count}번째 보물 발견! (${total - count}개 남음)`;
+      document.getElementById('feedback-concept').innerText = missionData ? missionData.conceptExplanation : '';
+      document.querySelectorAll('.view-section').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex'); });
       const target = document.getElementById('view-mission-feedback');
       target.classList.remove('hidden'); target.classList.add('flex');
       setActiveTab('mission');
@@ -1871,7 +1735,6 @@
     function completeMission() {
       currentMissionCount++;
       if (currentMissionCount < targetMissionCount) {
-        // 배움 쏙쏙 피드백 화면 표시
         showMissionFeedback(currentMissionData, currentMissionCount, targetMissionCount);
       } else {
         const fishPool = getFishPool(targetMissionCount);
@@ -1882,7 +1745,6 @@
         const grade = targetMissionCount >= 3 ? '희귀' : targetMissionCount >= 2 ? '특별' : '일반';
         document.getElementById('reward-fish-name').innerText = `[${grade}] ${randomFishObj.name} 등장!`;
         showView('view-reward');
-        // 등급별 폭죽 효과
         if (targetMissionCount >= 3) {
           setTimeout(() => { launchConfetti(); setTimeout(launchConfetti, 600); }, 100);
         } else if (targetMissionCount >= 2) {
@@ -1897,7 +1759,6 @@
       bookRating = rating;
       const container = document.getElementById('star-rating-container');
       const btns = container.getElementsByTagName('button');
-      
       for (let i = 0; i < btns.length; i++) {
         if (i < rating) {
           btns[i].classList.remove('grayscale', 'opacity-40');
@@ -1909,30 +1770,27 @@
           btns[i].style.transform = 'scale(1)';
         }
       }
-      
-      // 다음 버튼 활성화
       const nextBtn = document.getElementById('rating-next-btn');
       if (nextBtn) {
         nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         nextBtn.disabled = false;
       }
-      
-      // 별 클릭 효과음 대신 간단한 팝 효과
-      btns[rating-1].classList.add('scale-125');
-      setTimeout(() => {
-        if(btns[rating-1]) btns[rating-1].classList.remove('scale-125');
-      }, 200);
+      btns[rating - 1].classList.add('scale-125');
+      setTimeout(() => { if (btns[rating - 1]) btns[rating - 1].classList.remove('scale-125'); }, 200);
     }
+
     function setHeartRating(rating) {
       selfRating = rating;
       const btns = document.getElementById('heart-rating-container').getElementsByTagName('button');
       for (let i = 0; i < btns.length; i++) btns[i].classList.toggle('grayscale', i >= rating);
     }
+
     function goToSelfRating() {
       if (bookRating === 0) { showModal('잠깐만요!', '별점을 눌러 책이 얼마나 재미있었는지 알려주세요! ⭐', '🧐'); return; }
       selfRating = 5; // 하트 화면 삭제 - 기본값 5로 설정
       finishRatingFlow();
     }
+
     function finishRatingFlow() {
       const fishIcon = pendingFish || '🐠';
       pendingFish = null;
@@ -1944,24 +1802,18 @@
         questionTitle: selectedQuestionData ? selectedQuestionData.title : '',
         stars: bookRating, hearts: selfRating, fish: fishIcon
       };
-
-      // ★ 즉시 어항에 새 물고기 추가 (낙관적 업데이트 - 빠른 반응)
       myFish.push({ icon: fishIcon, book: currentBook });
       totalBooks += 1;
       document.getElementById('custom-modal').classList.add('hidden');
       goHome(fishIcon);
-
-      // 저장 후 시트에서 전체 기록 다시 불러와 어항 갱신 (과거 물고기 포함)
       saveRecordToSheets(data, () => {
         loadHistory(historyArray => {
           myFish = buildFishFromData(historyArray);
           totalBooks = historyArray.length;
           const streak = calculateStreak(historyArray);
           updateStreakUI(streak);
-          // 어항 조용히 갱신 (화면 전환 없이)
           renderAquarium();
           document.getElementById('total-books-count').innerText = totalBooks;
-          // 연속 달성 보상
           if ([3, 7, 10].includes(streak)) {
             showStreakReward(streak, () => goHome());
           }
@@ -1977,12 +1829,12 @@
         btn.className = 'bg-white border-4 border-slate-900 rounded-[2rem] p-5 flex flex-col items-start gap-3 active:scale-95 transition-all hover:-translate-y-1 hover:bg-yellow-50 shadow-hard-sm pop-animation';
         btn.onclick = () => selectQuestion(idx);
         btn.innerHTML = `
-      <div class="flex items-center gap-2 w-full">
-        <span class="text-4xl flex-shrink-0">${q.icon}</span>
-        <span class="text-base font-black text-blue-500 bg-blue-50 px-3 py-1 rounded-full border-2 border-blue-100 flex-shrink-0">${q.title}</span>
-      </div>
-      <span class="text-2xl font-black text-slate-800 break-keep text-left leading-snug w-full">${q.question}</span>
-    `;
+          <div class="flex items-center gap-2 w-full">
+            <span class="text-4xl flex-shrink-0">${q.icon}</span>
+            <span class="text-base font-black text-blue-500 bg-blue-50 px-3 py-1 rounded-full border-2 border-blue-100 flex-shrink-0">${q.title}</span>
+          </div>
+          <span class="text-2xl font-black text-slate-800 break-keep text-left leading-snug w-full">${q.question}</span>
+        `;
         container.appendChild(btn);
       });
     }
@@ -1990,14 +1842,11 @@
     function selectQuestion(idx) {
       selectedQuestionData = reflectionQuestions[idx];
       document.getElementById('question-display-title').innerHTML = `<span class="text-purple-600">[${selectedQuestionData.title}]</span><br>${selectedQuestionData.question}`;
-      // 예시 1개만 표시
       const ex = selectedQuestionData.examples[0] || '';
       document.getElementById('sentence-examples-list').innerHTML =
         `<div class="bg-purple-50 border-2 border-purple-200 rounded-xl px-4 py-2 text-lg text-slate-600 font-bold break-keep text-center">✨ 예) ${ex}</div>`;
-      // 말한 내용 숨기기
       document.getElementById('sentence-stt-container').classList.add('hidden');
       document.getElementById('sentence-stt-text').innerText = '';
-      document.getElementById('sentence-text-input').value = '';
       document.getElementById('sentence-text-input').value = '';
       document.getElementById('sentence-mic-icon').innerText = '🎤';
       document.getElementById('sentence-mic-label').innerText = '마이크 켜고 말하기';
@@ -2019,12 +1868,10 @@
       if (mainView) { mainView.classList.remove('hidden'); mainView.classList.add('flex'); }
       const titleEl = document.getElementById('aquarium-title-display');
       if (titleEl) titleEl.innerText = (currentBook && currentBook !== '나의 책') ? `나의 책: ${currentBook}` : '나의 어항';
-      // 전역 뱃지 업데이트
       const gName = document.getElementById('global-user-name');
       const gBook = document.getElementById('global-book-name');
       if (gName) gName.innerText = currentUser + ' 탐험가!';
       if (gBook) gBook.innerText = currentBook || '나의 책';
-      // 칭호 뱃지 업데이트
       const milestone = MILESTONES.slice().reverse().find(m => totalBooks >= m.books);
       const titleBadge = document.getElementById('user-title-badge');
       const titleText = document.getElementById('user-title-text');
@@ -2054,7 +1901,6 @@
       const floorDeco = document.getElementById('aquarium-floor-deco');
       if (!fishZone || !aquariumBg) return;
       const stageInfo = getStageInfo(totalBooks);
-      // 배경 + 모양 교체
       AQUARIUM_STAGES.forEach((s, i) => {
         aquariumBg.classList.remove('aquarium-stage-' + (i + 1));
         aquariumBg.classList.remove('aquarium-shape-' + (i + 1));
@@ -2063,43 +1909,26 @@
       aquariumBg.classList.add(stageInfo.shape);
       if (stageBadge) stageBadge.innerText = stageInfo.label;
       if (floorDeco) floorDeco.innerHTML = stageInfo.floor;
-
-      // 단계별 장식 추가
       const bgZone = document.getElementById('fish-zone');
       const decos = stageInfo.decos || [];
       decos.forEach(d => {
         const el = document.createElement('div');
-        const anim = d.speed > 0
-          ? `float ${d.speed}s ease-in-out infinite alternate`
-          : 'none';
-        el.style.cssText = `
-      position:absolute; font-size:${d.size}rem;
-      opacity:${d.opacity || 0.18};
-      left:${d.x}%; top:${d.y}%;
-      z-index:5; pointer-events:none;
-      animation:${anim};
-    `;
+        const anim = d.speed > 0 ? `float ${d.speed}s ease-in-out infinite alternate` : 'none';
+        el.style.cssText = `position:absolute; font-size:${d.size}rem; opacity:${d.opacity || 0.18}; left:${d.x}%; top:${d.y}%; z-index:5; pointer-events:none; animation:${anim};`;
         el.innerText = d.icon;
         bgZone.appendChild(el);
       });
-
-      // specialFish (기존 유지)
       const specialFish = stageInfo.specialFish || [];
       specialFish.forEach((icon, idx) => {
         const bg = document.createElement('div');
-        bg.style.cssText = `position:absolute; font-size:${1.8 + idx * 0.2}rem; opacity:0.12;
-      bottom:${18 + idx * 10}%; left:${8 + idx * 28}%; z-index:4; pointer-events:none;
-      animation: float ${3 + idx}s ease-in-out infinite alternate;`;
+        bg.style.cssText = `position:absolute; font-size:${1.8 + idx * 0.2}rem; opacity:0.12; bottom:${18 + idx * 10}%; left:${8 + idx * 28}%; z-index:4; pointer-events:none; animation: float ${3 + idx}s ease-in-out infinite alternate;`;
         bg.innerText = icon;
         bgZone.appendChild(bg);
       });
       fishZone.innerHTML = '';
-
-      // 기존 물고기 렌더링 (새 물고기 제외)
       const fishList = newFishIcon
         ? myFish.filter(f => f.icon !== newFishIcon || f._shown).slice(-19)
         : myFish.slice(-20);
-
       fishList.forEach(fishData => {
         const fishEl = document.createElement('div');
         fishEl.classList.add('fish');
@@ -2110,23 +1939,19 @@
         fishEl.innerHTML = `<div class="fish-title" style="animation-duration:${speed}s">${fishData.book}</div><div class="fish-icon">${fishData.icon}</div>`;
         fishZone.appendChild(fishEl);
       });
-
-      // ★ 새 물고기 입장 애니메이션
       if (newFishIcon) {
         setTimeout(() => {
           const fishEl = document.createElement('div');
           fishEl.classList.add('fish', 'fish-new-entry');
           const speed = 10 + Math.random() * 6;
-          const landX = 20 + Math.random() * 60; // 착지 위치
+          const landX = 20 + Math.random() * 60;
           fishEl.style.left = landX + '%';
           fishEl.style.top = (25 + Math.random() * 45) + '%';
           fishEl.innerHTML = `
-        <div class="fish-title" style="animation-duration:${speed}s">${currentBook}</div>
-        <div class="fish-icon" style="font-size:3rem">${newFishIcon}</div>
-      `;
+            <div class="fish-title" style="animation-duration:${speed}s">${currentBook}</div>
+            <div class="fish-icon" style="font-size:3rem">${newFishIcon}</div>
+          `;
           fishZone.appendChild(fishEl);
-
-          // 입장 완료 후 일반 swim으로 전환
           setTimeout(() => {
             fishEl.classList.remove('fish-new-entry');
             fishEl.style.animationDuration = `${speed}s, 2s`;
@@ -2153,37 +1978,38 @@
           const pageDiv = document.createElement('div');
           pageDiv.className = 'album-page bg-white border-[6px] border-slate-900 rounded-[3rem] p-8 mb-16 shadow-xl relative flex flex-col gap-6 w-full max-w-2xl mx-auto overflow-hidden';
           pageDiv.innerHTML = `
-        <div class="flex justify-between items-center border-b-4 border-dashed border-slate-100 pb-4">
-          <span class="text-xl font-black text-blue-500">💎 보물 탐험 앨범 — ${currentUser}</span>
-          <span class="bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full">${pageIdx} PAGE</span>
-        </div>
-        <div class="grid grid-cols-2 gap-4 flex-1"></div>
-        <div class="text-center text-slate-300 text-xs font-bold mt-2 italic">우리들의 소중한 독서 보물창고 ✨</div>
-      `;
+            <div class="flex justify-between items-center border-b-4 border-dashed border-slate-100 pb-4">
+              <span class="text-xl font-black text-blue-500">💎 보물 탐험 앨범 — ${currentUser}</span>
+              <span class="bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full">${pageIdx} PAGE</span>
+            </div>
+            <div class="grid grid-cols-2 gap-4 flex-1"></div>
+            <div class="text-center text-slate-300 text-xs font-bold mt-2 italic">우리들의 소중한 독서 보물창고 ✨</div>
+          `;
           const grid = pageDiv.querySelector('.grid');
           chunk.forEach(record => {
-            const dateStr = String(record.date || '').split('T')[0].replace(/-/g, '.');
+            // ✅ 수정: 앞 10자리만 잘라서 날짜만 표시 (ISO 문자열 전체 출력 방지)
+            const dateStr = String(record.date || '').slice(0, 10).replace(/-/g, '.');
             const card = document.createElement('div');
             card.className = 'bg-slate-50 border-[3px] border-slate-900 rounded-[2rem] p-4 flex flex-col gap-2 relative overflow-hidden h-full min-h-[220px]';
             card.innerHTML = `
-          <div class="flex justify-between items-start mb-1">
-            <span class="text-[10px] font-black text-slate-400 bg-white border-2 border-slate-100 px-2 py-0.5 rounded-full">${dateStr}</span>
-            <span class="text-xl">${record.fish || '🐠'}</span>
-          </div>
-          <div class="leading-tight">
-            <div class="text-xs font-bold text-blue-400 mb-0.5">📖 책 제목</div>
-            <div class="text-sm font-black text-slate-800 line-clamp-1">${record.book || '제목 없음'}</div>
-          </div>
-          <div class="bg-white border-2 border-purple-100 rounded-xl p-2.5 flex-1 flex flex-col justify-center">
-            <div class="text-[9px] font-bold text-purple-300 mb-1">💬 생각 보물 [${record.questionTitle || ''}]</div>
-            <p class="text-[13px] font-black text-slate-700 leading-snug line-clamp-3 break-keep">"${record.sentence || '정말 재미있었어요!'}"</p>
-          </div>
-          <div class="flex justify-between items-center bg-white border-2 border-slate-100 rounded-lg px-3 py-1.5 mt-1">
-            <div class="text-[10px] tracking-tighter">${'⭐'.repeat(Number(record.stars) || 0)}</div>
-            <div class="w-[1px] h-3 bg-slate-100"></div>
-            <div class="text-[10px] tracking-tighter">${'❤️'.repeat(Number(record.hearts) || 0)}</div>
-          </div>
-        `;
+              <div class="flex justify-between items-start mb-1">
+                <span class="text-[10px] font-black text-slate-400 bg-white border-2 border-slate-100 px-2 py-0.5 rounded-full">${dateStr}</span>
+                <span class="text-xl">${record.fish || '🐠'}</span>
+              </div>
+              <div class="leading-tight">
+                <div class="text-xs font-bold text-blue-400 mb-0.5">📖 책 제목</div>
+                <div class="text-sm font-black text-slate-800 line-clamp-1">${record.book || '제목 없음'}</div>
+              </div>
+              <div class="bg-white border-2 border-purple-100 rounded-xl p-2.5 flex-1 flex flex-col justify-center">
+                <div class="text-[9px] font-bold text-purple-300 mb-1">💬 생각 보물 [${record.questionTitle || ''}]</div>
+                <p class="text-[13px] font-black text-slate-700 leading-snug line-clamp-3 break-keep">"${record.sentence || '정말 재미있었어요!'}"</p>
+              </div>
+              <div class="flex justify-between items-center bg-white border-2 border-slate-100 rounded-lg px-3 py-1.5 mt-1">
+                <div class="text-[10px] tracking-tighter">${'⭐'.repeat(Number(record.stars) || 0)}</div>
+                <div class="w-[1px] h-3 bg-slate-100"></div>
+                <div class="text-[10px] tracking-tighter">${'❤️'.repeat(Number(record.hearts) || 0)}</div>
+              </div>
+            `;
             grid.appendChild(card);
           });
           for (let j = chunk.length; j < pageSize; j++) {
@@ -2197,30 +2023,12 @@
       });
     }
 
-    // 새 책으로 다시 시작
     function showRewardGuide() {
-      const msg = `
-🌱 1개 미션 → 🐠 일반 물고기
-(니모, 복어, 꽃게 등)
-
-⭐ 2개 미션 → 🐙 특별 물고기
-(문어, 돌고래, 물개 등)
-
-🔥 3개 미션 → 🐳 희귀 물고기
-(고래, 상어, 용 등) + 🎉 폭죽!
-
-📚 책을 읽을수록 어항이 성장해요!
-물통 → 어항 → 산호 어항 → 큰 어항 → 🏆 전설의 수족관
-
-🔥 매일 읽으면 연속 기록 보상!
-3일 ⭐ / 7일 🏆 / 10일 🦄
-  `.trim();
-      showModal('🌟 성장 비법', msg, '🏆');
+      document.getElementById('reward-guide-modal').classList.remove('hidden');
     }
 
     function startNewBook() {
-      // 상태 초기화
-      currentBook = '';  // 책 제목 초기화
+      currentBook = '';
       bookRating = 0;
       selfRating = 0;
       pendingFish = null;
@@ -2228,52 +2036,19 @@
       selectedQuestionData = null;
       window._todaySentence = '';
       accumulatedTranscript = '';
-
-      // 책 제목 입력칸 비우기
       const bookInput = document.getElementById('initial-book-input');
       if (bookInput) bookInput.value = '';
-
-      // 별점/하트 초기화
       const starBtns = document.getElementById('star-rating-container');
-      const heartBtns = document.getElementById('heart-rating-container');
-      if (starBtns) [...starBtns.getElementsByTagName('button')].forEach(b => b.classList.add('grayscale'));
-      if (heartBtns) [...heartBtns.getElementsByTagName('button')].forEach(b => b.classList.add('grayscale'));
-
-      // 책 제목 입력 화면으로
-      showView('view-book-input-section');
-    }
-
-    function saveCalendar() {
-      const pages = document.querySelectorAll('.album-page');
-      if (pages.length === 0) {
-        showModal('알림', '먼저 기록 탭에서 일지를 불러와 주세요!', '📖');
-        return;
-      }
-      showModal('앨범 저장', '모든 앨범 페이지를 사진으로 저장할까요?', '📸', true, async () => {
-        try {
-          for (let i = 0; i < pages.length; i++) {
-            const canvas = await html2canvas(pages[i], {
-              scale: 2,
-              backgroundColor: '#eff6ff',
-              useCORS: true,
-              allowTaint: true,
-              logging: false
-            });
-            const dataUrl = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = `${currentUser}_보물앨범_${i + 1}p.png`;
-            link.href = dataUrl;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            await new Promise(r => setTimeout(r, 800));
-          }
-          showModal('저장 완료!', '앨범이 저장되었습니다! 🎉', '📸');
-        } catch (e) {
-          console.error('저장 오류:', e);
-          showModal('저장 오류', '이미지 저장에 실패했어요. 크롬 브라우저에서 다시 시도해주세요.', '⚠️');
-        }
+      if (starBtns) [...starBtns.getElementsByTagName('button')].forEach(b => {
+        b.classList.add('grayscale', 'opacity-40');
+        b.style.transform = 'scale(1)';
       });
+      const nextBtn = document.getElementById('rating-next-btn');
+      if (nextBtn) {
+        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        nextBtn.disabled = true;
+      }
+      showView('view-book-input-section');
     }
 
     function initSTT() {
@@ -2307,7 +2082,6 @@
               nextBtn.innerText = '🏃 다음 미션';
               nextBtn.className = 'flex-1 bg-orange-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-white active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 pop-animation';
               nextBtn.onclick = () => { if (!accumulatedTranscript.trim()) accumulatedTranscript = display; stopSTT(); completeMission(); };
-              // 다시 하기 버튼 표시
               const retryBtn = document.getElementById('btn-retry-stt');
               if (retryBtn) retryBtn.classList.remove('hidden');
             }
@@ -2317,12 +2091,8 @@
       sttInitialized = true; return true;
     }
 
-    // 다시 하기: STT 결과 초기화 후 다시 녹음
     function retryStt() {
-      // 누적 텍스트 초기화
       accumulatedTranscript = '';
-
-      // STT 결과 창 초기화
       const ctr = document.getElementById('stt-result-container');
       const txt = document.getElementById('stt-result-text');
       if (txt) txt.innerText = '🎤 마이크를 누르고 보물의 이름을 말해봐요!';
@@ -2330,8 +2100,6 @@
         ctr.classList.remove('bg-green-100', 'border-green-400', 'animate-pulse');
         ctr.classList.add('bg-blue-100', 'border-blue-400');
       }
-
-      // 다시 하기 버튼 숨기고 다른 미션 버튼 복원
       document.getElementById('btn-retry-stt').classList.add('hidden');
       const micIcon = document.getElementById('stt-mic-icon');
       const micLabel = document.getElementById('stt-mic-label');
@@ -2343,8 +2111,6 @@
         nextBtn.className = 'flex-1 bg-lime-400 border-[3px] border-slate-900 rounded-xl py-3 text-2xl font-bold text-slate-900 active:scale-95 transition-all hover:-translate-y-1 flex items-center justify-center gap-2';
         nextBtn.onclick = () => startMission();
       }
-
-      // STT 재시작
       if (recognition) recognition.abort();
       isRecording = false;
       setTimeout(() => toggleSTT(), 200);
@@ -2380,7 +2146,6 @@
         btn.classList.remove('recording-active', 'bg-red-500'); btn.classList.add('bg-purple-400');
         if (micIcon) micIcon.innerText = '🎤';
         if (micLabel) micLabel.innerText = accumulatedTranscript.trim() ? '다시 말하기' : '마이크 켜고 말하기';
-        // 버튼 텍스트는 span으로 처리 (innerText 건드리지 않음)
         ctr.classList.remove('hidden', 'bg-blue-100', 'border-blue-400', 'animate-pulse');
         ctr.classList.add('bg-green-100', 'border-green-400');
         if (accumulatedTranscript.trim()) {
@@ -2421,7 +2186,6 @@
         }
         const display = final || interim;
         if (display) {
-          // STT 결과를 바로 textarea에 직접 입력
           document.getElementById('sentence-text-input').value = display;
           document.getElementById('sentence-stt-text').innerText = display;
         }
@@ -2440,30 +2204,23 @@
       document.getElementById('btn-sentence-mic').classList.replace('bg-purple-400', 'bg-red-500');
     }
 
-    // ── 자동 스케일: 뷰포트에 맞게 앱 전체 비율 조정 ──
+    // ── 자동 스케일 ──
     (function () {
-      const BASE_W = 1100;  // scale-wrapper 너비
-      const BASE_H = 730;   // scale-wrapper 높이
-      const TAB_W = 104;   // 탭 너비 (오른쪽 절대 배치)
+      const BASE_W = 1100;
+      const BASE_H = 730;
       const MIN_SCALE = 0.4;
       const MAX_SCALE = 2.0;
 
       function applyScale() {
         const wrapper = document.getElementById('scale-wrapper');
         if (!wrapper) return;
-
         const vw = window.innerWidth;
         const vh = window.innerHeight;
-
-        // 탭이 scale-wrapper 안에 있으므로 wrapper 전체 기준
         const scaleW = vw / BASE_W;
         const scaleH = vh / BASE_H;
         const scale = Math.min(scaleW, scaleH, MAX_SCALE);
         const finalScale = Math.max(scale, MIN_SCALE);
-
         wrapper.style.transform = 'scale(' + finalScale + ')';
-
-        // 활성 탭 재적용
         var activeId = ['login', 'mission', 'home', 'calendar'].find(function (key) {
           var el = document.getElementById('tab-' + key);
           return el && el.style.zIndex === '10';
