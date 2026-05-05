@@ -613,85 +613,185 @@
 
         <div class="w-full flex-1 min-h-0 relative overflow-hidden">
 
+          <!-- ── 슬라이드 1: 소리 듣기 ── -->
           <div id="guide-slide-1"
-            class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300">
-            <div
-              class="inline-flex items-center justify-center w-16 h-16 bg-orange-500 rounded-2xl text-white text-4xl font-black">
-              1</div>
-            <h3 class="text-4xl font-black text-slate-900 text-center break-keep leading-tight">먼저 소리를 들어요!</h3>
-            <p class="text-2xl font-bold text-slate-600 text-center break-keep">소리 듣기 버튼을 누르면<br>미션을 들을 수 있어요.</p>
-            <div
-              class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-4 shadow-lg flex justify-center gap-4">
-              <div
-                class="w-16 h-16 bg-orange-400 border-3 border-slate-900 rounded-full flex items-center justify-center text-4xl shadow-md">
-                📢</div>
-              <div
-                class="w-16 h-16 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center text-4xl">
-                🎤</div>
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300">
+
+            <!-- 좌: 설명 텍스트 -->
+            <div class="flex-1 flex flex-col justify-center gap-5 min-w-0">
+              <div class="inline-flex items-center gap-3">
+                <div class="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center text-3xl font-black text-white flex-shrink-0">1</div>
+                <h3 class="text-4xl font-black text-slate-900 leading-tight break-keep">먼저 소리를 들어요!</h3>
+              </div>
+              <p class="text-2xl font-bold text-slate-600 break-keep leading-relaxed">
+                미션 화면에서 <span class="text-orange-500 font-black">📢 소리 듣기</span> 버튼을 누르면<br>
+                선생님 목소리로 미션 내용을 들려줘요.
+              </p>
+              <p class="text-xl font-bold text-slate-400 break-keep leading-relaxed">
+                🎤 마이크 버튼을 누르면 내 목소리로<br>답을 말할 수도 있어요!
+              </p>
+            </div>
+
+            <!-- 우: 이미지 (미션 화면 미리보기) -->
+            <div class="flex-1 flex items-center justify-center min-w-0">
+              <div class="w-full max-w-sm bg-white border-4 border-slate-900 rounded-3xl p-5 shadow-lg flex flex-col gap-4">
+                <!-- 미션 카드 mock -->
+                <div class="flex items-center gap-3 bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-4 py-3">
+                  <span class="text-2xl flex-shrink-0">📖</span>
+                  <span class="text-lg font-black text-slate-700">마침표(.)가 있는 문장을 찾아봐요!</span>
+                </div>
+                <!-- 버튼 row -->
+                <div class="flex gap-3 items-center justify-center">
+                  <div class="w-16 h-16 bg-orange-400 border-[3px] border-slate-900 rounded-full flex flex-col items-center justify-center shadow-md">
+                    <span class="text-3xl">📢</span>
+                    <span class="text-xs font-black text-white mt-0.5">듣기</span>
+                  </div>
+                  <div class="flex-1 bg-purple-400 border-[3px] border-slate-900 rounded-2xl py-3 flex items-center justify-center gap-2">
+                    <span class="text-2xl">🎤</span>
+                    <span class="text-base font-black text-white">말하기</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
+          <!-- ── 슬라이드 2: 책에서 찾기 ── -->
           <div id="guide-slide-2"
-            class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
-            <div
-              class="inline-flex items-center justify-center w-16 h-16 bg-blue-500 rounded-2xl text-white text-4xl font-black">
-              2</div>
-            <h3 class="text-4xl font-black text-slate-900 text-center break-keep leading-tight">책에서 찾아봐요!</h3>
-            <p class="text-2xl font-bold text-slate-600 text-center break-keep">📖 책을 펼쳐서<br>미션에 맞는 보물을 찾아요.</p>
-            <div class="w-full max-w-xs bg-white border-4 border-slate-200 rounded-3xl p-4 shadow-lg">
-              <div class="flex items-center gap-3 bg-blue-50 border-2 border-blue-200 rounded-xl px-4 py-3">
-                <span class="text-4xl flex-shrink-0">📖</span>
-                <p class="text-2xl font-black text-slate-700">미션: 마침표(.) 찾기</p>
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300 opacity-0 translate-x-full">
+
+            <!-- 좌: 설명 텍스트 -->
+            <div class="flex-1 flex flex-col justify-center gap-5 min-w-0">
+              <div class="inline-flex items-center gap-3">
+                <div class="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center text-3xl font-black text-white flex-shrink-0">2</div>
+                <h3 class="text-4xl font-black text-slate-900 leading-tight break-keep">책에서 찾아봐요!</h3>
+              </div>
+              <p class="text-2xl font-bold text-slate-600 break-keep leading-relaxed">
+                미션 내용을 듣고 나서<br>
+                <span class="text-blue-600 font-black">📖 책을 펼쳐</span> 미션에 맞는<br>
+                보물 문장을 직접 찾아봐요.
+              </p>
+              <p class="text-xl font-bold text-slate-400 break-keep leading-relaxed">
+                💡 힌트 박스를 보면 어떻게 찾는지<br>
+                친절하게 알려줘요!
+              </p>
+            </div>
+
+            <!-- 우: 이미지 (책 + 미션 카드) -->
+            <div class="flex-1 flex items-center justify-center min-w-0">
+              <div class="w-full max-w-sm bg-white border-4 border-slate-900 rounded-3xl p-5 shadow-lg flex flex-col gap-4">
+                <div class="flex items-center gap-3 bg-blue-50 border-2 border-blue-300 rounded-2xl px-4 py-3">
+                  <span class="text-3xl flex-shrink-0">📖</span>
+                  <div>
+                    <p class="text-base font-black text-blue-700">미션</p>
+                    <p class="text-lg font-black text-slate-800">마침표(.) 찾기</p>
+                  </div>
+                </div>
+                <div class="bg-yellow-50 border-2 border-dashed border-yellow-400 rounded-xl px-4 py-3">
+                  <p class="text-sm font-black text-yellow-600 mb-1">💡 힌트</p>
+                  <p class="text-base font-bold text-slate-700">문장이 끝나는 곳에 있는<br>작은 점(.)을 찾아봐요!</p>
+                </div>
+                <div class="flex items-center gap-3 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3">
+                  <span class="text-2xl">📚</span>
+                  <p class="text-base font-bold text-slate-500">책 펼쳐서 보물 탐색 중...</p>
+                </div>
               </div>
             </div>
           </div>
 
+          <!-- ── 슬라이드 3: 버튼 선택 ── -->
           <div id="guide-slide-3"
-            class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
-            <div
-              class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-2xl text-white text-4xl font-black">
-              3</div>
-            <h3 class="text-4xl font-black text-slate-900 text-center break-keep leading-tight">버튼을 눌러요!</h3>
-            <p class="text-2xl font-bold text-slate-600 text-center break-keep">찾았으면 🟠 <span
-                class="text-orange-500 font-black">다음 미션</span><br>못 찾았으면 🟢 <span class="text-lime-600 font-black">다른
-                미션</span></p>
-            <div class="w-full max-w-xs flex flex-col gap-2">
-              <div
-                class="bg-orange-400 border-[3px] border-slate-900 rounded-2xl py-3 text-center text-2xl font-black text-white">
-                🏃 다음 미션 — 찾았을 때</div>
-              <div
-                class="bg-lime-400 border-[3px] border-slate-900 rounded-2xl py-3 text-center text-2xl font-black text-slate-900">
-                🔄 다른 미션 — 못 찾았을 때</div>
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300 opacity-0 translate-x-full">
+
+            <!-- 좌: 설명 텍스트 -->
+            <div class="flex-1 flex flex-col justify-center gap-5 min-w-0">
+              <div class="inline-flex items-center gap-3">
+                <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center text-3xl font-black text-white flex-shrink-0">3</div>
+                <h3 class="text-4xl font-black text-slate-900 leading-tight break-keep">버튼을 눌러요!</h3>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-start gap-3 bg-orange-50 border-2 border-orange-200 rounded-2xl px-4 py-3">
+                  <span class="text-2xl flex-shrink-0">🟠</span>
+                  <div>
+                    <p class="text-xl font-black text-orange-600">보물을 찾았을 때</p>
+                    <p class="text-lg font-bold text-slate-600">→ <span class="text-orange-500 font-black">🏃 다음 미션</span> 버튼!</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 bg-lime-50 border-2 border-lime-200 rounded-2xl px-4 py-3">
+                  <span class="text-2xl flex-shrink-0">🟢</span>
+                  <div>
+                    <p class="text-xl font-black text-lime-700">못 찾았을 때</p>
+                    <p class="text-lg font-bold text-slate-600">→ <span class="text-lime-600 font-black">🔄 다른 미션</span> 버튼!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 우: 이미지 (버튼 mock-up) -->
+            <div class="flex-1 flex items-center justify-center min-w-0">
+              <div class="w-full max-w-sm bg-white border-4 border-slate-900 rounded-3xl p-5 shadow-lg flex flex-col gap-4">
+                <p class="text-lg font-black text-slate-500 text-center">보물을 찾았나요?</p>
+                <div class="bg-orange-400 border-[3px] border-slate-900 rounded-2xl py-5 text-center flex items-center justify-center gap-2 shadow-md">
+                  <span class="text-3xl">🏃</span>
+                  <span class="text-2xl font-black text-white">다음 미션</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-slate-400">
+                  <div class="flex-1 h-px bg-slate-200"></div>
+                  <span class="text-base font-bold">못 찾았으면</span>
+                  <div class="flex-1 h-px bg-slate-200"></div>
+                </div>
+                <div class="bg-lime-400 border-[3px] border-slate-900 rounded-2xl py-4 text-center flex items-center justify-center gap-2">
+                  <span class="text-3xl">🔄</span>
+                  <span class="text-2xl font-black text-slate-900">다른 미션</span>
+                </div>
+              </div>
             </div>
           </div>
 
+          <!-- ── 슬라이드 4: 보상 ── -->
           <div id="guide-slide-4"
-            class="guide-slide absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 transition-all duration-300 opacity-0 translate-x-full">
-            <div
-              class="inline-flex items-center justify-center w-16 h-16 bg-purple-500 rounded-2xl text-white text-4xl font-black flex-shrink-0">
-              🎁</div>
-            <h3 class="text-4xl font-black text-slate-900 text-center flex-shrink-0">보물을 모아요!</h3>
-            <div
-              class="w-full max-w-sm bg-white border-4 border-slate-200 rounded-2xl p-4 shadow-lg flex flex-col gap-2.5 flex-shrink-0">
-              <div class="flex items-center gap-3 bg-blue-50 border-2 border-blue-200 rounded-xl px-4 py-3">
-                <span class="text-3xl flex-shrink-0">🐠</span>
-                <div>
-                  <p class="text-xl font-black text-slate-700">미션 완료 → 물고기 획득!</p>
-                  <p class="text-sm font-bold text-slate-500">어항이 점점 풍성해져요</p>
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300 opacity-0 translate-x-full">
+
+            <!-- 좌: 설명 텍스트 -->
+            <div class="flex-1 flex flex-col justify-center gap-4 min-w-0">
+              <div class="inline-flex items-center gap-3">
+                <div class="w-14 h-14 bg-purple-500 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🎁</div>
+                <h3 class="text-4xl font-black text-slate-900 leading-tight break-keep">보물을 모아요!</h3>
+              </div>
+              <p class="text-2xl font-bold text-slate-600 break-keep leading-relaxed">
+                미션을 완료하면 <span class="text-purple-600 font-black">물고기 친구</span>가<br>
+                어항에 찾아와요!
+              </p>
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-2 text-xl font-bold text-slate-600">
+                  <span>📚</span> 책을 많이 읽을수록 어항이 성장해요
+                </div>
+                <div class="flex items-center gap-2 text-xl font-bold text-slate-600">
+                  <span>🔥</span> 매일 읽으면 연속 기록 보상!
+                </div>
+                <div class="flex items-center gap-2 text-xl font-bold text-slate-600">
+                  <span>🌱</span> 1개 → <span class="text-yellow-600">⭐ 2개</span> → <span class="text-purple-600">🔥 3개</span> 미션으로 더 희귀한 물고기!
                 </div>
               </div>
-              <div class="flex items-center gap-3 bg-orange-50 border-2 border-orange-200 rounded-xl px-4 py-3">
-                <span class="text-3xl flex-shrink-0">🔥</span>
-                <div>
-                  <p class="text-xl font-black text-slate-700">매일 읽으면 연속 기록!</p>
-                  <p class="text-sm font-bold text-slate-500">3일·7일·10일 특별 보상 🏆</p>
+            </div>
+
+            <!-- 우: 이미지 (어항 + 물고기 보상 mock) -->
+            <div class="flex-1 flex items-center justify-center min-w-0">
+              <div class="w-full max-w-sm flex flex-col gap-3">
+                <!-- 물고기 보상 카드 -->
+                <div class="bg-white border-4 border-slate-900 rounded-3xl p-4 shadow-lg flex flex-col items-center gap-2">
+                  <p class="text-lg font-black text-orange-500">🎉 미션 성공!</p>
+                  <div class="text-8xl">🐠</div>
+                  <div class="bg-white border-2 border-slate-900 px-5 py-1.5 rounded-full text-lg font-black text-slate-800">니모 등장!</div>
                 </div>
-              </div>
-              <div class="flex items-center gap-3 bg-purple-50 border-2 border-purple-200 rounded-xl px-4 py-3">
-                <span class="text-3xl flex-shrink-0">🐟</span>
-                <div>
-                  <p class="text-xl font-black text-slate-700">책 읽을수록 어항이 성장!</p>
-                  <p class="text-sm font-bold text-slate-500">물통 → 어항 → 수족관 변신 🏆</p>
+                <!-- 어항 성장 -->
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl px-4 py-3 flex items-center justify-between">
+                  <span class="text-xl">🪣</span>
+                  <span class="text-slate-400 font-black text-lg">→</span>
+                  <span class="text-2xl">🐟</span>
+                  <span class="text-slate-400 font-black text-lg">→</span>
+                  <span class="text-2xl">🪸</span>
+                  <span class="text-slate-400 font-black text-lg">→</span>
+                  <span class="text-3xl">🏆</span>
                 </div>
               </div>
             </div>
@@ -970,10 +1070,29 @@
 
       <!-- [화면 8-0] 독서 질문 선택 -->
       <section id="view-question-select"
-        class="view-section hidden w-full flex-1 flex flex-col items-center justify-start pt-8 px-8 bg-orange-50 z-10 overflow-hidden">
+        class="view-section hidden w-full flex-1 flex flex-col items-center justify-start pt-4 px-8 bg-orange-50 z-10 overflow-hidden">
+
+        <!-- 상단 제목 -->
         <h2
-          class="text-4xl font-black text-slate-900 mb-6 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl shadow-sm">
+          class="text-4xl font-black text-slate-900 mb-4 bg-white px-8 py-3 border-4 border-slate-900 rounded-2xl shadow-sm flex-shrink-0">
           어떤 생각 보물을 기록해 볼까요? 🤩</h2>
+
+        <!-- 별점 영역 -->
+        <div class="w-full max-w-4xl bg-white border-4 border-yellow-400 rounded-3xl px-8 py-4 mb-4 flex-shrink-0 flex items-center gap-6 shadow-sm">
+          <div class="flex flex-col items-start gap-1 flex-shrink-0">
+            <p class="text-xl font-black text-slate-700">📚 이 책은 얼마나 재미있었나요?</p>
+            <p id="qs-rating-hint" class="text-base font-bold text-orange-400">⬇ 별을 눌러 주세요! 질문 카드를 고를 수 있어요.</p>
+          </div>
+          <div class="flex gap-3 ml-auto" id="qs-star-container">
+            <button onclick="setQSStarRating(1)" class="qs-star text-5xl grayscale opacity-40 transition-all transform hover:scale-125 active:scale-90">⭐</button>
+            <button onclick="setQSStarRating(2)" class="qs-star text-5xl grayscale opacity-40 transition-all transform hover:scale-125 active:scale-90">⭐</button>
+            <button onclick="setQSStarRating(3)" class="qs-star text-5xl grayscale opacity-40 transition-all transform hover:scale-125 active:scale-90">⭐</button>
+            <button onclick="setQSStarRating(4)" class="qs-star text-5xl grayscale opacity-40 transition-all transform hover:scale-125 active:scale-90">⭐</button>
+            <button onclick="setQSStarRating(5)" class="qs-star text-5xl grayscale opacity-40 transition-all transform hover:scale-125 active:scale-90">⭐</button>
+          </div>
+        </div>
+
+        <!-- 질문 카드 목록 -->
         <div id="question-list-container"
           class="grid grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl p-2 overflow-y-auto custom-scroll pb-10"></div>
       </section>
@@ -1753,7 +1872,57 @@
       }
     }
 
-    function addFishToAquarium() { renderQuestionSelect(); showView('view-question-select'); }
+    function addFishToAquarium() {
+      // 별점 초기화
+      bookRating = 0;
+      const stars = document.querySelectorAll('.qs-star');
+      stars.forEach(s => {
+        s.classList.add('grayscale', 'opacity-40');
+        s.style.transform = 'scale(1)';
+      });
+      const hint = document.getElementById('qs-rating-hint');
+      if (hint) {
+        hint.innerText = '⬇ 별을 눌러 주세요! 질문 카드를 고를 수 있어요.';
+        hint.classList.remove('text-green-500');
+        hint.classList.add('text-orange-400');
+      }
+      const qsBox = document.getElementById('qs-star-container');
+      if (qsBox) qsBox.closest('.border-yellow-400') && qsBox.closest('div.border-4').classList.remove('border-green-400') && qsBox.closest('div.border-4').classList.add('border-yellow-400');
+      renderQuestionSelect();
+      showView('view-question-select');
+    }
+
+    // 질문 선택 화면의 별점 처리
+    function setQSStarRating(rating) {
+      bookRating = rating;
+      const stars = document.querySelectorAll('.qs-star');
+      stars.forEach((s, i) => {
+        if (i < rating) {
+          s.classList.remove('grayscale', 'opacity-40');
+          s.style.transform = `scale(${1.05 + i * 0.03})`;
+        } else {
+          s.classList.add('grayscale', 'opacity-40');
+          s.style.transform = 'scale(1)';
+        }
+      });
+      // 힌트 문구 변경
+      const hint = document.getElementById('qs-rating-hint');
+      if (hint) {
+        const labels = ['', '별 1개 ⭐', '별 2개 ⭐⭐', '별 3개 ⭐⭐⭐', '별 4개 ⭐⭐⭐⭐', '별 5개 ⭐⭐⭐⭐⭐'];
+        hint.innerText = `${labels[rating]} 선택됨! 이제 질문 카드를 골라봐요 👇`;
+        hint.classList.remove('text-orange-400');
+        hint.classList.add('text-green-500');
+      }
+      // 테두리 색 변경
+      const box = document.getElementById('qs-star-container');
+      if (box) {
+        const wrap = box.closest('div.border-4');
+        if (wrap) {
+          wrap.classList.remove('border-yellow-400');
+          wrap.classList.add('border-green-400');
+        }
+      }
+    }
 
     function setStarRating(rating) {
       bookRating = rating;
@@ -1840,6 +2009,11 @@
     }
 
     function selectQuestion(idx) {
+      // 별점 미선택 시 경고
+      if (bookRating === 0) {
+        showModal('잠깐!', '별을 눌러 책 별점을 먼저 줘야 해요! ⭐', '🧐');
+        return;
+      }
       selectedQuestionData = reflectionQuestions[idx];
       document.getElementById('question-display-title').innerHTML = `<span class="text-purple-600">[${selectedQuestionData.title}]</span><br>${selectedQuestionData.question}`;
       const ex = selectedQuestionData.examples[0] || '';
@@ -1858,7 +2032,9 @@
       const typed = document.getElementById('sentence-text-input').value.trim();
       const spoken = document.getElementById('sentence-stt-text').innerText;
       window._todaySentence = typed || (spoken.startsWith('🎤') || spoken.startsWith('🔴') ? '' : spoken);
-      showView('view-book-rating');
+      // 별점은 질문 선택 화면에서 이미 입력됨 → 바로 저장
+      selfRating = 5;
+      finishRatingFlow();
     }
 
     function goHome(newFishIcon = null) {
