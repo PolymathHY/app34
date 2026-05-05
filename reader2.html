@@ -491,15 +491,15 @@
   <!-- 마이크 권한 안내 모달 -->
   <div id="mic-permission-modal"
     class="hidden fixed inset-0 z-[110] flex items-center justify-center p-6 modal-overlay">
-    <div class="bg-white border-4 border-slate-900 rounded-3xl p-8 max-w-md w-full pop-animation text-center">
-      <div class="text-6xl mb-4">🎤</div>
-      <h3 class="text-2xl font-bold text-slate-900 mb-4">목소리 보물을 찾을 준비!</h3>
+    <div class="bg-white border-[6px] border-slate-900 rounded-3xl p-12 max-w-2xl w-full pop-animation text-center" style="box-shadow:8px 8px 0px rgba(15,23,42,1);">
+      <div class="text-9xl mb-6">🎤</div>
+      <h3 class="text-4xl font-black text-slate-900 mb-6">목소리 보물을 찾을 준비!</h3>
       <p
-        class="text-slate-600 mb-6 text-lg break-keep text-center bg-blue-50 p-4 rounded-2xl border-2 border-blue-100 italic">
+        class="text-slate-600 mb-8 text-2xl break-keep text-center bg-blue-50 p-6 rounded-2xl border-2 border-blue-100 italic leading-relaxed">
         친구들! 화면 윗부분에 <span class="text-blue-600 font-black">'허용'</span> 버튼이 보이면 꾹 눌러주세요. 💎
       </p>
       <button onclick="requestInitialMicPermission()"
-        class="w-full bg-yellow-400 border-3 border-slate-900 rounded-2xl py-4 text-2xl font-bold text-slate-900 active:translate-y-1 transition-transform shadow-hard-sm flex items-center justify-center">
+        class="w-full bg-yellow-400 border-[5px] border-slate-900 rounded-2xl py-6 text-4xl font-black text-slate-900 active:translate-y-1 transition-transform shadow-hard flex items-center justify-center">
         네, 준비됐어요! 🚀
       </button>
     </div>
@@ -615,7 +615,7 @@
 
           <!-- ── 슬라이드 1: 소리 듣기 ── -->
           <div id="guide-slide-1"
-            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300">
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-2 px-6 py-4 transition-all duration-300">
 
             <!-- 좌: 설명 텍스트 -->
             <div class="flex-1 flex flex-col justify-center gap-5 min-w-0">
@@ -657,7 +657,7 @@
 
           <!-- ── 슬라이드 2: 책에서 찾기 ── -->
           <div id="guide-slide-2"
-            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300 opacity-0 translate-x-full">
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-2 px-6 py-4 transition-all duration-300 opacity-0 translate-x-full">
 
             <!-- 좌: 설명 텍스트 -->
             <div class="flex-1 flex flex-col justify-center gap-5 min-w-0">
@@ -700,7 +700,7 @@
 
           <!-- ── 슬라이드 3: 버튼 선택 ── -->
           <div id="guide-slide-3"
-            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300 opacity-0 translate-x-full">
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-2 px-6 py-4 transition-all duration-300 opacity-0 translate-x-full">
 
             <!-- 좌: 설명 텍스트 -->
             <div class="flex-1 flex flex-col justify-center gap-5 min-w-0">
@@ -749,7 +749,7 @@
 
           <!-- ── 슬라이드 4: 보상 ── -->
           <div id="guide-slide-4"
-            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-6 px-8 py-4 transition-all duration-300 opacity-0 translate-x-full">
+            class="guide-slide absolute inset-0 flex flex-row items-stretch gap-2 px-6 py-4 transition-all duration-300 opacity-0 translate-x-full">
 
             <!-- 좌: 설명 텍스트 -->
             <div class="flex-1 flex flex-col justify-center gap-4 min-w-0">
